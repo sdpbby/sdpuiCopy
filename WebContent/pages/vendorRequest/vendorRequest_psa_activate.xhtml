@@ -1,0 +1,63 @@
+<h:panelGroup rendered="#{directToVendorHandler.formHandler.activatePsaFormCurrent}"  xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<h:panelGrid columns="1" styleClass="editable_form_panel normal" columnClasses="editable_form_panel normal,editable_form_panel normal">
+		<h:outputText styleClass="error" value="#{msg['sdpRequest.message.special_character_found']}" rendered="#{directToVendorHandler.specialCharacterFoundInsertFlag}" />
+	</h:panelGrid>	
+	
+		<h:panelGrid columns="4" styleClass="editable_form_panel normal" columnClasses="right,left,left,left_fixed">
+			
+			<f:facet name="header">
+				<h:outputText value="Transaction Details" />
+			</f:facet>
+			
+			<!-- TRANSACTION DATE -->
+			<h:outputLabel for="vendorRequest_psa_activate_transaction_date" value="Transaction Date:" />
+			<h:outputText value="*" styleClass="error" />
+			<ice:selectInputDate id="vendorRequest_psa_activate_transaction_date" value="#{directToVendorHandler.vendorRequest.data.fpkTransactionDate}" required="true" renderMonthAsDropdown="true" renderYearAsDropdown="true" title="MM/DD/YYYY" renderAsPopup="true" styleClass="medium_field field_spacing">
+				<f:convertDateTime pattern="#{msg['ui.date.store_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+			</ice:selectInputDate>
+			<h:message for="vendorRequest_psa_activate_transaction_date" styleClass="error" />
+			
+			<!-- STORE ID -->
+			<h:outputLabel for="vendorRequest_psa_activate_store_id" value="Store ID:" />
+			<h:outputText value="*" styleClass="error" />
+			<h:inputText id="vendorRequest_psa_activate_store_id" value="#{directToVendorHandler.vendorRequest.data.fpkStoreId}" required="true" styleClass="medium_field field_spacing" />
+			<h:message for="vendorRequest_psa_activate_store_id" styleClass="error" />
+			
+			<!-- REGISTER ID -->
+			<h:outputLabel for="vendorRequest_psa_activate_register_id" value="Register ID:" />
+			<h:outputText value="*" styleClass="error" />
+			<h:inputText id="vendorRequest_psa_activate_register_id" value="#{directToVendorHandler.vendorRequest.data.fpkRegisterId}" required="true" styleClass="medium_field field_spacing" />
+			<h:message for="vendorRequest_psa_activate_register_id" styleClass="error" />
+			
+			<!-- TRANSACTION ID -->
+			<h:outputLabel for="vendorRequest_psa_activate_transaction_id" value="Transaction ID:" />
+			<h:outputText value="*" styleClass="error" />
+			<h:inputText id="vendorRequest_psa_activate_transaction_id" value="#{directToVendorHandler.vendorRequest.data.fpkTransactionId}" required="true" styleClass="medium_field field_spacing" />
+			<h:message for="vendorRequest_psa_activate_transaction_id" styleClass="error" />
+			
+			<!-- LINEITEM ID -->
+			<h:outputLabel for="vendorRequest_psa_activate_lineItem_id" value="Unique LineItem ID:" />
+			<h:outputText value="*" styleClass="error" />
+			<h:inputText id="vendorRequest_psa_activate_lineItem_id" value="#{directToVendorHandler.vendorRequest.data.lineItemId}" required="true" styleClass="medium_field field_spacing" />
+			<h:message for="vendorRequest_psa_activate_lineItem_id" styleClass="error" />
+				
+				
+			<!-- SERIAL NUMBER -->
+			<h:outputLabel for="vendorRequest_psa_activate_serial_number" value="Serial Number:" />
+			<h:outputText value="*" styleClass="error" />
+			<h:inputText id="vendorRequest_psa_activate_serial_number" value="#{directToVendorHandler.vendorRequest.data.serialNumber}" required="true" styleClass="medium_field field_spacing" />
+			<h:message for="vendorRequest_psa_activate_serial_number" styleClass="error" />
+				
+			<!-- PRODUCT (PRIMARY) SKU -->
+				
+			<h:outputLabel for="vendorRequest_psa_activate_primary_sku" value="Product SKU:" />
+			<h:outputText value="*" styleClass="error" />
+			<h:inputText id="vendorRequest_psa_activate_primary_sku" value="#{directToVendorHandler.vendorRequest.data.primarySku}" required="true" styleClass="medium_field field_spacing" readonly="true" />
+			<h:panelGroup>
+				<h:outputText style="text-stile: italic;" value="#{directToVendorHandler.description}" />
+				<h:message for="vendorRequest_psa_activate_primary_sku" styleClass="error" />
+			</h:panelGroup>	
+			
+		</h:panelGrid>
+		
+</h:panelGroup>

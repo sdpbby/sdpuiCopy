@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="xml.accenture.com/sdp/bby/om/VendorOffer" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:VendorOffer="xml.accenture.com/sdp/bby/om/VendorOffer" xmlns:ProductCollection="xml.accenture.com/sdp/bby/om/ProductCollection" xmlns:Attribute="xml.accenture.com/sdp/bby/om/Attribute" xmlns:Identifier="xml.accenture.com/sdp/bby/utilities/Identifier" xmlns:InstallationDate="xml.accenture.com/sdp/bby/om/InstallationDate" xmlns:Description="xml.accenture.com/sdp/bby/utilities/Description" xmlns:TermsAndConditions="xml.accenture.com/sdp/bby/utilities/TermsAndConditions" xmlns:PricingInformation="xml.accenture.com/sdp/bby/om/PricingInformation" xmlns:Vendor="xml.accenture.com/sdp/bby/om/Vendor" xmlns:Q1="xml.accenture.com/sdp/bby/om/BillingInformation">
+    <xs:import schemaLocation="XSD_BillingInformation.xsd" namespace="xml.accenture.com/sdp/bby/om/BillingInformation"/>
+    <xs:import namespace="xml.accenture.com/sdp/bby/om/ProductCollection" schemaLocation="XSD_ProductCollection.xsd"/>
+	<xs:import namespace="xml.accenture.com/sdp/bby/om/PricingInformation" schemaLocation="XSD_PricingInformation.xsd"/>
+	<xs:import namespace="xml.accenture.com/sdp/bby/utilities/Description" schemaLocation="XSD_Description.xsd"/>
+	<xs:import namespace="xml.accenture.com/sdp/bby/utilities/TermsAndConditions" schemaLocation="XSD_TermsAndConditions.xsd"/>
+	<xs:import namespace="xml.accenture.com/sdp/bby/om/InstallationDate" schemaLocation="XSD_InstallationDate.xsd"/>
+	<xs:import namespace="xml.accenture.com/sdp/bby/utilities/Identifier" schemaLocation="XSD_Identifier.xsd"/>
+	<xs:import namespace="xml.accenture.com/sdp/bby/om/Attribute" schemaLocation="XSD_Attribute.xsd"/>
+	<xs:import namespace="xml.accenture.com/sdp/bby/om/Vendor" schemaLocation="XSD_Vendor.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Vendor Offer Entity</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="VendorOffer">
+		<xs:sequence>
+			<xs:element name="VendorOfferIdentifier" type="Identifier:VendorOfferIdentifier"/>
+			<xs:element name="VendorID" type="xs:string" minOccurs="0"/>
+			<xs:element name="Priority" type="xs:string" minOccurs="0"/>
+			<xs:element name="Description" type="Description:Description" minOccurs="0"/>
+			<xs:element name="Category" type="xs:string" minOccurs="0"/>
+			<xs:element name="OfferSubCategory" type="xs:string" minOccurs="0"/>
+			<xs:element name="TermsAndConditions" type="TermsAndConditions:TermsAndConditions" minOccurs="0"/>
+			<xs:element name="PriceCollection" type="PricingInformation:PriceCollection" minOccurs="0"/>
+			<xs:element name="Status" type="xs:string" minOccurs="0"/>
+			<xs:element name="BaseProductCollection" type="ProductCollection:ProductCollection" minOccurs="0"/>
+			<xs:element name="AdditionalProductCollection" type="ProductCollection:ProductCollection" minOccurs="0"/>
+			<xs:element name="InstallationDetail" type="InstallationDate:Installation" minOccurs="0"/>
+			<xs:element name="AvailableInstallationDates" type="InstallationDate:arrayofInstallationDate" minOccurs="0"/>
+			<xs:element name="MoreDetails" type="Attribute:ArrayOfSDPAttribute" minOccurs="0"/>
+			<xs:element name="BillingInformation" type="Q1:BillingInformation" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="arrayofVendorOffer">
+		<xs:sequence>
+			<xs:element name="VendorOffer" type="VendorOffer:VendorOffer" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

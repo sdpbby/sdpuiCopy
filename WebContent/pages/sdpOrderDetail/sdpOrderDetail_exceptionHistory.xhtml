@@ -1,0 +1,60 @@
+<h:form id="exceptionHistory_form" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<table class="datatable_paginator_wrapper" style="width: 100%;">
+		<thead class="paginator">
+			<tr>
+				<td class="header">
+					<h:commandLink value="[+]" action="#{sdpOrderDetailHandler.exceptionHistoryDatatable.toggleHide}" rendered="#{sdpOrderDetailHandler.exceptionHistoryDatatable.hide}" />
+					<h:commandLink value="[-]" action="#{sdpOrderDetailHandler.exceptionHistoryDatatable.toggleHide}" rendered="#{!sdpOrderDetailHandler.exceptionHistoryDatatable.hide}" />	
+					<h:outputText value=" EXCEPTIONS HISTORY " />				
+				</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<ice:dataTable rendered="#{!sdpOrderDetailHandler.exceptionHistoryDatatable.hide}" width="100%" binding="#{sdpOrderDetailHandler.exceptionHistoryDatatable.dataTable}" value="#{sdpOrderDetailHandler.exceptionHistoryDatatable.rows}" var="itr" id="exceptionHistory_datatable" styleClass="datatable" rowClasses="odd,even">
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Created Date" />
+							</f:facet>
+							<ice:outputText value="#{itr.createdDate}">
+								<f:convertDateTime pattern="#{msg['ui.date.percision_timestamp_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+							</ice:outputText>
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Source System" />
+							</f:facet>
+							<ice:outputText value="#{itr.sourceSystem}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Code" />
+							</f:facet>
+							<ice:outputText value="#{itr.code}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Description" />
+							</f:facet>
+							<ice:outputText value="#{itr.description}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="SDP ID" />
+							</f:facet>
+							<ice:outputText value="#{itr.sdpId}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Action" />
+							</f:facet>
+							<ice:commandButton value="View" action="#{sdpOrderDetailHandler.exceptionHistoryDatatable.viewButtonClick}" />
+						</ice:column>
+					</ice:dataTable>
+					<ice:outputText styleClass="error" value="No records to display." rendered="#{!sdpOrderDetailHandler.exceptionHistoryDatatable.hide and sdpOrderDetailHandler.exceptionHistoryDatatable.tableEmpty}" />
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</h:form>

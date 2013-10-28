@@ -1,0 +1,433 @@
+<h:panelGroup rendered="#{sdpRequestHandler.sdpRequestFormHandler.reactivateFulfillmentTechSupportFormCurrent}"  xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<h:panelGrid columns="1" styleClass="editable_form_panel normal" columnClasses="editable_form_panel normal,editable_form_panel normal">
+		<h:outputText styleClass="error" value="#{msg['sdpRequest.message.special_character_found']}" rendered="#{sdpRequestHandler.specialCharacterFoundInsertFlag}" />
+	</h:panelGrid>
+		
+	<h:panelGrid columns="2" styleClass="editable_form_panel normal" columnClasses="editable_form_panel normal,editable_form_panel normal">
+		<h:panelGrid columns="4" styleClass="editable_form_panel normal" columnClasses="right,left,left,left_fixed">
+			
+			<f:facet name="header">
+				<h:outputText value="Transaction Details" />
+			</f:facet>
+			
+			<!-- TRANSACTION DATE -->
+			<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_transaction_date" value="Transaction Date:" />
+			<h:outputText value="*" styleClass="error" />
+			<ice:selectInputDate id="sdpRequest_techSupport_reactivateFulfillment_transaction_date" value="#{sdpRequestHandler.sdpRequestBean.data.fpkTransactionDate}" required="true" renderMonthAsDropdown="true" renderYearAsDropdown="true" title="MM/DD/YYYY" renderAsPopup="true" styleClass="medium_field field_spacing">
+				<f:convertDateTime pattern="#{msg['ui.date.store_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+			</ice:selectInputDate>
+			<h:message for="sdpRequest_techSupport_reactivateFulfillment_transaction_date" styleClass="error" />
+				
+				
+			<!-- STORE # -->
+			
+			<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_store_num" value="Store #:" />
+			<h:outputText value="*" styleClass="error" />
+			<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_store_num" value="#{sdpRequestHandler.sdpRequestBean.data.fpkStoreId}" required="true" styleClass="medium_field field_spacing" />
+			<h:message for="sdpRequest_techSupport_reactivateFulfillment_store_num" styleClass="error" />
+				
+				
+				<!-- REGISTER # -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_register_num" value="Register #:" />
+					<h:outputText value="*" styleClass="error" />
+					<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_register_num" value="#{sdpRequestHandler.sdpRequestBean.data.fpkRegisterId}" required="true" styleClass="medium_field field_spacing" />
+					<h:message for="sdpRequest_techSupport_reactivateFulfillment_register_num" styleClass="error" />
+				
+			
+				<!-- TRANSACTION # -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_transaction_num" value="Transaction #:" />
+					<h:outputText value="*" styleClass="error" />
+					<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_transaction_num" value="#{sdpRequestHandler.sdpRequestBean.data.fpkTransactionId}" required="true" styleClass="medium_field field_spacing" />
+					<h:message for="sdpRequest_techSupport_reactivateFulfillment_transaction_num" styleClass="error" />
+				
+			
+				<!-- LINE # -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_line_num" value="Line #:" />
+					<h:outputText value="*" styleClass="error" />
+					<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_line_num" value="#{sdpRequestHandler.sdpRequestBean.data.fpkLineId}" required="true" styleClass="medium_field field_spacing" />
+					<h:message for="sdpRequest_techSupport_reactivateFulfillment_line_num" styleClass="error" />
+				
+				
+				
+					<f:verbatim><br /></f:verbatim>
+			<f:verbatim><br /></f:verbatim>
+			<f:verbatim><br /></f:verbatim>
+			<f:verbatim><br /></f:verbatim>
+			
+			<!-- ORIGINAL TRANSACTION DATE -->
+			<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_original_transaction_date" value="Original Transaction Date:" />
+			<h:outputText value="*" styleClass="error" />
+			<ice:selectInputDate id="sdpRequest_techSupport_reactivateFulfillment_original_transaction_date" value="#{sdpRequestHandler.sdpRequestBean.data.originalFpkTransactionDate}" required="true" renderMonthAsDropdown="true" renderYearAsDropdown="true" title="MM/DD/YYYY" renderAsPopup="true" styleClass="medium_field field_spacing">
+				<f:convertDateTime pattern="#{msg['ui.date.store_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+			</ice:selectInputDate>
+			<h:message for="sdpRequest_techSupport_reactivateFulfillment_original_transaction_date" styleClass="error" />
+				
+				
+			<!-- ORIGINAL STORE # -->
+			
+			<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_original_store_num" value="Original Store #:" />
+			<h:outputText value="*" styleClass="error" />
+			<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_original_store_num" value="#{sdpRequestHandler.sdpRequestBean.data.originalFpkStoreId}" required="true" styleClass="medium_field field_spacing" />
+			<h:message for="sdpRequest_techSupport_reactivateFulfillment_original_store_num" styleClass="error" />
+				
+			
+			<!-- ORIGINAL REGISTER # -->
+			
+			<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_original_register_num" value="Original Register #:" />
+			<h:outputText value="*" styleClass="error" />
+			<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_original_register_num" value="#{sdpRequestHandler.sdpRequestBean.data.originalFpkRegisterId}" required="true" styleClass="medium_field field_spacing" />
+			<h:message for="sdpRequest_techSupport_reactivateFulfillment_original_register_num" styleClass="error" />
+			
+		
+			<!-- ORIGINAL TRANSACTION # -->
+			
+			<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_original_transaction_num" value="Original Transaction #:" />
+			<h:outputText value="*" styleClass="error" />
+			<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_original_transaction_num" value="#{sdpRequestHandler.sdpRequestBean.data.originalFpkTransactionId}" required="true" styleClass="medium_field field_spacing" />
+			<h:message for="sdpRequest_techSupport_reactivateFulfillment_original_transaction_num" styleClass="error" />
+			
+		
+			<!-- ORIGINAL LINE # -->
+			
+			<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_original_line_num" value="Original Line #:" />
+			<h:outputText value="*" styleClass="error" />
+			<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_original_line_num" value="#{sdpRequestHandler.sdpRequestBean.data.originalFpkLineId}" required="true" styleClass="medium_field field_spacing" />
+			<h:message for="sdpRequest_techSupport_reactivateFulfillment_original_line_num" styleClass="error" />
+		
+		
+		
+			<f:verbatim><br /></f:verbatim>
+			<f:verbatim><br /></f:verbatim>
+			<f:verbatim><br /></f:verbatim>
+			<f:verbatim><br /></f:verbatim>
+			
+				
+				<!-- PRODUCT (PRIMARY) SKU -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_primary_sku" value="Product SKU:" />
+					<h:outputText value="*" styleClass="error" />
+					<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_primary_sku" value="#{sdpRequestHandler.sdpRequestBean.data.primarySku}" required="true" styleClass="medium_field field_spacing" readonly="true" />
+					<h:panelGroup>
+						<h:outputText style="text-stile: italic;" value="#{sdpRequestHandler.description}" />
+						<h:message for="sdpRequest_techSupport_reactivateFulfillment_primary_sku" styleClass="error" />
+					</h:panelGroup>
+				
+			
+				<!-- PRODUCT (PRIMARY) SKU PRICE -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_primary_sku_price" value="Price:" />
+					<h:outputText value=" " styleClass="error" />
+					<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_primary_sku_price" value="#{sdpRequestHandler.sdpRequestBean.data.primarySkuPrice}" required="false" styleClass="medium_field field_spacing" />
+					<h:message for="sdpRequest_techSupport_reactivateFulfillment_primary_sku_price" styleClass="error" />
+				
+			
+				<!-- PRODUCT (PRIMARY) TAX AMOUNT -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_primary_sku_tax_amount" value="Tax Amount:" />
+					<h:outputText value=" " styleClass="error" />
+					<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_primary_sku_tax_amount" value="#{sdpRequestHandler.sdpRequestBean.data.primarySkuTaxAmount}" required="false" styleClass="medium_field field_spacing" />
+					<h:message for="sdpRequest_techSupport_reactivateFulfillment_primary_sku_tax_amount" styleClass="error" />
+				
+			
+				<!-- PRODUCT (PRIMARY) TAX RATE -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_primary_sku_tax_rate" value="Tax Rate:" />
+					<h:outputText value=" " styleClass="error" />
+					<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_primary_sku_tax_rate" value="#{sdpRequestHandler.sdpRequestBean.data.primarySkuTaxRate}" required="false" styleClass="medium_field field_spacing" />
+					<h:message for="sdpRequest_techSupport_reactivateFulfillment_primary_sku_tax_rate" styleClass="error" />
+				
+			
+				
+					<f:verbatim><br /></f:verbatim>
+					<f:verbatim><br /></f:verbatim>
+					<f:verbatim><br /></f:verbatim>
+					<f:verbatim><br /></f:verbatim>
+				
+			
+				<!-- PLAN (RELATED) SKU -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_related_sku" value="Plan SKU:" />
+					<h:outputText value="*" styleClass="error" />
+					<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_related_sku" value="#{sdpRequestHandler.sdpRequestBean.data.relatedSku}" required="true" styleClass="medium_field field_spacing" />
+					<h:message for="sdpRequest_techSupport_reactivateFulfillment_related_sku" styleClass="error" />
+				
+			
+				<!-- PLAN (RELATED) SKU PRICE -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_related_sku_price" value="Price:" />
+					<h:outputText value=" " styleClass="error" />
+					<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_related_sku_price" value="#{sdpRequestHandler.sdpRequestBean.data.relatedSkuPrice}" required="false" styleClass="medium_field field_spacing" />
+					<h:message for="sdpRequest_techSupport_reactivateFulfillment_related_sku_price" styleClass="error" />
+				
+			
+				<!-- PLAN (RELATED) TAX AMOUNT -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_related_sku_tax_amount" value="Tax Amount:" />
+					<h:outputText value=" " styleClass="error" />
+					<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_related_sku_tax_amount" value="#{sdpRequestHandler.sdpRequestBean.data.relatedSkuTaxAmount}" required="false" styleClass="medium_field field_spacing" />
+					<h:message for="sdpRequest_techSupport_reactivateFulfillment_related_sku_tax_amount" styleClass="error" />
+				
+			
+				<!-- PLAN (RELATED) TAX RATE -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_related_sku_tax_rate" value="Tax Rate:" />
+					<h:outputText value=" " styleClass="error" />
+					<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_related_sku_tax_rate" value="#{sdpRequestHandler.sdpRequestBean.data.relatedSkuTaxRate}" required="false" styleClass="medium_field field_spacing" />
+					<h:message for="sdpRequest_techSupport_reactivateFulfillment_related_sku_tax_rate" styleClass="error" />
+				
+				
+				
+					<f:verbatim><br /></f:verbatim>
+					<f:verbatim><br /></f:verbatim>
+					<f:verbatim><br /></f:verbatim>
+					<f:verbatim><br /></f:verbatim>
+				
+			
+				<!-- DELIVERY EMAIL -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_delivery_email" value="Delivery Email:" />
+					<h:outputText value=" " styleClass="error" />
+					<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_delivery_email" value="#{sdpRequestHandler.sdpRequestBean.data.deliveryEmail}" required="false" styleClass="medium_field field_spacing" />
+					<h:message for="sdpRequest_techSupport_reactivateFulfillment_delivery_email" styleClass="error" />
+				
+			
+				<!-- SERIAL NUMBER -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_serial_number" value="Serial Number:" />
+					<h:outputText value="*" styleClass="error" />
+					<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_serial_number" value="#{sdpRequestHandler.sdpRequestBean.data.serialNumber}" required="true" styleClass="medium_field field_spacing" />
+					<h:message for="sdpRequest_techSupport_reactivateFulfillment_serial_number" styleClass="error" />
+				
+			
+				<!-- VALUE PACKAGE ID -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_value_package_id" value="Value Package ID:" />
+					<h:outputText value=" " styleClass="error" />
+					<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_value_package_id" value="#{sdpRequestHandler.sdpRequestBean.data.valuePackageId}" required="false" styleClass="medium_field field_spacing" />
+					<h:message for="sdpRequest_techSupport_reactivateFulfillment_value_package_id" styleClass="error" />
+				
+			
+				<!-- REWARD ZONE NUMBER -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_reward_zone_num" value="RewardZone Number:" />
+					<h:outputText value=" " styleClass="error" />
+					<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_reward_zone_num" value="#{sdpRequestHandler.sdpRequestBean.data.rewardZoneNumber}" required="false" styleClass="medium_field field_spacing" />
+					<h:message for="sdpRequest_techSupport_reactivateFulfillment_reward_zone_num" styleClass="error" />
+				
+			
+				<!-- CA PARTY ID -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_ca_party_id" value="CA Party ID:" />
+					<h:outputText value=" " styleClass="error" />
+					<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_ca_party_id" value="#{sdpRequestHandler.sdpRequestBean.data.caPartyId}" required="false" styleClass="medium_field field_spacing" />
+					<h:message for="sdpRequest_techSupport_reactivateFulfillment_ca_party_id" styleClass="error" />
+				
+			</h:panelGrid>
+
+			<h:panelGrid columns="4" styleClass="editable_form_panel normal"  columnClasses="right,left,left,left">
+				
+					<f:facet name="header">
+						<h:outputText value="Customer And Billing Details" />
+					</f:facet>
+					
+				
+			
+				<!-- FIRST NAME -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_first_name" value="First Name:" />
+					<h:outputText value=" " styleClass="error" />
+					<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_first_name" value="#{sdpRequestHandler.sdpRequestBean.data.customerFirstName}" required="false" styleClass="medium_field field_spacing" />
+					<h:message for="sdpRequest_techSupport_reactivateFulfillment_first_name" styleClass="error" />
+				
+			
+				<!-- MIDDLE NAME -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_middle_name" value="Middle Name:" />
+					<h:outputText value=" " styleClass="error" />
+					<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_middle_name" value="#{sdpRequestHandler.sdpRequestBean.data.customerMiddleName}" required="false" styleClass="medium_field field_spacing" />
+					<h:message for="sdpRequest_techSupport_reactivateFulfillment_middle_name" styleClass="error" />
+				
+			
+				<!-- LAST NAME -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_last_name" value="Last Name:" />
+					<h:outputText value=" " styleClass="error" />
+					<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_last_name" value="#{sdpRequestHandler.sdpRequestBean.data.customerLastName}" required="false" styleClass="medium_field field_spacing" />
+					<h:message for="sdpRequest_techSupport_reactivateFulfillment_last_name" styleClass="error" />
+				
+			
+				<!-- CONTACT EMAIL -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_contact_email" value="Contact Email:" />
+					<h:outputText value=" " styleClass="error" />
+					<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_contact_email" value="#{sdpRequestHandler.sdpRequestBean.data.customerContactEmail}" required="false" styleClass="medium_field field_spacing" />
+					<h:message for="sdpRequest_techSupport_reactivateFulfillment_contact_email" styleClass="error" />
+				
+				
+				
+					<f:verbatim><br /></f:verbatim>
+					<f:verbatim><br /></f:verbatim>
+					<f:verbatim><br /></f:verbatim>
+					<f:verbatim><br /></f:verbatim>
+				
+			
+				<!-- ADDRESS TYPE -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_address_type" value="Address Type:" />
+					<h:outputText value="*"  styleClass="error" />
+					
+					<h:selectOneMenu id="sdpRequest_techSupport_reactivateFulfillment_address_type" value="#{sdpRequestHandler.sdpRequestBean.data.addressLabel}"   styleClass="medium_field field_spacing" >
+						<f:selectItem id="sdpRequest_techSupport_reactivateFulfillment_address_type_null" itemLabel="" />
+						<f:selectItems id="sdpRequest_techSupport_reactivateFulfillment_address_type_list" value="#{dropdownListManager.sortedAddressLabelSelectItems}" />
+					</h:selectOneMenu>
+					
+					<h:message for="sdpRequest_techSupport_reactivateFulfillment_address_type" styleClass="error" />
+				
+			
+				<!-- ADDRESS LINE 1 -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_address_1" value="Street Address Line 1:" />
+					<h:outputText value="*"  styleClass="error"  />
+					<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_address_1" value="#{sdpRequestHandler.sdpRequestBean.data.addressLine1}" required="true" styleClass="#{sdpRequestHandler.addressFieldStyle}"  />
+					<h:message for="sdpRequest_techSupport_reactivateFulfillment_address_1" styleClass="error"  />
+					
+			
+				<!-- ADDRESS LINE 2 -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_address_2" value="Street Address Line 2:" />
+					<h:outputText value=" " styleClass="error" />
+					<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_address_2" value="#{sdpRequestHandler.sdpRequestBean.data.addressLine2}" required="false" styleClass="#{sdpRequestHandler.addressFieldStyle}"  />
+					<h:message for="sdpRequest_techSupport_reactivateFulfillment_address_2" styleClass="error"  />
+					<h:outputText value=" " rendered="#{!sdpRequestHandler.sdpRequestBean.addressRequired}" styleClass="error"  />
+					
+			
+				<!-- CITY -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_city" value="City:" />
+					<h:outputText value="*"  styleClass="error" />
+					<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_city" value="#{sdpRequestHandler.sdpRequestBean.data.addressCity}" required="true"  styleClass="#{sdpRequestHandler.addressFieldStyle}"  />
+					<h:message for="sdpRequest_techSupport_reactivateFulfillment_city" styleClass="error"  />
+					
+			
+				<!-- STATE -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_state" value="State:" />
+					<h:outputText value="*"  styleClass="error" />
+					<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_state" value="#{sdpRequestHandler.sdpRequestBean.data.addressState}" required="true"   styleClass="#{sdpRequestHandler.addressFieldStyle}"  />
+					<h:message for="sdpRequest_techSupport_reactivateFulfillment_state" styleClass="error"  />
+					
+			
+				<!-- POSTAL CODE -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_postal_code" value="Postal Code:" />
+					<h:outputText value="*"  styleClass="error" />
+					<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_postal_code" value="#{sdpRequestHandler.sdpRequestBean.data.addressZipcode}" required="true" styleClass="#{sdpRequestHandler.addressFieldStyle}"  />
+					<h:message for="sdpRequest_techSupport_reactivateFulfillment_postal_code" styleClass="error"  />
+					
+				
+				
+					<f:verbatim><br /></f:verbatim>
+					<f:verbatim><br /></f:verbatim>
+					<f:verbatim><br /></f:verbatim>
+					<f:verbatim><br /></f:verbatim>
+				
+			
+				<!-- PHONE TYPE -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_phone_type" value="Phone Type:" />
+					<h:outputText value="*" styleClass="error" />
+					
+						<h:selectOneMenu id="sdpRequest_techSupport_reactivateFulfillment_phone_type" value="#{sdpRequestHandler.sdpRequestBean.data.phoneLabel}" styleClass="medium_field field_spacing">
+							<f:selectItem id="sdpRequest_techSupport_reactivateFulfillment_phone_type_null" itemLabel="" />
+							<f:selectItems id="sdpRequest_techSupport_reactivateFulfillment_phone_type_list" value="#{dropdownListManager.sortedPhoneLabelSelectItems}" />
+						</h:selectOneMenu>
+					
+					<h:message for="sdpRequest_techSupport_reactivateFulfillment_phone_type" styleClass="error" />
+					
+			
+				<!-- PHONE NUMBER -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_phone_number" value="Phone Number:" />
+					<h:outputText value="*" styleClass="error" />
+					
+						<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_phone_number" value="#{sdpRequestHandler.sdpRequestBean.data.phoneNumber}" required="true" styleClass="#{sdpRequestHandler.phoneFieldStyle}" maxlength="10">
+							<f:validateLength minimum="10" maximum="10" />
+						</h:inputText>
+					
+					<h:message for="sdpRequest_techSupport_reactivateFulfillment_phone_number" styleClass="error" />
+					
+				
+				
+					<f:verbatim><br /></f:verbatim>
+					<f:verbatim><br /></f:verbatim>
+					<f:verbatim><br /></f:verbatim>
+					<f:verbatim><br /></f:verbatim>
+				
+				
+			
+				<!-- CREDIT CARD TYPE -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_cc_type" value="Credit Card Type:" />
+					<h:outputText value="*" rendered="#{sdpRequestHandler.sdpRequestBean.creditCardRequired}" styleClass="error" />
+					<h:outputText value=" " rendered="#{!sdpRequestHandler.sdpRequestBean.creditCardRequired}" styleClass="error" />
+					
+						<h:selectOneMenu id="sdpRequest_techSupport_reactivateFulfillment_cc_type" value="#{sdpRequestHandler.sdpRequestBean.data.creditCardType}" onchange="submit();" immediate="true" valueChangeListener="#{sdpRequestHandler.creditCardValueChanged}" styleClass="medium_field field_spacing">
+							<f:selectItem id="sdpRequest_techSupport_reactivateFulfillment_cc_type_default" itemLabel="No Credit Card" itemValue="#{sdpRequestHandler.sdpRequestBean.data.ignoreAllFieldsString}" />
+							<f:selectItem id="sdpRequest_techSupport_reactivateFulfillment_cc_type_null" itemLabel="" />
+							<f:selectItems id="sdpRequest_techSupport_reactivateFulfillment_cc_type_list" value="#{dropdownListManager.sortedCreditCardTypeSelectItems}" />
+						</h:selectOneMenu>
+					
+					<h:message for="sdpRequest_techSupport_reactivateFulfillment_cc_type" styleClass="error" />
+					
+			
+				<!-- CREDIT CARD CUSTOMER -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_cc_cust_name" value="Customer Name On Card:" />
+					<h:outputText value="*" rendered="#{sdpRequestHandler.sdpRequestBean.creditCardRequired}" styleClass="error" />
+					<h:outputText value=" " rendered="#{!sdpRequestHandler.sdpRequestBean.creditCardRequired}" styleClass="error" />
+					<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_cc_cust_name" value="#{sdpRequestHandler.sdpRequestBean.data.creditCardCustomerName}" required="#{sdpRequestHandler.sdpRequestBean.creditCardRequired}" styleClass="#{sdpRequestHandler.creditCardFieldStyle}" disabled="#{!sdpRequestHandler.sdpRequestBean.creditCardRequired}" />
+					<h:message for="sdpRequest_techSupport_reactivateFulfillment_cc_cust_name" styleClass="error" rendered="#{sdpRequestHandler.sdpRequestBean.creditCardRequired}" />
+					<h:outputText value=" " rendered="#{!sdpRequestHandler.sdpRequestBean.creditCardRequired}" styleClass="error" />
+					
+			
+				<!-- CREDIT CARD TOKEN -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_cc_token" value="Token:" />
+					<h:outputText value="*" rendered="#{sdpRequestHandler.sdpRequestBean.creditCardRequired}" styleClass="error" />
+					<h:outputText value=" " rendered="#{!sdpRequestHandler.sdpRequestBean.creditCardRequired}" styleClass="error" />
+					
+					<h:inputText id="sdpRequest_techSupport_reactivateFulfillment_cc_token" value="#{sdpRequestHandler.sdpRequestBean.data.creditCardToken}" required="#{sdpRequestHandler.sdpRequestBean.creditCardRequired}" styleClass="#{sdpRequestHandler.creditCardFieldStyle}" disabled="#{!sdpRequestHandler.sdpRequestBean.creditCardRequired}">
+						<f:validateLongRange />
+					</h:inputText>
+					
+					<h:message for="sdpRequest_techSupport_reactivateFulfillment_cc_token" styleClass="error" rendered="#{sdpRequestHandler.sdpRequestBean.creditCardRequired}" />
+					<h:outputText value=" " rendered="#{!sdpRequestHandler.sdpRequestBean.creditCardRequired}" styleClass="error" />
+					
+			
+				<!-- CREDIT CARD EXPIRE MONTH -->
+				
+					<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_cc_exp_month" value="Expiration Date:" />
+					<h:outputText value="*" rendered="#{sdpRequestHandler.sdpRequestBean.creditCardRequired and !sdpRequestHandler.sdpRequestBean.noCreditCardExpire}" styleClass="error" />
+					<h:outputText value=" " rendered="#{!sdpRequestHandler.sdpRequestBean.creditCardRequired and !sdpRequestHandler.sdpRequestBean.noCreditCardExpire}" styleClass="error" />
+					
+					<h:panelGrid columns="5">
+						<h:selectOneMenu id="sdpRequest_techSupport_reactivateFulfillment_cc_exp_month" value="#{sdpRequestHandler.sdpRequestBean.creditCardMonth}" required="#{sdpRequestHandler.sdpRequestBean.creditCardRequired and !sdpRequestHandler.sdpRequestBean.noCreditCardExpire}" styleClass="#{sdpRequestHandler.creditCardExpireDateFieldStyle}" disabled="#{!sdpRequestHandler.sdpRequestBean.creditCardRequired}">
+							<f:selectItems id="sdpRequest_techSupport_reactivateFulfillment_cc_exp_month_list" value="#{sdpRequestHandler.months}" />
+						</h:selectOneMenu>
+						<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_cc_exp_year" value=" / " />
+						<h:selectOneMenu id="sdpRequest_techSupport_reactivateFulfillment_cc_exp_year" value="#{sdpRequestHandler.sdpRequestBean.creditCardYear}" required="#{sdpRequestHandler.sdpRequestBean.creditCardRequired and !sdpRequestHandler.sdpRequestBean.noCreditCardExpire}" styleClass="#{sdpRequestHandler.creditCardExpireDateFieldStyle}" disabled="#{!sdpRequestHandler.sdpRequestBean.creditCardRequired}">
+							<f:selectItems id="sdpRequest_techSupport_reactivateFulfillment_cc_exp_year_list" value="#{sdpRequestHandler.years}" />
+						</h:selectOneMenu>
+					</h:panelGrid>
+					
+					<h:panelGroup>
+						<h:outputLabel for="sdpRequest_techSupport_reactivateFulfillment_cc_no_exp" value=" or does not expire:" />
+						<h:selectBooleanCheckbox id="sdpRequest_techSupport_reactivateFulfillment_cc_no_exp" value="#{sdpRequestHandler.sdpRequestBean.noCreditCardExpire}" styleClass="#{sdpRequestHandler.creditCardExpireDateFieldStyle}" disabled="#{!sdpRequestHandler.sdpRequestBean.creditCardRequired}" />
+					</h:panelGroup>
+			
+			</h:panelGrid>
+		</h:panelGrid>
+</h:panelGroup>

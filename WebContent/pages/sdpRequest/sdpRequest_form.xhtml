@@ -1,0 +1,67 @@
+<h:panelGroup id="requestForm_panel" rendered="#{sdpRequestHandler.sdpRequestTabHandler.formTabCurrent}" xmlns:ice="http://www.icesoft.com/icefaces/component" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml">
+	 <div id="requestForm_div">
+		<h:form id="requestForm_panel_form">
+			
+			<!-- Panel Popup -->
+			<ice:panelPopup id="confirm_popup" draggable="true" modal="true" rendered="#{sdpRequestHandler.renderPopup}" visible="#{sdpRequestHandler.renderPopup}" autoCentre="true">
+				<f:facet name="header">
+					<ice:panelGroup>
+						<ice:outputText value="#{sdpRequestHandler.operation}: #{sdpRequestHandler.category}" />
+					</ice:panelGroup>
+				</f:facet>
+				<f:facet name="body">
+					<ice:panelGroup>
+						<br />
+						<ice:outputText value="You are about to submit a new ${sdpRequestHandler.operationName} request to SDP. Do you want to proceed?" />
+						<br />
+						<ice:outputText rendered="#{sdpRequestHandler.activateExistingRequestFlag}" styleClass="error" value="NOTE: A transaction with this five part key already exists." />
+						<ice:outputText rendered="#{sdpRequestHandler.activateRequestAlreadyCompletedFlag}" styleClass="error" value="NOTE: A transaction with this five part key already exists and is already in a completed state." />
+						<ice:outputText rendered="#{sdpRequestHandler.reactivateRequestFlag}" styleClass="error" value="NOTE: A transaction with this five part key already exists and is already in a cancelled state." />
+						<ice:outputText rendered="#{sdpRequestHandler.noActiveRequestFlag}" styleClass="error" value="NOTE: There are no existing transactions matching this five part key." />
+						<br />
+						<ice:panelGroup style="text-align: center;">
+							<br />
+							<ice:commandButton type="submit" id="send_request_now" value="Send Request Now" actionListener="#{sdpRequestHandler.togglePopup}"  action="#{sdpRequestHandler.sendRequestNowButtonClick}" />
+							<ice:commandButton type="submit" id="cancel" value="Cancel" actionListener="#{sdpRequestHandler.togglePopup}"  />
+							<br />
+						</ice:panelGroup>
+					</ice:panelGroup>
+				</f:facet>
+			</ice:panelPopup>
+			<h:panelGroup styleClass="full_column">
+				<ui:include src="/pages/sdpRequest/sdpRequest_digital_fulfillActivation.xhtml" />
+				<ui:include src="/pages/sdpRequest/sdpRequest_techSupport_fulfillActivation.xhtml" />
+				<ui:include src="/pages/sdpRequest/sdpRequest_s2_fulfillActivation.xhtml" />
+				<ui:include src="/pages/sdpRequest/sdpRequest_psa_fulfillActivation.xhtml" />
+				
+				<ui:include src="/pages/sdpRequest/sdpRequest_digital_cancelFulfillment.xhtml" />
+				<ui:include src="/pages/sdpRequest/sdpRequest_techSupport_cancelFulfillment.xhtml" />
+				<ui:include src="/pages/sdpRequest/sdpRequest_s2_cancelFulfillment.xhtml" />
+				<ui:include src="/pages/sdpRequest/sdpRequest_psa_cancelFulfillment.xhtml" />
+				
+				<ui:include src="/pages/sdpRequest/sdpRequest_digital_reactivateFulfillment.xhtml" />
+				<ui:include src="/pages/sdpRequest/sdpRequest_techSupport_reactivateFulfillment.xhtml" />
+				<ui:include src="/pages/sdpRequest/sdpRequest_s2_reactivateFulfillment.xhtml" />
+				<ui:include src="/pages/sdpRequest/sdpRequest_psa_reactivateFulfillment.xhtml" />
+				
+				<ui:include src="/pages/sdpRequest/sdpRequest_digital_adjustActivation.xhtml" />
+				<ui:include src="/pages/sdpRequest/sdpRequest_techSupport_adjustActivation.xhtml" />
+				<ui:include src="/pages/sdpRequest/sdpRequest_s2_adjustActivation.xhtml" />
+				<ui:include src="/pages/sdpRequest/sdpRequest_psa_adjustActivation.xhtml" />
+				
+				<!-- <ui:include src="/pages/sdpRequest/sdpRequest_s2_updateSubscriptionStatus.xhtml" /> -->
+				
+			</h:panelGroup>
+			
+			<h:panelGroup styleClass="full_column">
+				<div style="text-align:center;">
+					<h:commandButton immediate="true" value="&lt;&lt; Back" action="#{sdpRequestHandler.backToTransLogButtonClick}" rendered="#{sdpRequestHandler.reflowFromTransLog}" />
+					<h:commandButton immediate="true" value="&lt;&lt; Change Form" action="#{sdpRequestHandler.changeFormButtonClick}" rendered="#{!sdpRequestHandler.reflowFromTransLog}" />
+					<h:commandButton id="submit_sdp_request" value="Send Request &gt;&gt;" action="#{sdpRequestHandler.processRequestButtonClick}" />
+				</div>
+			</h:panelGroup>
+	
+		</h:form>
+	</div> 
+</h:panelGroup>
+		

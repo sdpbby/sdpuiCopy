@@ -1,0 +1,84 @@
+<h:form id="adjustmentHistory_form" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<table class="datatable_paginator_wrapper" style="width: 100%;">
+		<thead class="paginator">
+			<tr>
+				<td class="header">
+					<h:commandLink value="[+]" action="#{sdpOrderDetailHandler.adjustmentHistoryDatatable.toggleHide}" rendered="#{sdpOrderDetailHandler.adjustmentHistoryDatatable.hide}" />
+					<h:commandLink value="[-]" action="#{sdpOrderDetailHandler.adjustmentHistoryDatatable.toggleHide}" rendered="#{!sdpOrderDetailHandler.adjustmentHistoryDatatable.hide}" />	
+					<h:outputText value=" ADJUSTMENT HISTORY " />				
+				</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<ice:dataTable rendered="#{!sdpOrderDetailHandler.adjustmentHistoryDatatable.hide}" width="100%" binding="#{sdpOrderDetailHandler.adjustmentHistoryDatatable.dataTable}" value="#{sdpOrderDetailHandler.adjustmentHistoryDatatable.rows}" var="itr" id="adjustmentHistory_datatable" styleClass="datatable" rowClasses="odd,even">
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Tran Date" />
+							</f:facet>
+							<ice:outputText value="#{itr.fpkTransactionDate}">
+								<f:convertDateTime pattern="#{msg['ui.date.store_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+							</ice:outputText>
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Store #" />
+							</f:facet>
+							<ice:outputText value="#{itr.fpkStoreId}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Reg #" />
+							</f:facet>
+							<ice:outputText value="#{itr.fpkRegisterId}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Tran #" />
+							</f:facet>
+							<ice:outputText value="#{itr.fpkTransactionId}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Line #" />
+							</f:facet>
+							<ice:outputText value="#{itr.fpkLineId}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="SDP ID" />
+							</f:facet>
+							<ice:outputText value="#{itr.sdpId}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Serial Number" />
+							</f:facet>
+							<ice:outputText value="#{itr.serialNumber}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Primary SKU" />
+							</f:facet>
+							<ice:outputText value="#{itr.primarySku}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Related SKU" />
+							</f:facet>
+							<ice:outputText value="#{itr.relatedSku}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Master Item ID" />
+							</f:facet>
+							<ice:outputText value="#{itr.masterItemId}" />
+						</ice:column>
+					</ice:dataTable>
+					<ice:outputText styleClass="error" value="No records to display." rendered="#{!sdpOrderDetailHandler.adjustmentHistoryDatatable.hide and sdpOrderDetailHandler.adjustmentHistoryDatatable.tableEmpty}" />
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</h:form>

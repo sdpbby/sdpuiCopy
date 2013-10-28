@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="xml.accenture.com/sdp/bby/om/BBYOffer" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:BBYOffer="xml.accenture.com/sdp/bby/om/BBYOffer" xmlns:Identifier="xml.accenture.com/sdp/bby/utilities/Identifier" xmlns:Description="xml.accenture.com/sdp/bby/utilities/Description" xmlns:PricingInformation="xml.accenture.com/sdp/bby/om/PricingInformation" xmlns:VendorOffer="xml.accenture.com/sdp/bby/om/VendorOffer">
+	<xs:import namespace="xml.accenture.com/sdp/bby/utilities/Description" schemaLocation="XSD_Description.xsd"/>
+	<xs:import namespace="xml.accenture.com/sdp/bby/om/VendorOffer" schemaLocation="XSD_VendorOffer.xsd"/>
+	<xs:import namespace="xml.accenture.com/sdp/bby/om/PricingInformation" schemaLocation="XSD_PricingInformation.xsd"/>
+	<xs:import namespace="xml.accenture.com/sdp/bby/utilities/Identifier" schemaLocation="XSD_Identifier.xsd"/>
+	<xs:annotation>
+		<xs:documentation>BBY Offer Entity</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="BBYOffer">
+		<xs:sequence>
+			<xs:element name="BBYOfferIdentifier" type="Identifier:BBYOfferIdentifier" minOccurs="0"/>
+			<xs:element name="Priority" type="xs:string" minOccurs="0"/>
+			<xs:element name="Description" type="Description:Description" minOccurs="0"/>
+			<xs:element name="VendorOffer" type="VendorOffer:VendorOffer" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PriceCollection" type="PricingInformation:PriceCollection" minOccurs="0"/>
+			<xs:element name="Category" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="arrayofBBYOffer">
+		<xs:sequence>
+			<xs:element name="BBYOffer" type="BBYOffer:BBYOffer" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

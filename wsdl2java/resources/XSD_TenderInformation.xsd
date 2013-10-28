@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="xml.accenture.com/sdp/bby/cm/TenderInformation" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:TenderInformation="xml.accenture.com/sdp/bby/cm/TenderInformation" xmlns:BankAccount="xml.accenture.com/sdp/bby/cm/BankAccount" xmlns:CreditCard="xml.accenture.com/sdp/bby/cm/CreditCard" xmlns:Address="xml.accenture.com/sdp/bby/utilities/Address">
+	<xs:import namespace="xml.accenture.com/sdp/bby/cm/BankAccount" schemaLocation="XSD_BankAccount.xsd"/>
+	<xs:import namespace="xml.accenture.com/sdp/bby/cm/CreditCard" schemaLocation="XSD_CreditCard.xsd"/>
+	<xs:import namespace="xml.accenture.com/sdp/bby/utilities/Address" schemaLocation="XSD_Address.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Tender Information Entity</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="TenderInformation">
+		<xs:sequence>
+			<xs:element name="BankAccount" type="BankAccount:BankAccount" minOccurs="0"/>
+			<xs:element name="CreditCard" type="CreditCard:CreditCard" minOccurs="0"/>
+			<xs:element name="BillingAddress" type="Address:UnParsedAddress" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

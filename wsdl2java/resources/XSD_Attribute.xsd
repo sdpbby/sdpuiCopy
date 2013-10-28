@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="xml.accenture.com/sdp/bby/om/Attribute" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:Attribute="xml.accenture.com/sdp/bby/om/Attribute">
+	<xs:annotation>
+		<xs:documentation>Attribute Entity</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="ArrayOfSDPAttribute">
+		<xs:sequence>
+			<xs:element name="Attribute" type="Attribute:Attribute" nillable="true" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Attribute">
+		<xs:sequence>
+			<xs:element name="Name" type="xs:string"/>
+			<xs:element name="Value" type="xs:string" minOccurs="0"/>
+			<xs:element name="IsEditable" type="xs:boolean" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

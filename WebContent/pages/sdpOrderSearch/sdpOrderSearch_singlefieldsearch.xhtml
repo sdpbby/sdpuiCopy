@@ -1,0 +1,170 @@
+<h:panelGroup id="detail_panel_single" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core">
+
+
+<div id="leftcol" class="panel_main_search normal">
+		<table width="340px" height="250px" >
+			<tr>
+				<td   colspan="3" >
+					<h2>Single Search Field</h2>
+				</td>
+			</tr>
+			<h:form id="order_cntrctID_search_form">
+				<tr width="300px" >
+					<!--h:form id="order_cntrctID_search_form"-->
+					<td width="100px"  >
+						<h:outputLabel for="search_cntrctID" value="Contract ID: " styleClass="normal field_spacing" />
+					</td>
+					<td  width="100px" >
+						<h:inputText id="search_cntrctID" value="#{sdpOrderSearchResultsDatatable.contractIdSearchField}" styleClass="short_field field_spacing" required="false" />
+					</td>
+					<td  width="100px" >
+						<h:commandButton id="search_cntrctID_submit" value="Search" action="#{sdpOrderSearchResultsDatatable.searchByContractIdButtonClick}" styleClass="normal field_spacing" />
+					</td>
+
+					<!--/h:form-->
+				</tr>
+				<tr>
+					<td width="300px">
+						<h:message for="search_cntrctID" style="color:red" />
+
+					</td>
+				</tr>
+			</h:form>
+
+			<h:form id="order_serialNum_search_form">
+			<tr >
+				<!--h:form id="order_serialNum_search_form"-->
+				<td>
+					<h:outputLabel for="search_serialNum" value="Serial Number: " styleClass="normal field_spacing" />
+				</td>
+				<td>
+					<h:inputText id="search_serialNum" value="#{sdpOrderSearchResultsDatatable.serialNumberSearchField}" styleClass="short_field field_spacing" required="false" />
+				</td>
+				<td>
+					<h:commandButton id="search_serialNum_submit" value="Search" action="#{sdpOrderSearchResultsDatatable.searchBySerialNumberButtonClick}" styleClass="normal field_spacing" />
+				</td>
+				<!--/h:form-->
+			</tr>
+			<tr>
+				<td width="300px">
+					<h:message for="search_serialNum" style="color:red" />
+
+				</td>
+			</tr>
+			</h:form>
+			<h:form id="order_lineItemId_search_form">
+			<tr >
+				<!--h:form id="order_lineItemId_search_form"-->
+				<td>
+					<h:outputLabel for="search_lineItemId" value="Line Item ID: " styleClass="normal field_spacing" />
+				</td>
+				<td>
+					<h:inputText id="search_lineItemId" value="#{sdpOrderSearchResultsDatatable.lineItemIdSearchField}" styleClass="short_field field_spacing" required="false" />
+				</td>
+				<td>
+					<h:commandButton id="search_lineItemId_submit" value="Search" action="#{sdpOrderSearchResultsDatatable.searchByLineItemIdButtonClick}" styleClass="normal field_spacing" />
+				</td>
+
+				<!--/h:form-->
+			</tr>
+
+			<tr>
+				<td width="100px">
+					<h:message for="search_lineItemId" style="color:red" />
+
+				</td>
+			</tr>
+			</h:form>
+			<h:form id="order_phoneNum_search_form">
+
+			<tr >
+				<!--h:form id="order_phoneNum_search_form"-->
+				<td>
+					<h:outputLabel for="search_phoneNum" value="Phone Number: " styleClass="normal field_spacing" />
+				</td>
+				<td>
+					<h:inputText id="search_phoneNum" value="#{sdpOrderSearchResultsDatatable.phoneNumSearchField}" styleClass="short_field field_spacing" required="false" />
+				</td>
+				<td>
+					<h:commandButton id="search_phoneNum_submit" value="Search" action="#{sdpOrderSearchResultsDatatable.searchByPhoneNumButtonClick}" styleClass="normal field_spacing" />
+				</td>
+
+				<!--/h:form-->
+			</tr>
+
+			<tr>
+				<td width="100px">
+					<h:message for="search_phoneNum" style="color:red" />
+
+				</td>
+			</tr>
+			</h:form>
+			<h:form id="order_cusEmail_search_form">
+			<tr >
+				<!--h:form id="order_cusEmail_search_form"-->
+				<td>
+					<h:outputLabel for="search_cusEmail" value="Customer Email: " styleClass="normal field_spacing" />
+				</td>
+				<td>
+					<h:inputText id="search_cusEmail" value="#{sdpOrderSearchResultsDatatable.customerEmailSearchField}" styleClass="short_field field_spacing" required="false" />
+				</td>
+				<td>
+					<h:commandButton id="search_cusEmail_submit" value="Search" action="#{sdpOrderSearchResultsDatatable.searchByCustomerEmailButtonClick}" styleClass="normal field_spacing" />
+				</td>
+				<!--/h:form-->
+			</tr>
+
+			<tr>
+				<td width="100px">
+					<h:message for="search_cusEmail" style="color:red" />
+
+				</td>
+			</tr>
+			</h:form>
+			<h:form id="order_deliveryEmail_search_form">
+
+			<tr >
+				<td>
+					<h:outputLabel for="search_deliveryEmail" value="Delivery Email: " styleClass="normal field_spacing" />
+				</td>
+				<td>
+					<h:inputText id="search_deliveryEmail" value="#{sdpOrderSearchResultsDatatable.deliveryEmailSearchField}" styleClass="short_field field_spacing" required="false" />
+				</td>
+				<td>
+					<h:commandButton id="search_deliveryEmail_submit" value="Search" action="#{sdpOrderSearchResultsDatatable.searchByDeliveryEmailButtonClick}" styleClass="normal field_spacing" />
+				</td>
+
+			</tr>
+			<tr>
+				<td width="100px">
+					<h:message for="search_deliveryEmail" style="color:red" />
+
+				</td>
+			</tr>
+			</h:form>
+			<h:form id="order_confirmCde_search_form">
+			<tr >
+				<!--h:form id="order_confirmCde_search_form"-->
+				<td>
+					<h:outputLabel for="search_confirmCde" value="Confirmation Code: " styleClass="normal field_spacing" />
+				</td>
+				<td>
+					<h:inputText id="search_confirmCde" value="#{sdpOrderSearchResultsDatatable.confirmationCodeSearchField}" styleClass="short_field field_spacing" required="false" />
+				</td>
+				<td>
+					<h:commandButton id="search_confirmCde_submit" value="Search" action="#{sdpOrderSearchResultsDatatable.searchByConfirmationCodeButtonClick}" styleClass="normal field_spacing" />
+				</td>
+
+				<!--/h:form-->
+			</tr>
+			<tr>
+				<td width="100px">
+					<h:message for="search_confirmCde" style="color:red" />
+				</td>
+			</tr>
+			</h:form>
+		</table>
+
+	</div>
+
+</h:panelGroup>

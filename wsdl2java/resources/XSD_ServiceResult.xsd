@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="xml.accenture.com/sdp/bby/ServiceResult" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ServiceResult="xml.accenture.com/sdp/bby/ServiceResult">
+	<xs:annotation>
+		<xs:documentation>Comment describing your root element</xs:documentation>
+	</xs:annotation>
+	<xs:element name="ServiceResult">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="StatusCode" nillable="false">
+					<xs:simpleType>
+						<xs:restriction base="xs:integer">
+							<xs:enumeration value="0"/>
+							<xs:enumeration value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="ErrorCode" type="xs:string" minOccurs="0"/>
+				<xs:element name="ErrorSeverity" type="xs:string" minOccurs="0"/>
+				<xs:element name="ErrorDetailList" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ErrorDetail" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="SystemName" type="xs:string" minOccurs="0"/>
+										<xs:element name="InternalErrorCode" type="xs:string" minOccurs="0"/>
+										<xs:element name="ErrorCode" type="xs:string" minOccurs="0"/>
+										<xs:element name="ErrorDescription" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Original" type="xs:string" minOccurs="0"/>
+													<xs:element name="Translated" type="xs:string" minOccurs="0"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="SeverityLevel" type="xs:string" minOccurs="0"/>
+										<xs:element name="SystemTransactionID" type="xs:string" minOccurs="0"/>
+										<xs:element name="CategoryID" type="xs:string" minOccurs="0"/>
+										<xs:element name="MoreDetail" type="xs:string" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

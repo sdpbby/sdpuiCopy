@@ -1,0 +1,49 @@
+<h:panelGroup id="detail_panel" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core">
+	<h:form id="req_resp_form">
+		<table>
+			<tr>
+				<td>
+					<h:panelGrid columns="2" styleClass="panel_main normal" columnClasses="panel_main_label,panel_main_value" style="float:left;">
+		
+						<h:outputText value="SDP Order ID: " />
+						<h:panelGroup>
+							<h:outputText value="#{requestResponseLogDetailHandler.log.sdpOrderId} " />
+							<h:commandLink value="View Order" rendered="#{requestResponseLogDetailHandler.orderExists}" action="#{requestResponseLogDetailHandler.viewOrderButtonClick}" />
+						</h:panelGroup>
+						
+						<h:outputText value="SDP ID: " />
+						<h:outputText value="#{requestResponseLogDetailHandler.log.sdpId}" />
+						
+						<h:outputText value="Created Date: " />
+						<h:outputText value="#{requestResponseLogDetailHandler.log.createdDate}">
+							<f:convertDateTime pattern="#{msg['ui.date.timestamp_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+						</h:outputText>
+						
+						<h:outputText value="Primary SKU: " />
+						<h:outputText value="#{requestResponseLogDetailHandler.data.primarySku}" />
+						
+						<h:outputText value="Description: " />
+						<h:outputText value="#{requestResponseLogDetailHandler.data.productDescription}" />
+						
+						<h:outputText value="Vendor: " />
+						<h:outputText value="#{requestResponseLogDetailHandler.data.vendorName}" />
+						
+						<h:outputText value="Category: " />
+						<h:outputText value="#{requestResponseLogDetailHandler.data.category}" />
+						
+						<h:outputText value="Operation: " />
+						<h:outputText value="#{requestResponseLogDetailHandler.log.requestType}" />
+						
+						<h:outputText value="Source System: " />
+						<h:outputText value="#{requestResponseLogDetailHandler.log.sourceSystemId}" />
+						
+					</h:panelGrid>
+				</td>
+				<td>
+					<h:commandButton value="Reprocess" action="#{requestResponseLogDetailHandler.reprocessButtonClick}" rendered="#{requestResponseLogDetailHandler.reflowable}" />
+				</td>
+			</tr>
+		</table>
+	</h:form>
+</h:panelGroup>
+		

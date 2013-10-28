@@ -1,0 +1,47 @@
+<h:panelGrid styleClass="normal" columns="3" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+			
+	<h:outputLabel styleClass="normal field_spacing" value="Send Request to Vendor: " for="needsVendorProvisioning" />
+	<h:selectOneMenu value="#{catalogHandler.newCatalogBean.needsVendorProvisioning}" id="needsVendorProvisioning">
+		<f:selectItems value="#{dropdownListManager.sortedBooleanFlagSelectItems}" />
+	</h:selectOneMenu>
+	<h:message styleClass="error" for="needsVendorProvisioning" />			
+	
+	<h:outputLabel styleClass="normal field_spacing" value="Retrieve Token from Keycode Bank: " for="needsVendorKey" />
+	<h:selectOneMenu value="#{catalogHandler.newCatalogBean.needsVendorKey}" id="needsVendorKey">
+		<f:selectItems value="#{dropdownListManager.sortedBooleanFlagSelectItems}" />
+	</h:selectOneMenu>
+	<h:message styleClass="error" for="needsVendorKey" />
+						
+	<h:outputLabel styleClass="normal field_spacing" value="Requires Open-cIS Contract: " for="contractTrigger" />
+	<h:selectOneMenu value="#{catalogHandler.newCatalogBean.contractTrigger}" id="contractTrigger">
+		<f:selectItems value="#{dropdownListManager.sortedBooleanFlagSelectItems}" />
+	</h:selectOneMenu>
+	<h:message styleClass="error" for="contractTrigger" />
+					
+	<h:outputLabel styleClass="normal field_spacing" value="Send to Customer Account (CA): " for="needCA" />
+	<h:selectOneMenu value="#{catalogHandler.newCatalogBean.needCA}" id="needCA">
+		<f:selectItems value="#{dropdownListManager.sortedBooleanFlagSelectItems}" />
+	</h:selectOneMenu>
+	<h:message styleClass="error" for="needCA" />
+					
+	<h:outputLabel styleClass="normal field_spacing" value="Redirect to Old SDP Architecture: " for="redirectToOldArch" />
+	<h:selectOneMenu value="#{catalogHandler.newCatalogBean.redirectToOldArch}" id="redirectToOldArch">
+		<f:selectItems value="#{dropdownListManager.sortedBooleanFlagSelectItems}" />
+	</h:selectOneMenu>
+	<h:message styleClass="error" for="redirectToOldArch" />
+	
+	<f:verbatim><br /></f:verbatim>
+	<f:verbatim><br /></f:verbatim>
+	<f:verbatim><br /></f:verbatim>
+						
+	<h:outputLabel styleClass="normal field_spacing" value="Send Email: " for="needsCommsatInteg" />
+	<h:selectOneMenu immediate="true" value="#{catalogHandler.newCatalogBean.needsCommsatInteg}" id="needsCommsatInteg" valueChangeListener="#{catalogHandler.needsCommsatIntegValueChanged}" onchange="this.form.submit();">
+		<f:selectItems value="#{dropdownListManager.sortedBooleanFlagSelectItems}" />
+	</h:selectOneMenu>
+	<h:message styleClass="error" for="needsCommsatInteg" />
+					
+	<h:outputLabel styleClass="normal field_spacing" value="CommSat Template ID: " for="commSatTemplateId" />
+	<h:inputText required="#{catalogHandler.newCatalogBean.commsatFlagTrue}" styleClass="normal field_spacing" value="#{catalogHandler.newCatalogBean.commSatTemplateId}" id="commSatTemplateId" maxLength="50" />
+	<h:message styleClass="error" for="commSatTemplateId" />
+
+</h:panelGrid>

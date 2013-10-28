@@ -1,0 +1,102 @@
+<project name="wsdl2java" basedir="." default="main">
+
+	<property environment="env" />
+	<property name="jars.ok" value=""/>
+	<property name="project.workspace.dir" value="./workspace"/>
+    <property name="build" value="${project.workspace.dir}/build"/>
+    <property name="classes" value="${build}/classes"/>
+    <property name="lib" value="${build}/lib"/>
+    <property name="src" value="${project.workspace.dir}/src"/>
+	<property name="resources" value="${project.workspace.dir}/resources"/>
+    <property name="xbeans.packaged.jar.name" value="XBeans-packaged.jar"/>
+    <property name="maven.class.path" value=""/>
+    <property name="name" value="Fulfillment"/>
+	<property file="${basedir}/build.properties" />
+	
+	<target name="main" depends="jar.client,clean" description="Main program. Generates the client classes, creates a jar, and cleans up the workspace." />
+	
+	<target if="jars.ok" name="jar.client" depends="compile.src" description="Generates the jar containing the client test stubs.">
+        <jar destfile="${basedir}/${output.file.name}.jar">
+            <fileset dir="${classes}">
+                <exclude name="**/META-INF/*.*"/>
+                <exclude name="**/lib/*.*"/>
+                <exclude name="**/*MessageReceiver.class"/>
+                <exclude name="**/*Skeleton.class"/>
+            </fileset>
+        	<fileset dir="${src}">
+                <include name="**/*.java"/>
+        		<exclude name="**/*MessageReceiver.java"/>
+        		<exclude name="**/*Skeleton.java"/>
+            </fileset>
+            <fileset dir="${resources}">
+                <exclude name="**/*.wsdl"/>
+                <exclude name="**/*.xsd"/>
+                <exclude name="**/*.xml"/>
+            </fileset>
+        </jar>
+    </target>
+		
+	<target depends="pre.compile.test,generate-code" name="compile.src" if="jars.ok">
+        <javac debug="on" memoryMaximumSize="256m" memoryInitialSize="256m" fork="true" destdir="${classes}" srcdir="${src}">
+            <classpath location="${lib}/${xbeans.packaged.jar.name}"/>
+            <classpath refid="axis2.classpath"/>
+        </javac>
+    </target>
+        	
+	<target if="jars.ok" name="generate-code" depends="path">
+		<taskdef name="codegen" classname="org.apache.axis2.tool.ant.AntCodegenTask" classpathref="axis2.classpath" />
+		<codegen wsdlfilename="${wsdl.file.location.fulfillment}" output="${project.workspace.dir}" serverside="true" generateservicexml="true" databindingname="xmlbeans" generateallclasses="true" serversideinterface="true" />
+		<codegen wsdlfilename="${wsdl.file.location.subscription}" output="${project.workspace.dir}" serverside="true" generateservicexml="true" databindingname="xmlbeans" generateallclasses="true" serversideinterface="true" />
+		<codegen wsdlfilename="${wsdl.file.location.tpa_synchronous}" output="${project.workspace.dir}" serverside="true" generateservicexml="true" databindingname="xmlbeans" generateallclasses="true" serversideinterface="true" />
+		<codegen wsdlfilename="${wsdl.file.location.sendEmail}" output="${project.workspace.dir}" serverside="true" generateservicexml="true" databindingname="xmlbeans" generateallclasses="true" serversideinterface="true" />
+	</target>
+	
+	<target depends="init, path, jar.xbeans" name="pre.compile.test">
+        <!--Test the classpath for the availability of necesary classes-->
+        <available classpathref="axis2.classpath" property="xbeans.available" classname="org.apache.xmlbeans.XmlObject"/>
+        <available classpathref="axis2.classpath" property="stax.available" classname="javax.xml.stream.XMLStreamReader"/>
+        <available classpathref="axis2.classpath" property="axis2.available" classname="org.apache.axis2.engine.AxisEngine"/>
+        <condition property="jars.ok">
+            <and>
+                <isset property="xbeans.available"/>
+                <isset property="stax.available"/>
+                <isset property="axis2.available"/>
+            </and>
+        </condition>
+        <!--Print out the availabilities-->
+        <echo message="XmlBeans Availability = ${xbeans.available}"/>
+        <echo message="Stax Availability= ${stax.available}"/>
+        <echo message="Axis2 Availability= ${axis2.available}"/>
+    </target>
+	
+	<target name="init">
+        <mkdir dir="${build}"/>
+        <mkdir dir="${classes}"/>
+        <mkdir dir="${lib}"/>
+		<mkdir dir="${resources}"/>
+    </target>
+	
+	 <target name="jar.xbeans">
+        <jar basedir="${resources}" destfile="${lib}/${xbeans.packaged.jar.name}" excludes="**/services.xml, **/*.xsd"/>
+    </target>
+	
+	<target name="check-for-axis2" unless="axis2.home">
+		<echo message="axis2.home property not set - checking environment for AXIS2_HOME" />
+		<fail unless="env.AXIS2_HOME" message="AXIS2_HOME environment variable not set. Please set property axis2.home to build.properties and try again." />
+		<property name="axis2.home" value="${env.AXIS2_HOME}/lib" />
+		<echo message="axis2.home=${axis2.home}" />
+	</target>
+	
+	<target name="path" depends="check-for-axis2">
+		<path id="axis2.classpath">
+			<fileset dir="${axis2.home}">
+				<include name="**/*.jar" />
+			</fileset>
+		</path>
+	</target>
+	
+	<target name="clean" description="Deletes all generated files, except the jar file.">
+		<delete dir="${project.workspace.dir}" />
+	</target>
+	
+</project>

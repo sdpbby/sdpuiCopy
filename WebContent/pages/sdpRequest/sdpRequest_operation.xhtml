@@ -1,0 +1,60 @@
+<h:panelGroup id="operation_panel" rendered="#{sdpRequestHandler.sdpRequestTabHandler.operationsTabCurrent}" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml">
+	 <div id="leftcol">
+		<h:form id="operation_panel_form">
+			<h:panelGrid columns="3">
+				<h:outputLabel for="input_sku" value="Primary SKU: " />
+				<h:inputText id="input_sku" value="#{sdpRequestHandler.inputSku}" required="true" />
+				<h:commandButton id="input_sku_submit" value="Search" action="#{sdpRequestHandler.searchBySkuButtonClick}" />
+			</h:panelGrid>
+			<h:message for="input_sku" styleClass="error" />
+			<h:outputText styleClass="error" value="#{msg['sdpRequest.message.sku_not_found']}" rendered="#{sdpRequestHandler.skuNotFoundFlag}" />
+			<h:outputText styleClass="error" value="#{msg['sdpRequest.message.multiple_skus_found']}" rendered="#{sdpRequestHandler.multipleSkusFoundFlag}" />
+			<h:outputText styleClass="error" value="#{msg['sdpRequest.message.special_character_found']}" rendered="#{sdpRequestHandler.specialCharacterFoundFlag}" />
+			<br />
+			<h:panelGroup rendered="#{sdpRequestHandler.categorySet}">
+				<table class="panel_main normal">
+					<tr>
+						<td class="panel_main_label"><h:outputText value="Primary SKU: " /></td>
+						<td class="panel_main_value"><h:outputText value="#{sdpRequestHandler.primarySku}" /></td>
+					</tr>
+					<tr>
+						<td class="panel_main_label"><h:outputText value="Description: " /></td>
+						<td class="panel_main_value"><h:outputText value="#{sdpRequestHandler.description}" /></td>
+					</tr>
+					<tr>
+						<td class="panel_main_label"><h:outputText value="Vendor: " /></td>
+						<td class="panel_main_value"><h:outputText value="#{sdpRequestHandler.vendor}" /></td>
+					</tr>
+					<tr>
+						<td class="panel_main_label"><h:outputText value="Category: " /></td>
+						<td class="panel_main_value"><h:outputText value="#{sdpRequestHandler.category}" /></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<br />
+							<h2>Select Operation</h2>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<h:outputText styleClass="error" value="#{msg['sdpRequest.message.reprocess_not_supported']}" rendered="#{sdpRequestHandler.categoryUnsupported}" />
+							<h:commandButton id="act_s2" immediate="true" value="Fulfill Activation" action="#{sdpRequestHandler.displayFulfillActivationS2ButtonClick}" rendered="#{sdpRequestHandler.categoryS2}" />
+							<h:commandButton id="cnl_s2" immediate="true" value="Cancel Fulfillment" action="#{sdpRequestHandler.displayCancelFulfillmentS2ButtonClick}" rendered="#{sdpRequestHandler.categoryS2}" />
+							<h:commandButton id="adj_s2" immediate="true" value="Adjust Activation" action="#{sdpRequestHandler.displayAdjustActivationS2ButtonClick}" rendered="#{sdpRequestHandler.categoryS2}" />
+							<h:commandButton id="act_psa" immediate="true" value="Fulfill Activation" action="#{sdpRequestHandler.displayFulfillActivationPsaButtonClick}" rendered="#{sdpRequestHandler.categoryPsa}" />
+							<h:commandButton id="cnl_psa" immediate="true" value="Cancel Fulfillment" action="#{sdpRequestHandler.displayCancelFulfillmentPsaButtonClick}" rendered="#{sdpRequestHandler.categoryPsa}" />
+							<h:commandButton id="adj_psa" immediate="true" value="Adjust Activation" action="#{sdpRequestHandler.displayAdjustActivationPsaButtonClick}" rendered="#{sdpRequestHandler.categoryPsa}" />
+							<h:commandButton id="act_digital" immediate="true" value="Fulfill Activation" action="#{sdpRequestHandler.displayFulfillActivationDigitalButtonClick}" rendered="#{sdpRequestHandler.categoryDigital}" />
+							<h:commandButton id="cnl_digital" immediate="true" value="Cancel Fulfillment" action="#{sdpRequestHandler.displayCancelFulfillmentDigitalButtonClick}" rendered="#{sdpRequestHandler.categoryDigital}" />
+							<h:commandButton id="adj_digital" immediate="true" value="Adjust Activation" action="#{sdpRequestHandler.displayAdjustActivationDigitalButtonClick}" rendered="#{sdpRequestHandler.categoryDigital}" />
+							<h:commandButton id="act_tech_support" immediate="true" value="Fulfill Activation" action="#{sdpRequestHandler.displayFulfillActivationTechSupportButtonClick}" rendered="#{sdpRequestHandler.categoryTechSupport}" />
+							<h:commandButton id="cnl_tech_support" immediate="true" value="Cancel Fulfillment" action="#{sdpRequestHandler.displayCancelFulfillmentTechSupportButtonClick}" rendered="#{sdpRequestHandler.categoryTechSupport}" />
+							<h:commandButton id="adj_tech_support" immediate="true" value="Adjust Activation" action="#{sdpRequestHandler.displayAdjustActivationTechSupportButtonClick}" rendered="#{sdpRequestHandler.categoryTechSupport}" />
+						</td>
+					</tr>
+				</table>
+			</h:panelGroup>
+		</h:form>
+	</div> 
+</h:panelGroup>
+		

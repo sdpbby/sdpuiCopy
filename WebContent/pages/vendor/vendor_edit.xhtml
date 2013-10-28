@@ -1,0 +1,72 @@
+<h:panelGroup id="edit_panel" rendered="#{vendorTabbedPaneHandler.editTabCurrent}" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core">
+	<h:form id="vendor_edit">
+		<div id="leftcol" class="normal_column">
+			
+			
+			<h:panelGrid columns="3">
+				<h:outputLabel value="Vendor ID: " for="vendorId" styleClass="normal field_spacing" />
+				<h:inputText tabindex="1" id="vendorId" value="#{vendorHandler.newVendorBean.vendorId}" styleClass="normal field_spacing" required="true" maxLength="20" />
+				<h:message styleClass="error" for="vendorId" />
+				
+				<h:outputLabel value="Vendor Name: " for="vendorName" styleClass="normal field_spacing" />
+				<h:inputText tabindex="2" id="vendorName" value="#{vendorHandler.newVendorBean.vendorName}" styleClass="normal field_spacing" required="true" maxLength="200" />
+				<h:message styleClass="error" for="vendorName" />
+				
+				<h:outputLabel value="Service Provider ID: " for="serviceProviderId" styleClass="normal field_spacing" />
+				<h:inputText tabindex="3" id="serviceProviderId" value="#{vendorHandler.newVendorBean.serviceProviderId}" styleClass="normal field_spacing">
+					<f:convertNumber type="number" maxIntegerDigits="10" />
+				</h:inputText>
+				<h:message styleClass="error" for="serviceProviderId" />
+				
+				<h:outputLabel value="Throttle Factor: " for="throttleFactor" styleClass="normal field_spacing" />
+				<h:inputText tabindex="4" id="throttleFactor" value="#{vendorHandler.newVendorBean.throttleFactor}" styleClass="normal field_spacing" required="true">
+					<f:convertNumber type="number" maxIntegerDigits="5" />
+				</h:inputText>
+				<h:message styleClass="error" for="throttleFactor" />
+				
+				<h:outputLabel value="Category: " for="category" styleClass="normal field_spacing" />
+				<h:selectOneMenu tabindex="5" id="category" value="#{vendorHandler.newVendorBean.category}" styleClass="normal field_spacing">
+					<f:selectItem itemLabel="- Select -" />
+					<f:selectItems value="#{dropdownListManager.sortedVendorCategorySelectItems}" />
+				</h:selectOneMenu>
+				<h:message styleClass="error" for="category" />
+				
+				
+				
+			</h:panelGrid>
+			
+			<h:commandButton tabindex="10" id="save_changes_button" value="Save" action="#{vendorHandler.saveChangesButtonClick}" styleClass="normal field_spacing" disabled="#{!(userManagerBean.permissionsBean.createVendorAllowed || userManagerBean.permissionsBean.updateVendorAllowed)}" />
+			<h:commandButton tabindex="11" id="cancel_product_button" immediate="true" value="Cancel" action="#{vendorHandler.cancelChangesButtonClick}" styleClass="normal field_spacing" />
+		
+		</div> 
+		<div id="midcol" class="normal_column">
+			<h:panelGrid columns="3">
+				<h:outputLabel value="Aggregation Frequency: " for="aggregationFrequency" styleClass="normal field_spacing" />
+				<h:inputText tabindex="6" id="aggregationFrequency" value="#{vendorHandler.newVendorBean.aggregationFrequency}" styleClass="normal field_spacing">
+					<f:convertNumber type="number" maxIntegerDigits="10" />
+				</h:inputText>
+				<h:message styleClass="error" for="aggregationFrequency" />
+				
+				<h:outputLabel value="Aggregation Max: " for="aggregationMax" styleClass="normal field_spacing" />
+				<h:inputText tabindex="7" id="aggregationMax" value="#{vendorHandler.newVendorBean.aggregationMax}" styleClass="normal field_spacing">
+					<f:convertNumber type="number" maxIntegerDigits="10" />
+				</h:inputText>
+				<h:message styleClass="error" for="aggregationMax" />
+				
+				<h:outputLabel value="Retry Frequency: " for="retryFrequency" styleClass="normal field_spacing" />
+				<h:inputText tabindex="8" id="retryFrequency" value="#{vendorHandler.newVendorBean.retryFrequency}" styleClass="normal field_spacing">
+					<f:convertNumber type="number" maxIntegerDigits="10" />
+				</h:inputText>
+				<h:message styleClass="error" for="retryFrequency" />
+			
+				<h:outputLabel value="Retry Max: " for="retryMax" styleClass="normal field_spacing" />
+				<h:inputText tabindex="9" id="retryMax" value="#{vendorHandler.newVendorBean.retryMax}" styleClass="normal field_spacing">
+					<f:convertNumber type="number" maxIntegerDigits="10" />
+				</h:inputText>
+				<h:message styleClass="error" for="retryMax" />
+			
+			</h:panelGrid>
+		</div> 
+		
+	</h:form>
+</h:panelGroup>

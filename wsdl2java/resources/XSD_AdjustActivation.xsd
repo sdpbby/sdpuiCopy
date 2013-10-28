@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://schemas.bestbuy.com/sdp/adjustActivation" elementFormDefault="qualified" xmlns="http://schemas.bestbuy.com/sdp/adjustActivation" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="AdjustActivationRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="AdjustmentOrder" type="AdjustmentOrderType" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- Activation Order type definition -->
+	<xs:complexType name="AdjustmentOrderType">
+		<xs:sequence>
+			<xs:element name="TransactionDateTime" type="xs:dateTime"/>
+			<xs:element name="SourceID">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="StoreID">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="RegisterID">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="TransactionID">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Date" type="xs:date"/>
+			<xs:element name="CA_PartyID" type="xs:string" minOccurs="0"/>
+			<xs:element name="RewardZoneID" type="xs:string" minOccurs="0"/>
+			<xs:element name="AdjustmentReasonCode">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<!--<xs:pattern value="[a-zA-Z0-9\s]"/>-->
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="LineItemDetails" type="LineItemDetailsType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="ID" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<!-- Line Item Details type definition -->
+	<xs:complexType name="LineItemDetailsType">
+		<xs:sequence>
+			<xs:element name="LineID">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="SKU" type="SKUType"/>
+			<xs:element name="OriginalTransactionDetails" type="OriginalTransactionDetailsType" minOccurs="1"/>
+			<xs:element name="SerialNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="Attribute" minOccurs="0" maxOccurs="unbounded" type="AttributeType"/>
+		</xs:sequence>
+		<xs:attribute name="ID" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<!-- SKU type definition -->
+	<xs:complexType name="SKUType">
+		<xs:sequence>
+			<xs:element name="SKUNum">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Price" type="xs:string" minOccurs="0"/>
+			<xs:element name="TaxAmount" type="xs:string" minOccurs="0"/>
+			<xs:element name="TaxRate" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--OriginalTransactionDetails type definition -->
+	<xs:complexType name="OriginalTransactionDetailsType">
+		<xs:sequence>
+			<xs:element name="StoreID">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="RegisterID">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="TransactionID">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="LineID" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Date" type="xs:date"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Attribute type definition -->
+	<xs:complexType name="AttributeType">
+		<xs:sequence>
+			<xs:element name="Name">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Value">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Response will indicate success or failure, at a minimum.  In the event of failure, error details will be provided
+	and in event of success token would be returned back. -->
+	<xs:element name="AdjustActivationResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ResultStatus" type="ResultStatusType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!--  ResultStatusType  -->
+	<xs:complexType name="ResultStatusType">
+		<xs:annotation>
+			<xs:documentation>
+				Intended for use as a metadata element in service
+				response schemas. It contains a simple "Successful" flag
+				that indicates whether or not the responding service
+				completed normally. If the value is "false", there was
+				some error and an enclosed ErrorInformation element
+				should be populated.
+
+				Note that a Successful status of "true" does not
+				necessarily indicate functional success - only technical
+				success. Functional success should be determined from
+				data in the service's response schema. Services may
+				choose to use the ResultStatus element to indicate
+				functional success as well, but such decisions should be
+				explicitly documented by those services.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ErrorInformation" type="ErrorInfoType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="Successful" type="xs:boolean"/>
+	</xs:complexType>
+	<!-- ErrorInfoType -->
+	<xs:complexType name="ErrorInfoType">
+		<xs:annotation>
+			<xs:documentation>
+				Intended for inclusion in ResultStatusType elements, to
+				be used to return error information in service response
+				schemas.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Code" type="xs:string"/>
+			<xs:element name="Message" type="xs:string"/>
+			<xs:element name="ErrorStack" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,16 @@
+<h:panelGroup id="create_panel" rendered="#{preorderTabbedPaneHandler.lookupTabCurrent}" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml">
+	 <div id="leftcol" class="normal_column">
+		<h:form id="preorder_productsku_readonly_form">
+			<h:panelGrid id="preorder_productsku_search_panel" columns="4">
+				<h:outputLabel for="create_productSku" value="Product SKU: " styleClass="normal field_spacing" />
+				<h:inputText id="create_productSku" value="#{preorderHandler.productSkuLookupField}" styleClass="short_field field_spacing" required="true" />
+				<h:commandButton id="create_productSku_submit" value="Search" actionListener="#{preorderHandler.retrieveCatalogDataButtonClick}" styleClass="normal field_spacing" />
+				<h:commandButton immediate="true" id="cancel_product_button" value="Cancel" actionListener="#{preorderHandler.cancelChangesButtonClick}" styleClass="normal field_spacing" />
+			</h:panelGrid>	
+			<h:outputText styleClass="error" value="#{msg['preorder.warning.product_not_found']}" rendered="#{preorderHandler.productNotFound}" />
+			<h:outputText styleClass="error" value="#{msg['preorder.warning.product_not_editable']}" rendered="#{preorderHandler.preorderNotEditable}" />
+			<h:message styleClass="error" for="create_productSku" />
+		</h:form>
+	</div> 
+</h:panelGroup>
+		

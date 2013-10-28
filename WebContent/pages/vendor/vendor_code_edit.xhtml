@@ -1,0 +1,29 @@
+<h:panelGroup id="edit_code_panel" rendered="#{vendorCodeTabbedPaneHandler.editTabCurrent}" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core">
+	<h:form id="vendor_code_edit">
+		<div id="leftcol" class="normal_column">
+			
+			<h:panelGrid columns="3">
+				<h:outputLabel value="Vendor Status Code: " for="vendorCode" styleClass="normal field_spacing" />
+				<h:inputText tabindex="1" id="vendorCode" value="#{vendorCodeHandler.newVendorCodeBean.vendorCode}" styleClass="normal field_spacing" required="true" maxLength="10" />
+				<h:message styleClass="error" for="vendorCode" />
+				
+				<h:outputLabel value="SDP Status Code: " for="sdpCode" styleClass="normal field_spacing" />
+				<h:inputText tabindex="2" id="sdpCode" value="#{vendorCodeHandler.newVendorCodeBean.sdpCode}" styleClass="normal field_spacing" maxLength="10" />
+				<h:message styleClass="error" for="sdpCode" />
+				
+				<h:outputLabel value="Can Retry: " for="canRetry" styleClass="normal field_spacing" />
+				<h:selectBooleanCheckbox tabindex="3" id="canRetry" value="#{vendorCodeHandler.newVendorCodeBean.canRetry}" />
+				<h:message styleClass="error" for="canRetry" />
+				
+				<h:outputLabel value="Status Description: " for="description" styleClass="normal field_spacing" />
+				<h:inputText tabindex="4" id="description" value="#{vendorCodeHandler.newVendorCodeBean.vendorCodeDescription}" styleClass="normal field_spacing" required="true" maxLength="250" />
+				<h:message styleClass="error" for="description" />
+				
+			</h:panelGrid>
+			
+			<h:commandButton tabindex="5" id="save_changes_button" value="Save" action="#{vendorCodeHandler.saveChangesButtonClick}" styleClass="normal field_spacing" disabled="#{!(userManagerBean.permissionsBean.createVendorAllowed || userManagerBean.permissionsBean.updateVendorAllowed)}" />
+			<h:commandButton tabindex="6" id="cancel_product_button" immediate="true" value="Cancel" action="#{vendorCodeHandler.cancelChangesButtonClick}" styleClass="normal field_spacing" />
+		
+		</div> 
+	</h:form>
+</h:panelGroup>

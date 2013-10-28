@@ -1,0 +1,57 @@
+<h:panelGroup id="requestSubmittedForm_panel" rendered="#{directToVendorHandler.tabHandler.formSubmittedTabCurrent}" xmlns:ice="http://www.icesoft.com/icefaces/component" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml">
+	 <div id="requestSubmittedForm_div">
+		<h:form id="requestSubmittedForm_panel_form">
+			
+			<!-- Panel Popup -->
+			<ice:panelPopup id="confirm_popup" draggable="true" modal="true" rendered="#{directToVendorHandler.renderPopup}" visible="#{directToVendorHandler.renderPopup}" autoCentre="true">
+				<f:facet name="header">
+					<ice:panelGroup>
+						<ice:outputText value="#{directToVendorHandler.operation}: #{directToVendorHandler.category}" />
+					</ice:panelGroup>
+				</f:facet>
+				<f:facet name="body">
+					<ice:panelGroup>
+						<br />
+						<ice:outputText value="The request was submitted but the order has not been created yet. Please wait a moment and try again." rendered="#{!directToVendorHandler.multipleRecordsFound}" />
+						<ice:outputText value="Multiple orders were found with the SDP ID #{directToVendorHandler.vendorRequest.data.sdpId}. Please do a manual search to view this order." rendered="#{directToVendorHandler.multipleRecordsFound}" />
+						<br />
+						<br />
+						<ice:panelGroup style="text-align: center;">
+							<br />
+							<ice:commandButton type="submit" id="manual_search" value="Manual Search" actionListener="#{directToVendorHandler.togglePopup}" action="#{directToVendorHandler.manualSearchButtonClick}" rendered="#{directToVendorHandler.multipleRecordsFound}" />
+							<ice:commandButton type="submit" id="close" value="Close" actionListener="#{directToVendorHandler.togglePopup}" />
+							<br />
+						</ice:panelGroup>
+					</ice:panelGroup>
+				</f:facet>
+			</ice:panelPopup>
+			
+			<h:panelGroup styleClass="wide_column">
+				<div style="text-align:center;">
+					<p>Your request has been submitted but the provisioning record was not found.</p>
+					<h:commandButton id="view_order" value="Lookup Order" action="#{directToVendorHandler.viewOrderButtonClick}" />
+					<table style="border:1px solid black; text-align:left; width:100%">
+						<tr>
+							<th style="border:1px solid black; text-align:left; width:auto;">Status Code: </th>
+							<td style="border:1px solid black; text-align:left;"><h:outputText value="#{directToVendorHandler.serviceResult.statusCode}" /></td>
+						</tr>
+						<tr>
+							<th style="border:1px solid black; text-align:left; width:auto;">Error Code: </th>
+							<td style="border:1px solid black; text-align:left;"><h:outputText value="#{directToVendorHandler.serviceResult.errorCode}" /></td>
+						</tr>
+						<tr>
+							<th style="border:1px solid black; text-align:left; width:auto;">Severity: </th>
+							<td style="border:1px solid black; text-align:left;"><h:outputText value="#{directToVendorHandler.serviceResult.severity}" /></td>
+						</tr>
+						<tr>
+							<th style="border:1px solid black; text-align:left; width:auto;">Service Result: </th>
+							<td style="border:1px solid black; text-align:left;" class="panel_main code" ><h:outputText value="#{directToVendorHandler.serviceResult.serviceResult}" /></td>
+						</tr>
+					</table>
+				</div>
+			</h:panelGroup>
+	
+		</h:form>
+	</div> 
+</h:panelGroup>
+	

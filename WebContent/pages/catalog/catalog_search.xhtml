@@ -1,0 +1,50 @@
+<h:panelGroup id="search_panel" rendered="#{catalogTabbedPaneHandler.searchTabCurrent}" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core">
+	<div id="leftcol" class="normal_column">
+		<h:form id="catalog_productsku_search_form">
+			<h:panelGrid id="catalog_productsku_search_panel" columns="3">
+				<h:outputLabel for="search_productSku" value="Product SKU: " styleClass="normal field_spacing" />
+				<h:inputText id="search_productSku" value="#{catalogDatatable.productSkuSearchField}" styleClass="medium_field field_spacing" required="true" />
+				<h:commandButton id="search_productSku_submit" value="Search" action="#{catalogDatatable.searchByProductSkuButtonClick}" styleClass="normal field_spacing" />
+			</h:panelGrid>
+			<h:message styleClass="error" for="search_productSku" />
+		</h:form>
+		<h:form id="catalog_vendorid_search_form">
+			<h:panelGrid id="catalog_vendorid_search_panel" columns="3">
+				<h:outputLabel for="search_vendorid" value="Vendor: " styleClass="normal field_spacing" />
+				<h:selectOneMenu id="search_vendorid" value="#{catalogDatatable.vendorIdSearchField}" styleClass="medium_field field_spacing" required="true">
+					<f:selectItem itemLabel="- Select -" />
+					<f:selectItems value="#{dropdownListManager.sortedVendorSelectItems}" />
+				</h:selectOneMenu>
+				<h:commandButton id="search_vendorid_submit" value="Search" action="#{catalogDatatable.searchByVendorIdButtonClick}" styleClass="normal field_spacing" />
+			</h:panelGrid>
+			<h:message styleClass="error" for="search_vendorid" />
+		</h:form>
+		<h:form id="catalog_category_search_form">
+			<h:panelGrid id="catalog_category_search_panel" columns="3">
+				<h:outputLabel for="search_category" value="Category: " styleClass="normal field_spacing" />
+				<h:selectOneMenu id="search_category" value="#{catalogDatatable.categorySearchField}" styleClass="medium_field field_spacing" required="true">
+					<f:selectItem itemLabel="- Select -" />
+					<f:selectItems value="#{dropdownListManager.sortedCatalogCategorySelectItems}" />
+				</h:selectOneMenu>
+				<h:commandButton id="search_category_submit" value="Search" action="#{catalogDatatable.searchByCategoryButtonClick}" styleClass="normal field_spacing" />
+			</h:panelGrid>
+			<h:message styleClass="error" for="search_category" />
+		</h:form>
+		<h:form id="catalog_getAll">
+			<h:panelGrid id="catalog_getAll_search_panel" columns="1">
+				<h:commandButton id="search_getAll_submit" value="Show All" action="#{catalogDatatable.searchByAllButtonClick}" styleClass="normal field_spacing" />
+			</h:panelGrid>
+		</h:form>
+	</div>
+	<div id="rightcol" class="wide_column">
+		<h:form id="catalog_productsku_create_form">
+			<h:commandButton id="create_product_button" value="Create New Product" action="#{catalogHandler.createCatalogProductButtonClick}" styleClass="normal field_spacing" disabled="#{!userManagerBean.permissionsBean.createCatalogAllowed}" />
+			<h:commandButton id="create_profile_button" value="Create New Profile" action="#{catalogHandler.createCatalogProfileButtonClick}" styleClass="normal field_spacing" disabled="#{!userManagerBean.permissionsBean.createCatalogAllowed}" />
+			<br />
+			<br />
+			<h:outputLink value="/SDPUI/export/catalogFile">Export Catalog</h:outputLink>
+					
+		</h:form>
+	</div>
+	
+</h:panelGroup>

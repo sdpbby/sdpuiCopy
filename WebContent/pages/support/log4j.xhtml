@@ -1,0 +1,75 @@
+<ui:composition template="/pages/templates/masterLayout.xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<ui:define name="windowTitle">
+		Log4j Configuration
+	</ui:define>
+
+	<ui:define name="tabTitle">
+		<h:outputText value="LOGGING" />
+	</ui:define>
+
+	<ui:define name="pageTitle">
+		<h:outputText value="CONFIG MANAGEMENT" />
+	</ui:define>
+
+	<ui:define name="subTitle">
+		<h:outputText value="Modify level to help troubleshoot issues encountered in OpsUI." />
+	</ui:define>
+
+	<ui:define name="content">
+
+		<div id="top_content">
+			<h:form>
+				<table class="menutable">
+					<thead>
+						<tr>
+							<td colspan="2">
+								<h:outputText value="LOG LEVEL CURRENTLY SET TO (#{opsLoggerHandler.currentLogLevel})" />
+							</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="odd">
+							<td>
+								<h:outputLink value="/SDPUI/logging?reloadPropertiesFile=OK" style="width:150px;">Set Default</h:outputLink>
+							</td>
+							<td>
+								<h:outputText value="Reloads the default log level from the log4j-opsui.properties file." />
+							</td>
+						</tr>
+						<tr class="even">
+							<td>
+								<h:outputLink value="/SDPUI/logging?logLevel=DEBUG" style="width:150px;">Set DEBUG</h:outputLink>
+							</td>
+							<td>
+								<h:outputText value="Sets log level to DEBUG. Not recommended for use in production. Verbose logging may impact overall performance of OpsUI." />
+							</td>
+						</tr>
+						<tr class="odd">
+							<td>
+								<h:outputLink value="/SDPUI/logging?logLevel=INFO" style="width:150px;">Set INFO</h:outputLink>
+							</td>
+							<td>
+								<h:outputText value="Sets log level to INFO." />
+							</td>
+						</tr>
+						<tr class="even">
+							<td>
+								<h:outputLink value="/SDPUI/logging?logLevel=WARN" style="width:150px;">Set WARN</h:outputLink>
+							</td>
+							<td>
+								<h:outputText value="Sets log level to WARN." />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</h:form>
+		</div>
+
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,52 @@
+<h:panelGroup id="detail_panel_reflow" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<div>
+	<h:form id="reflow_form">
+		<table id ="home" border="0" width="240px" height="300px">
+				<thead id ="home">
+					<tr>
+						<th class="singleCol" style="
+
+	font-size: 12pt;
+	padding-right: 11px;
+	padding-left: 11px;
+	padding-top: 6px;
+	padding-bottom: 8px;background-color:#0035ad;"><font color="white">New Request Flow</font></th>
+					</tr>
+				</thead>
+				<tbody id ="home">
+					
+					<tr>
+						<td class="singleCol"><h:commandLink id="sdpTransactions" action="#{menuBarHandler.gotoFlowSdpTransactionButtonClick}" styleClass="btnRemoveAtt">SDP Reprocess Form</h:commandLink></td>
+					</tr>
+					<tr>
+						<td class="singleCol"><h:commandLink id="directToVendor" action="#{menuBarHandler.gotoFlowDirectToVendorButtonClick}" styleClass="btnRemoveAtt">Direct To Vendor</h:commandLink></td>
+					</tr>
+					<tr>
+						<td class="singleCol"><br /></td>
+					</tr>
+					<tr>
+						<td class="singleCol"><br /></td>
+					</tr>
+					<tr>
+						<td class="singleCol"><br /></td>
+					</tr>
+					<tr>
+						<td class="singleCol"><br /></td>
+					</tr>
+
+				</tbody>
+				<tfoot id ="home">
+					
+					<tr>
+						<th class="singleCol"><br /></th>
+					</tr>
+
+
+				</tfoot>
+		</table>
+
+
+	</h:form>
+  </div>
+
+</h:panelGroup>

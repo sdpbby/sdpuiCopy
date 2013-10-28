@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="xml.accenture.com/sdp/bby/om/SubCategory" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:SubCategory="xml.accenture.com/sdp/bby/om/SubCategory" xmlns:SubType="xml.accenture.com/sdp/bby/om/SubType" xmlns:Constraints="xml.accenture.com/sdp/bby/utilities/Constraints" xmlns:Type="xml.accenture.com/sdp/bby/om/Type">
+	<xs:import namespace="xml.accenture.com/sdp/bby/om/Type" schemaLocation="XSD_Type.xsd"/>
+	<xs:import namespace="xml.accenture.com/sdp/bby/utilities/Constraints" schemaLocation="XSD_Constraints.xsd"/>
+	<xs:annotation>
+		<xs:documentation>SubCategory Entity</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="SubCategory">
+		<xs:sequence>
+			<xs:element name="Name" type="xs:string" minOccurs="0"/>
+			<xs:element name="Constraints" type="Constraints:Constraints" minOccurs="0"/>
+			<xs:element name="Description" type="xs:string" minOccurs="0"/>
+			<xs:element name="Type" type="Type:Type" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

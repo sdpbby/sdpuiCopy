@@ -1,0 +1,19 @@
+<h:panelGrid styleClass="normal" columns="2" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+			
+	<h:outputText style="font-weight: bold;" value="   Created By: " />
+	<h:outputText value="#{preorderHandler.oldPreorderBean.createdByUserId}" />
+			
+	<h:outputText style="font-weight: bold;" value="   Created Date: " />
+	<h:outputText value="#{preorderHandler.oldPreorderBean.createdDate}">
+		<f:convertDateTime pattern="#{msg['ui.date.calendar_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+	</h:outputText>
+			
+	<h:outputText style="font-weight: bold;" value="   Updated By: " />
+	<h:outputText value="#{preorderHandler.oldPreorderBean.updatedByUserId}" />
+			
+	<h:outputText style="font-weight: bold;" value="   Updated Date: " />
+	<h:outputText value="#{preorderHandler.oldPreorderBean.updatedDate}">
+		<f:convertDateTime pattern="#{msg['ui.date.calendar_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+	</h:outputText>
+			
+</h:panelGrid>

@@ -1,0 +1,60 @@
+<h:panelGroup id="edit_code_panel" rendered="#{keycodeBankLoadTabbedPaneHandler.formTabCurrent}" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component"  xmlns:ace="http://www.icefaces.org/icefaces/components">
+	
+	<h:form id="vendor_code_edit">
+		<div id="leftcol" class="normal_wide_column">
+			<h:panelGrid columns="3">
+				
+				<h:outputLabel for="vendorId" value="Vendor: " styleClass="normal field_spacing" />
+				<h:selectOneMenu id="vendorId" value="#{keycodeBankLoadHandler.newKeycodeBatchBean.vendorId}" required="true" maxLengh="10">
+					<f:selectItems value="#{dropdownListManager.sortedVendorSelectItems}" />
+				</h:selectOneMenu>
+				<h:message styleClass="error" for="vendorId" />
+				
+				<h:outputLabel value="Merchandise SKU: " for="merchandiseSku" styleClass="normal field_spacing" />
+				<h:inputText id="merchandiseSku" value="#{keycodeBankLoadHandler.newKeycodeBatchBean.merchandiseSku}" styleClass="normal field_spacing" maxLength="50" />
+				<h:message styleClass="error" for="merchandiseSku" />
+				
+				<h:outputLabel value="Non-Merchandise SKU: " for="nonMerchandiseSku" styleClass="normal field_spacing" />
+				<h:inputText id="nonMerchandiseSku" value="#{keycodeBankLoadHandler.newKeycodeBatchBean.nonMerchandiseSku}" styleClass="normal field_spacing" maxLength="20" />
+				<h:message styleClass="error" for="nonMerchandiseSku" />
+				
+				<h:outputLabel value="Master Item ID: " for="masterItemID" styleClass="normal field_spacing" />
+				<h:inputText id="masterItemID" value="#{keycodeBankLoadHandler.newKeycodeBatchBean.masterItemId}" styleClass="normal field_spacing" maxLength="50" />
+				<h:message styleClass="error" for="masterItemID" />
+				
+				<h:outputLabel for="minDate" value="Start Date: " styleClass="normal field_spacing" />
+				<ice:selectInputDate id="minDate" renderMonthAsDropdown="true" renderYearAsDropdown="true" value="#{keycodeBankLoadHandler.newKeycodeBatchBean.minDate}" rendered="true" title="MM/DD/YYYY HH:MM PM" renderAsPopup="true" styleClass="normal field_spacing">
+        			<f:convertDateTime pattern="#{msg['ui.date.calendar_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+    			</ice:selectInputDate>
+    			<h:message styleClass="error" for="minDate" />
+				
+				<h:outputLabel for="maxDate" value="End Date: " styleClass="normal field_spacing" />
+				<ice:selectInputDate id="maxDate" renderMonthAsDropdown="true" renderYearAsDropdown="true" value="#{keycodeBankLoadHandler.newKeycodeBatchBean.maxDate}" rendered="true" title="MM/DD/YYYY HH:MM PM" renderAsPopup="true" styleClass="normal field_spacing">
+        			<f:convertDateTime pattern="#{msg['ui.date.calendar_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+    			</ice:selectInputDate>
+				<h:message styleClass="error" for="maxDate" />
+				
+				<f:verbatim><br /></f:verbatim>
+				<f:verbatim><br /></f:verbatim>
+				<f:verbatim><br /></f:verbatim>
+				
+				<h:outputLabel for="inputFile" value="Load File: " styleClass="normal field_spacing" />
+				<!--<ace:fileEntry id="inputFile" useOriginalFilename="true" immediate="true" relativePath="uploaded" fileEntryListener="#{keycodeBankLoadHandler.listener}" styleClass="normal field_spacing"  />-->
+				<ace:fileEntry id="inputFile" maxFileCount="1" maxFileCountMessage="Select a valid file to upload." requiredMessage="Select a valid file to upload." immediate="true" relativePath="uploaded" fileEntryListener="#{keycodeBankLoadHandler.listener}" styleClass="normal field_spacing" required="true" disabled="#{!userManagerBean.permissionsBean.loadKeycodesAllowed}"  />
+				<h:message styleClass="error" for="inputFile" rendered="false" />
+				
+			</h:panelGrid>
+			<br /><br />
+			<h:commandButton value="Validate" action="#{keycodeBankLoadHandler.validateFileButtonClick}" disabled="#{!userManagerBean.permissionsBean.loadKeycodesAllowed}" />
+			<h:commandButton immediate="true" value="Return to Dashboard" action="#{keycodeBankLoadHandler.dashboardButtonClick}" />
+			<br /><br />
+			<h:outputText styleClass="error" value="#{msg['sdpRequest.message.special_character_found']}" rendered="#{keycodeBankLoadHandler.specialCharacterFoundInsertFlag}" />
+			<h:outputText styleClass="error" value="#{msg['keycodeBank.load.error.file_not_found']}" rendered="#{keycodeBankLoadHandler.fileNotFound}" />
+			<h:outputText styleClass="error" value="#{msg['keycodeBank.load.error.file_not_valid']}" rendered="#{keycodeBankLoadHandler.fileNotValid}" />
+			<h:outputText styleClass="error" value="#{msg['keycodeBank.load.error.input_not_valid']}" rendered="#{keycodeBankLoadHandler.inputNotValid}" />
+			<br />
+			<h:outputText styleClass="error" value="#{keycodeBankLoadHandler.customMessage}" rendered="#{keycodeBankLoadHandler.customMessageSet}" />
+			
+		</div> 
+	</h:form>
+</h:panelGroup>

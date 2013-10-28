@@ -1,0 +1,75 @@
+<h:panelGroup rendered="#{directToVendorHandler.formHandler.updateStatusS2FormCurrent}"  xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<h:panelGrid columns="1" styleClass="editable_form_panel normal" columnClasses="editable_form_panel normal,editable_form_panel normal">
+		<h:outputText styleClass="error" value="#{msg['sdpRequest.message.special_character_found']}" rendered="#{directToVendorHandler.specialCharacterFoundInsertFlag}" />
+	</h:panelGrid>	
+	
+		<h:panelGrid columns="4" styleClass="editable_form_panel normal" columnClasses="right,left,left,left_fixed">
+			
+			<f:facet name="header">
+				<h:outputText value="Transaction Details" />
+			</f:facet>
+			
+			<!-- SERIAL NUMBER -->
+			<h:outputLabel for="vendorRequest_s2_modifyStatus_serial_number" value="Serial Number:" />
+			<h:outputText value="*" styleClass="error" />
+			<h:inputText id="vendorRequest_s2_modifyStatus_serial_number" value="#{directToVendorHandler.vendorRequest.data.serialNumber}" required="true" styleClass="medium_field field_spacing" />
+			<h:message for="vendorRequest_s2_modifyStatus_serial_number" styleClass="error" />
+			
+			<!-- CONTRACT ID -->
+			<h:outputLabel for="vendorRequest_s2_modifyStatus_contract_id" value="Contract ID:" />
+			<h:outputText value="*" styleClass="error" />
+			<h:inputText id="vendorRequest_s2_modifyStatus_contract_id" value="#{directToVendorHandler.vendorRequest.data.contractId}" required="true" styleClass="medium_field field_spacing" />
+			<h:message for="vendorRequest_s2_modifyStatus_contract_id" styleClass="error" />
+			
+			<!-- UPDATE CODE -->
+			<h:outputLabel for="vendorRequest_s2_cancel_update_code" value="Update Code:" />
+			<h:outputText value="*" styleClass="error" />
+			<h:selectOneMenu id="vendorRequest_s2_cancel_update_code" value="#{directToVendorHandler.vendorRequest.data.inProductMessageCode}" required="true" styleClass="medium_field field_spacing" valueChangeListener="#{directToVendorHandler.updateCodeValueChanged}" onchange="submit();" immediate="true">
+				<f:selectItem id="vendorRequest_s2_cancel_update_code_null" itemLabel="" />
+				<f:selectItems id="vendorRequest_s2_cancel_update_code_list" value="#{dropdownListManager.sortedInProductMessageCodeSelectItems}" />
+			</h:selectOneMenu>
+			<h:message for="vendorRequest_s2_cancel_update_code" styleClass="error" />
+			
+			<!-- PROMO SKU -->
+			<h:outputLabel for="vendorRequest_s2_modifyStatus_promo_sku" value="Promo SKU:" />
+			<h:outputText value="*" styleClass="error" rendered="#{directToVendorHandler.promotion}" />
+			<h:outputText value=" " styleClass="error" rendered="#{!directToVendorHandler.promotion}" />
+			<h:inputText id="vendorRequest_s2_modifyStatus_promo_sku" value="#{directToVendorHandler.vendorRequest.data.promoSku}" required="#{directToVendorHandler.promotion}" styleClass="medium_field field_spacing" />
+			<h:message for="vendorRequest_s2_modifyStatus_promo_sku" styleClass="error" />
+			
+			<!-- PROMO PRICE -->
+			<h:outputLabel for="vendorRequest_s2_modifyStatus_promo_price" value="Promo Price:" />
+			<h:outputText value="*" styleClass="error" rendered="#{directToVendorHandler.promotion}" />
+			<h:outputText value=" " styleClass="error" rendered="#{!directToVendorHandler.promotion}" />
+			<h:inputText id="vendorRequest_s2_modifyStatus_promo_price" value="#{directToVendorHandler.vendorRequest.data.promoPrice}" required="#{directToVendorHandler.promotion}" styleClass="medium_field field_spacing" />
+			<h:message for="vendorRequest_s2_modifyStatus_promo_price" styleClass="error" />
+			
+			<!-- PROMO START DATE -->
+			<h:outputLabel for="vendorRequest_s2_modifyStatus_promo_start_date" value="Promo Start Date:" />
+			<h:outputText value="*" styleClass="error" rendered="#{directToVendorHandler.promotion}" />
+			<h:outputText value=" " styleClass="error" rendered="#{!directToVendorHandler.promotion}" />
+			<ice:selectInputDate id="vendorRequest_s2_modifyStatus_promo_start_date" value="#{directToVendorHandler.vendorRequest.data.promoStartDate}" required="#{directToVendorHandler.promotion}" renderMonthAsDropdown="true" renderYearAsDropdown="true" title="MM/DD/YYYY" renderAsPopup="true" styleClass="medium_field field_spacing">
+				<f:convertDateTime pattern="#{msg['ui.date.store_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+			</ice:selectInputDate>
+			<h:message for="vendorRequest_s2_modifyStatus_promo_start_date" styleClass="error" />
+			
+			<!--PROMO END DATE -->
+			<h:outputLabel for="vendorRequest_s2_modifyStatus_promo_end_date" value="Promo End Date:" />
+			<h:outputText value="*" styleClass="error" rendered="#{directToVendorHandler.promotion}" />
+			<h:outputText value=" " styleClass="error" rendered="#{!directToVendorHandler.promotion}" />
+			<ice:selectInputDate id="vendorRequest_s2_modifyStatus_promo_end_date" value="#{directToVendorHandler.vendorRequest.data.promoEndDate}" required="#{directToVendorHandler.promotion}" renderMonthAsDropdown="true" renderYearAsDropdown="true" title="MM/DD/YYYY" renderAsPopup="true" styleClass="medium_field field_spacing">
+				<f:convertDateTime pattern="#{msg['ui.date.store_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+			</ice:selectInputDate>
+			<h:message for="vendorRequest_s2_modifyStatus_promo_end_date" styleClass="error" />
+				
+			<!-- PROMO CODE -->
+			<h:outputLabel for="vendorRequest_s2_modifyStatus_promo_code" value="Promo Code:" />
+			<h:outputText value="*" styleClass="error" rendered="#{directToVendorHandler.promotion}" />
+			<h:outputText value=" " styleClass="error" rendered="#{!directToVendorHandler.promotion}" />
+			<h:inputText id="vendorRequest_s2_modifyStatus_promo_code" value="#{directToVendorHandler.vendorRequest.data.promoCode}" required="#{directToVendorHandler.promotion}" styleClass="medium_field field_spacing" />
+			<h:message for="vendorRequest_s2_modifyStatus_promo_code" styleClass="error" />
+			
+			
+		</h:panelGrid>
+		
+</h:panelGroup>

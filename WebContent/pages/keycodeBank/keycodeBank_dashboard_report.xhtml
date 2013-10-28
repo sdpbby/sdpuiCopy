@@ -1,0 +1,171 @@
+<h:form id="report_panel" rendered="#{keycodeBankReportTabbedPaneHandler.reportTabCurrent}" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+				<table class="datatable_paginator_wrapper">
+					<thead class="paginator">
+						<tr>
+							<td class="header" colspan="2">
+								<ice:dataPaginator id="datadetail1" for="datatable" rowsCountVar="rowsCount">
+									<ice:outputFormat value="#{keycodeBankReportDatatable.reportMainHeader} ({0})">
+										<f:param value="#{rowsCount}" />
+									</ice:outputFormat>
+								</ice:dataPaginator>
+								
+							</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td colspan="2">
+								<ice:dataTable width="100%" value="#{keycodeBankReportDatatable.rows}" var="itr" rows="100" id="datatable" sortColumn="#{keycodeBankReportDatatable.sortColumnName}" sortAscending="#{keycodeBankReportDatatable.ascending}" styleClass="datatable" rowClasses="odd,even">
+									
+									<ice:column>
+										<f:facet name="header">
+											<ice:commandSortHeader columnName="#{keycodeBankReportDatatable.vendorIdColumnName}" arrow="true">
+												<ice:outputText value="#{keycodeBankReportDatatable.vendorIdColumnName}" />
+											</ice:commandSortHeader>
+										</f:facet>
+										<ice:outputText value="#{itr.vendorId}" />
+									</ice:column>
+									<ice:column>
+										<f:facet name="header">
+											<ice:commandSortHeader columnName="#{keycodeBankReportDatatable.vendorNameColumnName}" arrow="true">
+												<ice:outputText value="#{keycodeBankReportDatatable.vendorNameColumnName}" />
+											</ice:commandSortHeader>
+										</f:facet>
+										<ice:outputText value="#{itr.vendorName}" />
+									</ice:column>
+									<ice:column>
+										<f:facet name="header">
+											<ice:commandSortHeader columnName="#{keycodeBankReportDatatable.productDescriptionColumnName}" arrow="true">
+												<ice:outputText value="#{keycodeBankReportDatatable.productDescriptionColumnName}" />
+											</ice:commandSortHeader>
+										</f:facet>
+										<ice:outputText value="#{itr.productDescription}" />
+									</ice:column>
+									<ice:column>
+										<f:facet name="header">
+											<ice:commandSortHeader columnName="#{keycodeBankReportDatatable.merchandiseSkuColumnName}" arrow="true">
+												<ice:outputText value="#{keycodeBankReportDatatable.merchandiseSkuColumnName}" />
+											</ice:commandSortHeader>
+										</f:facet>
+										<ice:outputText value="#{itr.merchandiseSku}" />
+									</ice:column>
+									<ice:column>
+										<f:facet name="header">
+											<ice:commandSortHeader columnName="#{keycodeBankReportDatatable.nonMerchandiseSkuColumnName}" arrow="true">
+												<ice:outputText value="#{keycodeBankReportDatatable.nonMerchandiseSkuColumnName}" />
+											</ice:commandSortHeader>
+										</f:facet>
+										<ice:outputText value="#{itr.nonMerchandiseSku}" />
+									</ice:column>
+									<ice:column>
+										<f:facet name="header">
+											<ice:commandSortHeader columnName="#{keycodeBankReportDatatable.masterItemIdColumnName}" arrow="true">
+												<ice:outputText value="#{keycodeBankReportDatatable.masterItemIdColumnName}" />
+											</ice:commandSortHeader>
+										</f:facet>
+										<ice:outputText value="#{itr.masterItemId}" />
+									</ice:column>
+									<ice:column rendered="#{keycodeBankReportTabbedPaneHandler.depletionReportTabCurrent || keycodeBankReportTabbedPaneHandler.dailyReportTabCurrent || keycodeBankReportTabbedPaneHandler.monthlyReportTabCurrent}">
+										<f:facet name="header">
+											<ice:commandSortHeader columnName="#{keycodeBankReportDatatable.remainingKeysColumnName}" arrow="true">
+												<ice:outputText value="#{keycodeBankReportDatatable.remainingKeysColumnName}" />
+											</ice:commandSortHeader>
+										</f:facet>
+										<ice:outputText value="#{itr.remainingKeys}" />
+									</ice:column>
+									<ice:column rendered="#{keycodeBankReportTabbedPaneHandler.dailyReportTabCurrent || keycodeBankReportTabbedPaneHandler.monthlyReportTabCurrent}">
+										<f:facet name="header">
+											<ice:commandSortHeader columnName="#{keycodeBankReportDatatable.reservedKeysColumnName}" arrow="true">
+												<ice:outputText value="#{keycodeBankReportDatatable.reservedKeysColumnName}" />
+											</ice:commandSortHeader>
+										</f:facet>
+										<ice:outputText value="#{itr.reservedKeys}" />
+									</ice:column>
+									<ice:column rendered="#{keycodeBankReportTabbedPaneHandler.dailyReportTabCurrent || keycodeBankReportTabbedPaneHandler.monthlyReportTabCurrent}">
+										<f:facet name="header">
+											<ice:commandSortHeader columnName="#{keycodeBankReportDatatable.activatedKeysColumnName}" arrow="true">
+												<ice:outputText value="#{keycodeBankReportDatatable.activatedKeysColumnName}" />
+											</ice:commandSortHeader>
+										</f:facet>
+										<ice:outputText value="#{itr.activatedKeys}" />
+									</ice:column>
+									<ice:column rendered="#{keycodeBankReportTabbedPaneHandler.depletionReportTabCurrent}">
+										<f:facet name="header">
+											<ice:commandSortHeader columnName="#{keycodeBankReportDatatable.expiredKeysColumnName}" arrow="true">
+												<ice:outputText value="#{keycodeBankReportDatatable.expiredKeysColumnName}" />
+											</ice:commandSortHeader>
+										</f:facet>
+										<ice:outputText value="#{itr.keysExpired}" />
+									</ice:column>
+									<ice:column rendered="#{keycodeBankReportTabbedPaneHandler.depletionReportTabCurrent}">
+										<f:facet name="header">
+											<ice:commandSortHeader columnName="#{keycodeBankReportDatatable.keysUsedLastXDaysColumnName}" arrow="true">
+												<ice:outputText value="#{keycodeBankReportDatatable.keysUsedLastXDaysColumnName}" />
+											</ice:commandSortHeader>
+										</f:facet>
+										<ice:outputText value="#{itr.keysUsedLastXDays}" />
+									</ice:column>
+									<ice:column rendered="#{keycodeBankReportTabbedPaneHandler.depletionReportTabCurrent}">
+										<f:facet name="header">
+											<ice:commandSortHeader columnName="#{keycodeBankReportDatatable.estDaysToDepletionColumnName}" arrow="true">
+												<ice:outputText value="#{keycodeBankReportDatatable.estDaysToDepletionColumnName}" />
+											</ice:commandSortHeader>
+										</f:facet>
+										<ice:outputText value="#{itr.estDaysToDepletion}">
+											<f:converter converterId="depletionDaysConverter"/>	
+										</ice:outputText>
+									</ice:column>
+									
+								</ice:dataTable>
+							</td>
+						</tr>
+					</tbody>
+					<tfoot class="paginator">
+						<tr>
+							<td class="results">
+								<ice:dataPaginator rendered="#{!keycodeBankReportDatatable.tableEmpty}" id="datadetail2" for="datatable" rowsCountVar="rowsCount" displayedRowsCountVar="displayedRowsCount" firstRowIndexVar="firstRowIndex" lastRowIndexVar="lastRowIndex" pageCountVar="pageCount" pageIndexVar="pageIndex">
+									<ice:outputFormat value="{0} results found, displaying {1} result(s), from {2} to {3}. Page {4} / {5}.">
+										<f:param value="#{rowsCount}" />
+										<f:param value="#{displayedRowsCount}" />
+										<f:param value="#{firstRowIndex}" />
+										<f:param value="#{lastRowIndex}" />
+										<f:param value="#{pageIndex}" />
+										<f:param value="#{pageCount}" />
+									</ice:outputFormat>
+								</ice:dataPaginator>
+							</td>
+							<td class="navigation">
+								<ice:dataPaginator rendered="#{!keycodeBankReportDatatable.tableEmpty}" id="datascroller2" for="datatable" paginator="true" fastStep="3" paginatorMaxPages="4">
+									<f:facet name="first">
+										<ice:graphicImage url="/xmlhttp/css/xp/css-images/arrow-first.gif" style="border:none;" title="First Page">
+										</ice:graphicImage>
+									</f:facet>
+									<f:facet name="last">
+										<ice:graphicImage url="/xmlhttp/css/xp/css-images/arrow-last.gif" style="border:none;" title="Last Page">
+										</ice:graphicImage>
+									</f:facet>
+									<f:facet name="previous">
+										<ice:graphicImage url="/xmlhttp/css/xp/css-images/arrow-previous.gif" style="border:none;" title="Previous Page">
+										</ice:graphicImage>
+									</f:facet>
+									<f:facet name="next">
+										<ice:graphicImage url="/xmlhttp/css/xp/css-images/arrow-next.gif" style="border:none;" title="Next Page">
+										</ice:graphicImage>
+									</f:facet>
+									<f:facet name="fastforward">
+										<ice:graphicImage url="/xmlhttp/css/xp/css-images/arrow-ff.gif" style="border:none;" title="Fast Forward">
+										</ice:graphicImage>
+									</f:facet>
+									<f:facet name="fastrewind">
+										<ice:graphicImage url="/xmlhttp/css/xp/css-images/arrow-fr.gif" style="border:none;" title="Fast Backwards">
+										</ice:graphicImage>
+									</f:facet>
+								</ice:dataPaginator>
+								<h:outputText rendered="#{keycodeBankReportDatatable.tableEmpty}" value="#{msg['ui.datatable.no_results_found']}" styleClass="error" />
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+
+</h:form>

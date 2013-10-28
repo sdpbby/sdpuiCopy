@@ -1,0 +1,51 @@
+<h:panelGroup id="requestForm_panel" rendered="#{directToVendorHandler.tabHandler.formTabCurrent}" xmlns:ice="http://www.icesoft.com/icefaces/component" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml">
+	 <div id="requestForm_div">
+		<h:form id="requestForm_panel_form">
+			
+			<!-- Panel Popup -->
+			<ice:panelPopup id="confirm_popup" draggable="true" modal="true" rendered="#{directToVendorHandler.renderPopup}" visible="#{directToVendorHandler.renderPopup}" autoCentre="true">
+				<f:facet name="header">
+					<ice:panelGroup>
+						<ice:outputText value="#{directToVendorHandler.operation}: #{directToVendorHandler.category}" />
+					</ice:panelGroup>
+				</f:facet>
+				<f:facet name="body">
+					<ice:panelGroup>
+						<br />
+						<ice:outputText value="You are about to submit a new ${directToVendorHandler.operationName} request to SDP. Do you want to proceed?" />
+						<br />
+						<br />
+						<ice:panelGroup style="text-align: center;">
+							<br />
+							<ice:commandButton type="submit" id="send_request_now" value="Send Request Now" actionListener="#{directToVendorHandler.togglePopup}" action="#{directToVendorHandler.sendRequestNowButtonClick}" />
+							<ice:commandButton type="submit" id="cancel" value="Cancel" actionListener="#{directToVendorHandler.togglePopup}" />
+							<br />
+						</ice:panelGroup>
+					</ice:panelGroup>
+				</f:facet>
+			</ice:panelPopup>
+			<h:panelGroup styleClass="full_column">
+				<ui:include src="/pages/vendorRequest/vendorRequest_s2_activate.xhtml" />
+				<ui:include src="/pages/vendorRequest/vendorRequest_s2_cancel.xhtml" />
+				<ui:include src="/pages/vendorRequest/vendorRequest_s2_renew.xhtml" />
+				<ui:include src="/pages/vendorRequest/vendorRequest_s2_modifyStatus.xhtml" />
+				
+				<ui:include src="/pages/vendorRequest/vendorRequest_psa_activate.xhtml" />
+				<ui:include src="/pages/vendorRequest/vendorRequest_psa_cancel.xhtml" />
+				
+				<ui:include src="/pages/vendorRequest/vendorRequest_posa_activate.xhtml" />
+				<ui:include src="/pages/vendorRequest/vendorRequest_posa_cancel.xhtml" />
+			</h:panelGroup>
+			
+			<h:panelGroup styleClass="full_column">
+				<div style="text-align:center;">
+					<h:commandButton immediate="true" value="&lt;&lt; Back" action="#{directToVendorHandler.backToVendorProvisioningStatusButtonClick}" rendered="#{directToVendorHandler.reflowFromVendorProvisioningStatus}" />
+					<h:commandButton immediate="true" value="&lt;&lt; Change Form" action="#{directToVendorHandler.changeFormButtonClick}" rendered="#{!directToVendorHandler.reflowFromVendorProvisioningStatus}"  />
+					<h:commandButton id="submit_sdp_request" value="Send Request &gt;&gt;" action="#{directToVendorHandler.processRequestButtonClick}" />
+				</div>
+			</h:panelGroup>
+	
+		</h:form>
+	</div> 
+</h:panelGroup>
+		

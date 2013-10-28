@@ -1,0 +1,76 @@
+<h:form id="header_content_form" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<div id="top_header">
+		<table>
+			<tbody>
+				<tr>
+					<a href="/SDPUI/pages/home/home.jsf">
+					<td id="app_name" style="cursor:hand">
+							<h:outputText value="#{msg['ui.title']}"/>
+					</td>
+					</a>
+					<td id="app_build">
+						<h:outputText styleClass="normal" value="Build: #{pageHeaderBean.buildNum}" />
+					</td>
+					<td id="app_user">
+						<span class="normal">Logged in as </span><h:outputText class="normal bold" title="Roles: #{pageHeaderBean.userManager.userBean.roles}" style="cursor:help;" value="#{pageHeaderBean.userManager.userBean.username}  " />
+					</td>
+					<td id="app_logout">
+						<a id="logout_button" href="/SDPUI/pages/login/logout.jsp"><h:graphicImage style="height:90%; padding:0px; margin-left:5px; margin-right:0px; margin-top:1px; margin-bottom:1px; cursor:hand; border:none;" alt="Logout" name="logout_button.gif" library="images" /></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div id="lower_header">
+		<table>
+			<tbody>
+				<tr>
+					<td id="app_page_title">
+						<ui:insert name="tabTitle" />
+					</td>
+					<td id="quick_nav">
+						<ice:menuBar id="menuBar" orientation="Horizontal">
+							<ice:menuItem value="Research" id="research" onclick="return false;">
+								<ice:menuItem style="width: 200px; border: 1px solid #cfcfcf; background-color: #e0e0e0;" value="Query SDP Orders" id="query_sdp_orders" action="#{menuBarHandler.gotoQuerySdpOrdersButtonClick}" />
+								<ice:menuItem style="width: 200px; border: 1px solid #cfcfcf; background-color: #e0e0e0;" value="Recent SDP Orders" id="recent_sdp_orders" action="#{menuBarHandler.gotoRecentSdpOrdersButtonClick}" />
+								<ice:menuItem style="width: 200px; border: 1px solid #cfcfcf; background-color: #e0e0e0;" value="Exceptions" id="exceptions" action="#{menuBarHandler.gotoExceptionsButtonClick}" />
+								<ice:menuItem style="width: 200px; border: 1px solid #cfcfcf; background-color: #e0e0e0;" value="Audit Trail" id="audit_trail" action="#{menuBarHandler.gotoAuditTrailButtonClick}" />
+								<ice:menuItem style="width: 200px; border: 1px solid #cfcfcf; background-color: #e0e0e0;" value="ECC Console" id="ecc_console" action="#{menuBarHandler.gotoEccConsoleButtonClick}" />
+							</ice:menuItem>
+							<ice:menuItem value="New Request Flow" id="new_request_flow" onclick="return false;">
+								<ice:menuItem style="width: 200px; border: 1px solid #cfcfcf; background-color: #e0e0e0;" value="SDP Reprocess Form" id="sdp_transactions" action="#{menuBarHandler.gotoFlowSdpTransactionButtonClick}" />
+								<ice:menuItem style="width: 200px; border: 1px solid #cfcfcf; background-color: #e0e0e0;" value="Direct To Vendor" id="direct_to_vendor" action="#{menuBarHandler.gotoFlowDirectToVendorButtonClick}" />
+							</ice:menuItem>
+							<ice:menuItem value="Administration" id="administration" onclick="return false;">
+								<ice:menuItem style="width: 200px; border: 1px solid #cfcfcf; background-color: #e0e0e0;" value="Keycode Bank" id="keycode_bank" onclick="return false;">
+									<ice:menuItem style="width: 200px; border: 1px solid #cfcfcf; background-color: #e0e0e0;" value="Reports Dashboard" id="kcb_dashboard" action="#{menuBarHandler.gotoKcbDashboardButtonClick}" />
+									<ice:menuItem style="width: 200px; border: 1px solid #cfcfcf; background-color: #e0e0e0;" value="Load Keycodes" id="load_keycodes" action="#{menuBarHandler.gotoLoadKeycodesButtonClick}" />
+									<ice:menuItem style="width: 200px; border: 1px solid #cfcfcf; background-color: #e0e0e0;" value="Manage Loaded Keycodes" id="manage_loaded_keycodes" action="#{menuBarHandler.gotoManageLoadedKeycodesButtonClick}" />
+								</ice:menuItem>
+								<ice:menuItem style="width: 200px; border: 1px solid #cfcfcf; background-color: #e0e0e0;" value="Configure Catalog" id="configure_catalog" onclick="return false;">
+									<ice:menuItem style="width: 200px; border: 1px solid #cfcfcf; background-color: #e0e0e0;" value="SDP Catalog" id="sdp_catalog" action="#{menuBarHandler.gotoSdpCatalogButtonClick}" />
+									<ice:menuItem style="width: 200px; border: 1px solid #cfcfcf; background-color: #e0e0e0;" value="Keycode Bank Catalog" id="kcb_catalog" action="#{menuBarHandler.gotoKcbCatalogButtonClick}" />
+									<ice:menuItem style="width: 200px; border: 1px solid #cfcfcf; background-color: #e0e0e0;" value="Vendor Setup" id="vendor_setup" action="#{menuBarHandler.gotoVendorSetupButtonClick}" />
+								</ice:menuItem>
+								<ice:menuItem style="width: 200px; border: 1px solid #cfcfcf; background-color: #e0e0e0;" value="Preorder Management" id="preorder_management" action="#{menuBarHandler.gotoPreorderManagementButtonClick}" />
+							</ice:menuItem>
+							<ice:menuItem value="Support" id="support" onclick="return false;" rendered="#{userManagerBean.permissionsBean.supportPageAccessAllowed}">
+								<ice:menuItem style="width: 200px; border: 1px solid #cfcfcf; background-color: #e0e0e0;" value="Queue Monitoring" id="sdp_queue_monitoring" action="#{menuBarHandler.gotoSdpQueueMonitoringButtonClick}" />
+								<ice:menuItem style="width: 200px; border: 1px solid #cfcfcf; background-color: #e0e0e0;" value="SDP-Config" id="sdp_config" action="#{menuBarHandler.gotoSdpConfigButtonClick}" />
+								<ice:menuItem style="width: 200px; border: 1px solid #cfcfcf; background-color: #e0e0e0;" value="OpsUI Log4j" id="sdp_log4j" action="#{menuBarHandler.gotoLoggingButtonClick}" />
+							</ice:menuItem>
+						</ice:menuBar>
+					</td>
+					<!-- <td id="quick_nav">
+						<p>
+							<h:selectOneMenu id="quick_links" value="#{pageHeaderBean.quickLinkTextField}" rendered="#{pageHeaderBean.userManager.displayNavigationLinks}" >
+								<f:selectItems value="#{pageHeaderBean.quickLinks}" />
+							</h:selectOneMenu>
+							<h:commandButton id="quick_link_submit" value="Go" action="#{pageHeaderBean.quickLinkButtonClick}" rendered="#{pageHeaderBean.userManager.displayNavigationLinks}" />
+						</p>
+					</td> -->
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</h:form>

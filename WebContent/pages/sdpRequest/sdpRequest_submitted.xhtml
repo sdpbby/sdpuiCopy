@@ -1,0 +1,45 @@
+<h:panelGroup id="requestSubmittedForm_panel" rendered="#{sdpRequestHandler.sdpRequestTabHandler.formSubmittedTabCurrent}" xmlns:ice="http://www.icesoft.com/icefaces/component" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml">
+	 <div id="requestSubmittedForm_div">
+		<h:form id="requestSubmittedForm_panel_form">
+			
+			<!-- Panel Popup -->
+			<ice:panelPopup id="confirm_popup" draggable="true" modal="true" rendered="#{sdpRequestHandler.renderPopup}" visible="#{sdpRequestHandler.renderPopup}" autoCentre="true">
+				<f:facet name="header">
+					<ice:panelGroup>
+						<ice:outputText value="#{sdpRequestHandler.operation}: #{sdpRequestHandler.category}" />
+					</ice:panelGroup>
+				</f:facet>
+				<f:facet name="body">
+					<ice:panelGroup>
+						<br />
+						<ice:outputText value="The request was submitted but the order has not been created yet. Please wait a moment and try again." rendered="#{!sdpRequestHandler.multipleRecordsFound}" />
+						<ice:outputText value="Multiple orders were found with the LineItem ID #{sdpRequestHandler.generatedLineItemId}. Please do a manual search to view this order." rendered="#{sdpRequestHandler.multipleRecordsFound}" />
+						<br />
+						<br />
+						<ice:panelGroup style="text-align: center;">
+							<br />
+							<ice:commandButton type="submit" id="manual_search" value="Manual Search" actionListener="#{sdpRequestHandler.togglePopup}" action="#{sdpRequestHandler.manualSearchButtonClick}" rendered="#{sdpRequestHandler.multipleRecordsFound}" />
+							<ice:commandButton type="submit" id="close" value="Close" actionListener="#{sdpRequestHandler.togglePopup}" />
+							<br />
+						</ice:panelGroup>
+					</ice:panelGroup>
+				</f:facet>
+			</ice:panelPopup>
+			
+			<!-- 
+			<h:panelGroup styleClass="normal_column">
+				<ui:include src="/pages/sdpRequest/sdpRequestResponseLog_fulfillActivation.xhtml" />
+			</h:panelGroup>
+			-->
+			
+			<h:panelGroup styleClass="wide_column">
+				<div style="text-align:center;">
+					<p>Your request has been submitted. It may take a moment for the transaction to begin processing.</p>
+					<h:commandButton id="view_order" value="View Order" action="#{sdpRequestHandler.viewOrderButtonClick}" />
+				</div>
+			</h:panelGroup>
+	
+		</h:form>
+	</div> 
+</h:panelGroup>
+	

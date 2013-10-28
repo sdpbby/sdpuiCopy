@@ -1,0 +1,13 @@
+<h:form rendered="#{queueMonitoringHandler.tab.loginTabCurrent}" id="sdp" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml">
+	<table>
+		<tr>
+			<td><h:outputLabel value="Username:" for="sdpusername"/></td>
+			<td><h:inputText tabindex="1" value="#{queueMonitoringHandler.jmxUsername}" id="sdpusername" /></td>
+			<td rowspan="2" style="vertical-align:top;"><h:commandButton tabindex="3" value="login" action="#{queueMonitoringHandler.prepareJmxSdpSbPage}"/></td>
+		</tr>
+		<tr>
+			<td><h:outputLabel value="Password:" for="sdppassword"/></td>
+			<td><h:inputSecret tabindex="2" value="#{queueMonitoringHandler.jmxPassword}" id="sdppassword" /></td>
+		</tr>
+	</table>
+</h:form>

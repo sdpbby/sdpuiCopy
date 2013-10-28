@@ -1,0 +1,54 @@
+<h:form id="commsatHistory_form" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<table class="datatable_paginator_wrapper" style="width: 100%;">
+		<thead class="paginator">
+			<tr>
+				<td class="header">
+					<h:commandLink value="[+]" action="#{sdpOrderDetailHandler.commsatHistoryDatatable.toggleHide}" rendered="#{sdpOrderDetailHandler.commsatHistoryDatatable.hide}" immediate="true" />
+					<h:commandLink value="[-]" action="#{sdpOrderDetailHandler.commsatHistoryDatatable.toggleHide}" rendered="#{!sdpOrderDetailHandler.commsatHistoryDatatable.hide}" immediate="true" />	
+					<h:outputText value=" COMMSAT HISTORY " />				
+				</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<ice:dataTable rendered="#{!sdpOrderDetailHandler.commsatHistoryDatatable.hide}" width="100%" binding="#{sdpOrderDetailHandler.commsatHistoryDatatable.dataTable}" value="#{sdpOrderDetailHandler.commsatHistoryDatatable.rows}" var="itr" id="commsatHistory_datatable" styleClass="datatable" rowClasses="odd,even">
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Created Date" />
+							</f:facet>
+							<ice:outputText value="#{itr.createdDate}">
+								<f:convertDateTime pattern="#{msg['ui.date.timestamp_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+							</ice:outputText>
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Template ID" />
+							</f:facet>
+							<ice:outputText value="#{itr.templateId}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Delivery Email" />
+							</f:facet>
+							<ice:outputText value="#{itr.deliveryEmail}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Redemption Code" />
+							</f:facet>
+							<ice:outputText value="#{itr.keycode}" />
+						</ice:column>
+					</ice:dataTable>
+					<ice:outputText styleClass="error" value="No records to display." rendered="#{!sdpOrderDetailHandler.commsatHistoryDatatable.hide and sdpOrderDetailHandler.commsatHistoryDatatable.tableEmpty}" />
+					<ice:commandButton immediate="true" value="Reprocess" rendered="#{!sdpOrderDetailHandler.commsatHistoryDatatable.hide and sdpOrderDetailHandler.commsatHistoryDatatable.resubmitAllowed and !sdpOrderDetailHandler.commsatHistoryDatatable.resubmitFormRendered}" action="#{sdpOrderDetailHandler.resendCommsatButtonClick}" />
+					
+					<h:outputLabel styleClass="normal field_spacing" value="Delivery Email: " rendered="#{!sdpOrderDetailHandler.commsatHistoryDatatable.hide and sdpOrderDetailHandler.commsatHistoryDatatable.resubmitFormRendered}" />
+					<h:inputText styleClass="long_field field_spacing" id="input_delivery_email" required="true" rendered="#{!sdpOrderDetailHandler.commsatHistoryDatatable.hide and sdpOrderDetailHandler.commsatHistoryDatatable.resubmitFormRendered}" value="#{sdpOrderDetailHandler.commsatHistoryDatatable.currentRequest.deliveryEmail}" />
+					<h:message for="input_delivery_email" rendered="#{!sdpOrderDetailHandler.commsatHistoryDatatable.hide and sdpOrderDetailHandler.commsatHistoryDatatable.resubmitFormRendered}" />
+					<ice:commandButton value="Send Request Now" rendered="#{!sdpOrderDetailHandler.commsatHistoryDatatable.hide and sdpOrderDetailHandler.commsatHistoryDatatable.resubmitFormRendered}" action="#{sdpOrderDetailHandler.sendCommsatRequestNowButtonClick}" />
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</h:form>

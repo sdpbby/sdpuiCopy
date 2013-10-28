@@ -1,0 +1,32 @@
+<ui:composition template="/pages/templates/masterLayout.xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml">
+	<ui:define name="windowTitle">
+		#{msg['exceptionresult.windowtitle']}
+	</ui:define>
+
+	<ui:define name="tabTitle">
+		<h:outputText value="#{msg['exceptionresult.tabtitle']}" />
+
+	</ui:define>
+
+	<ui:define name="pageTitle">
+		#{msg['exceptionresult.pagetitle']}
+	</ui:define>
+
+	<ui:define name="subTitle">
+		<h:outputText value="#{msg['exceptionresult.subtitle']}" />
+	</ui:define>
+
+	<ui:define name="content">
+
+				<div id="top_content">
+						<ui:include src="/pages/exceptionresult/exceptionresult_view.xhtml" />
+				</div>
+
+
+			<div id="datatable_panel">
+					<ui:include src="/pages/exceptionresult/exceptionresult_msg.xhtml" />
+			</div>
+
+	</ui:define>
+
+</ui:composition>

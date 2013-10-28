@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wls:weblogic-web-app xmlns:wls="http://www.bea.com/ns/weblogic/weblogic-web-app"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd http://www.bea.com/ns/weblogic/weblogic-web-app http://www.bea.com/ns/weblogic/weblogic-web-app/1.0/weblogic-web-app.xsd">
+	<wls:weblogic-version>10.3</wls:weblogic-version>
+	<wls:jsp-descriptor>
+		<wls:precompile>true</wls:precompile>
+	</wls:jsp-descriptor>
+	<wls:context-root>SDPUI</wls:context-root>
+	<wls:session-descriptor>
+		<!-- max session lifespan 12 hours -->
+        <wls:cookie-max-age-secs>43200</wls:cookie-max-age-secs>
+        <wls:cookie-http-only>true</wls:cookie-http-only>
+        <wls:cookies-enabled>true</wls:cookies-enabled>
+		<wls:cookie-secure>true</wls:cookie-secure>
+		<wls:http-proxy-caching-of-cookies>true</wls:http-proxy-caching-of-cookies>
+	</wls:session-descriptor>
+</wls:weblogic-web-app>

@@ -1,0 +1,40 @@
+<h:panelGroup rendered="#{directToVendorHandler.formHandler.renewS2FormCurrent}"  xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<h:panelGrid columns="1" styleClass="editable_form_panel normal" columnClasses="editable_form_panel normal,editable_form_panel normal">
+		<h:outputText styleClass="error" value="#{msg['sdpRequest.message.special_character_found']}" rendered="#{directToVendorHandler.specialCharacterFoundInsertFlag}" />
+	</h:panelGrid>	
+	
+		<h:panelGrid columns="4" styleClass="editable_form_panel normal" columnClasses="right,left,left,left_fixed">
+			
+			<f:facet name="header">
+				<h:outputText value="Transaction Details" />
+			</f:facet>
+				
+			<!-- CONTRACT END DATE -->
+			<h:outputLabel for="vendorRequest_s2_renew_contract_end_date" value="Contract End Date:" />
+			<h:outputText value=" " styleClass="error" />
+			<ice:selectInputDate id="vendorRequest_s2_renew_contract_end_date" value="#{directToVendorHandler.vendorRequest.data.contractEndDate}" required="false" immediate="true"  renderMonthAsDropdown="true" renderYearAsDropdown="true" title="MM/DD/YYYY" renderAsPopup="true" styleClass="iceSelInpDate medium_field field_spacing" disabled="#{directToVendorHandler.indefiniteSubscription}">
+				<f:convertDateTime pattern="#{msg['ui.date.store_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />																						
+			</ice:selectInputDate>
+			<h:message for="vendorRequest_s2_renew_contract_end_date" styleClass="error" />
+				
+			<!-- CONTRACT END DATE check box-->
+			<h:outputLabel for="indefiniteSubscriptionrnw" value="Indefinite / Monthly" />
+			<h:outputText value="" styleClass="error" />
+			<h:selectBooleanCheckbox id="indefiniteSubscriptionrnw" valueChangeListener="#{directToVendorHandler.indefiniteSubscriptionSet}" value="#{directToVendorHandler.indefiniteSubscription}"  immediate="true" onchange="sumbit();" onclick="submit();"/>
+			<h:message for="indefiniteSubscriptionrnw" styleClass="error" />
+			
+			<!-- SERIAL NUMBER -->
+			<h:outputLabel for="vendorRequest_s2_renew_serial_number" value="Serial Number:" />
+			<h:outputText value="*" styleClass="error" />
+			<h:inputText id="vendorRequest_s2_renew_serial_number" value="#{directToVendorHandler.vendorRequest.data.serialNumber}" required="true" styleClass="medium_field field_spacing" />
+			<h:message for="vendorRequest_s2_renew_serial_number" styleClass="error" />
+			
+			<!-- CONTRACT ID -->
+			<h:outputLabel for="vendorRequest_s2_renew_contract_id" value="Contract ID:" />
+			<h:outputText value="*" styleClass="error" />
+			<h:inputText id="vendorRequest_s2_renew_contract_id" value="#{directToVendorHandler.vendorRequest.data.contractId}" required="true" styleClass="medium_field field_spacing" />
+			<h:message for="vendorRequest_s2_renew_contract_id" styleClass="error" />
+			
+		</h:panelGrid>
+		
+</h:panelGroup>

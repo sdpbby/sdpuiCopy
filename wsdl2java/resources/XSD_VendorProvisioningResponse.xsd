@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://sdp.bestbuy.com/tpa/VendorProvisioningResponse" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://sdp.bestbuy.com/tpa/VendorProvisioningResponse" xmlns:order="xml.accenture.com/sdp/bby/om/BBYOrder" xmlns:result="xml.accenture.com/sdp/bby/ServiceResult">
+	<xs:annotation>
+		<xs:documentation>		
+		</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="xml.accenture.com/sdp/bby/om/BBYOrder" schemaLocation="XSD_BBYOrder.xsd"/>
+	<xs:import namespace="xml.accenture.com/sdp/bby/ServiceResult" schemaLocation="XSD_ServiceResult.xsd"/>
+	<xs:element name="VendorProvisioningResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="result:ServiceResult"/>
+				<xs:element name="BBYOrder" type="order:BBYOrder"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

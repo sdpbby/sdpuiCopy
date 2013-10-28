@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s0:definitions targetNamespace="xml.accenture.com/sdp/bby/ICDM" xmlns:s0="http://schemas.xmlsoap.org/wsdl/" xmlns:s1="http://schemas.bestbuy.com/sdp/fulfillActivation" xmlns:s2="http://schemas.bestbuy.com/sdp/cancelFulfillment" xmlns:s3="http://schemas.bestbuy.com/sdp/reactivateFulfillment" xmlns:s4="http://schemas.bestbuy.com/sdp/adjustActivation" xmlns:s5="xml.accenture.com/sdp/bby/ICDM" xmlns:s6="http://schemas.xmlsoap.org/wsdl/soap/">
+  <s0:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://schemas.bestbuy.com/sdp" xmlns:ns1="http://schemas.xmlsoap.org/soap/encoding/" xmlns:s3="xml.accenture.com/sdp/bby/ICDM" xmlns:s4="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s7="http://schemas.bestbuy.com/sdp/adjustActivation" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.bestbuy.com/sdp/fulfillActivation" schemaLocation="XSD_FulfillActivation.xsd"/>
+      <xs:import namespace="http://schemas.bestbuy.com/sdp/cancelFulfillment" schemaLocation="XSD_CancelFulfillment.xsd"/>
+      <xs:import namespace="http://schemas.bestbuy.com/sdp/reactivateFulfillment" schemaLocation="XSD_ReActivateFulfillment.xsd"/>
+      <xs:import namespace="http://schemas.bestbuy.com/sdp/adjustActivation" schemaLocation="XSD_AdjustActivation.xsd"/>
+      <xs:annotation>
+        <xs:documentation>Input and Output interfaces for Asynchronous Fulfillment service</xs:documentation>
+      </xs:annotation>
+    </xs:schema>
+  </s0:types>
+  <s0:message name="FulfillActivationRequest">
+    <s0:part element="s1:FulfillActivationRequest" name="parameters"/>
+  </s0:message>
+  <s0:message name="FulfillActivationResponse">
+    <s0:part element="s1:FulfillActivationResponse" name="parameters"/>
+  </s0:message>
+  <s0:message name="CancelFulfillmentRequest">
+    <s0:part element="s2:CancelFulfillmentRequest" name="parameters"/>
+  </s0:message>
+  <s0:message name="CancelFulfillmentResponse">
+    <s0:part element="s2:CancelFulfillmentResponse" name="parameters"/>
+  </s0:message>
+  <s0:message name="ReActivateFulfillmentRequest">
+    <s0:part element="s3:ReActivateFulfillmentRequest" name="parameters"/>
+  </s0:message>
+  <s0:message name="ReActivateFulfillmentResponse">
+    <s0:part element="s3:ReActivateFulfillmentResponse" name="parameters"/>
+  </s0:message>
+  <s0:message name="AdjustActivationRequest">
+    <s0:part element="s4:AdjustActivationRequest" name="parameters"/>
+  </s0:message>
+  <s0:message name="AdjustActivationResponse">
+    <s0:part element="s4:AdjustActivationResponse" name="parameters"/>
+  </s0:message>
+  <s0:portType name="FulfillmentPort">
+    <s0:operation name="FulfillActivation">
+      <s0:input message="s5:FulfillActivationRequest"/>
+      <s0:output message="s5:FulfillActivationResponse"/>
+    </s0:operation>
+    <s0:operation name="CancelFulfillment">
+      <s0:input message="s5:CancelFulfillmentRequest"/>
+      <s0:output message="s5:CancelFulfillmentResponse"/>
+    </s0:operation>
+    <s0:operation name="ReActivateFulfillment">
+      <s0:input message="s5:ReActivateFulfillmentRequest"/>
+      <s0:output message="s5:ReActivateFulfillmentResponse"/>
+    </s0:operation>
+    <s0:operation name="AdjustActivation">
+      <s0:input message="s5:AdjustActivationRequest"/>
+      <s0:output message="s5:AdjustActivationResponse"/>
+    </s0:operation>
+  </s0:portType>
+  <s0:binding name="FulfillmentSoapBinding" type="s5:FulfillmentPort">
+    <s6:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <s0:operation name="FulfillActivation">
+      <s6:operation soapAction="xml.accenture.com/sdp/bby/FulfillActivation" style="document"/>
+      <s0:input>
+        <s6:body use="literal"/>
+      </s0:input>
+      <s0:output>
+        <s6:body use="literal"/>
+      </s0:output>
+    </s0:operation>
+    <s0:operation name="CancelFulfillment">
+      <s6:operation soapAction="xml.accenture.com/sdp/bby/CancelFulfillment" style="document"/>
+      <s0:input>
+        <s6:body use="literal"/>
+      </s0:input>
+      <s0:output>
+        <s6:body use="literal"/>
+      </s0:output>
+    </s0:operation>
+    <s0:operation name="ReActivateFulfillment">
+      <s6:operation soapAction="xml.accenture.com/sdp/bby/ReActivateFulfillment" style="document"/>
+      <s0:input>
+        <s6:body use="literal"/>
+      </s0:input>
+      <s0:output>
+        <s6:body use="literal"/>
+      </s0:output>
+    </s0:operation>
+    <s0:operation name="AdjustActivation">
+      <s6:operation soapAction="xml.accenture.com/sdp/bby/AdjustActivation" style="document"/>
+      <s0:input>
+        <s6:body use="literal"/>
+      </s0:input>
+      <s0:output>
+        <s6:body use="literal"/>
+      </s0:output>
+    </s0:operation>
+  </s0:binding>
+  <s0:service name="Fulfillment">
+    <s0:port binding="s5:FulfillmentSoapBinding" name="FulfillmentSoapPort">
+      <s6:address location="https://dld17app.na.bestbuy.com:31043/BS_FulfillmentServices"/>
+    </s0:port>
+  </s0:service>
+</s0:definitions>

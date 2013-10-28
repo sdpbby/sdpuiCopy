@@ -1,0 +1,66 @@
+<ui:composition template="/pages/templates/masterLayout.xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml">
+	<ui:define name="windowTitle">
+
+		#{msg['sdpOrderSearch.windowtitle']}
+	</ui:define>
+
+	<ui:define name="tabTitle">
+		<h:outputText value="#{msg['sdpOrderSearch.tabtitle']}" rendered="#{sdpOrderSearchResultsDatatable.sdpOrderSearchTabbedPaneHandler.searchTabCurrent}" />
+		<h:outputText value="#{msg['sdpOrderSearchResults.tabtitle']}" rendered="#{sdpOrderSearchResultsDatatable.sdpOrderSearchTabbedPaneHandler.searchResultTabCurrent}" />
+		<h:outputText value="#{msg['sdpOrderSearchVendorResults.tabtitle']}" rendered="#{sdpOrderSearchResultsDatatable.sdpOrderSearchTabbedPaneHandler.searchVendorResultTabCurrent}" />
+	</ui:define>
+
+	<ui:define name="pageTitle">
+		<h:outputText value="#{msg['sdpOrderSearch.pagetitle']}" rendered="#{sdpOrderSearchResultsDatatable.sdpOrderSearchTabbedPaneHandler.searchTabCurrent}" />
+		<h:outputText value="#{msg['sdpOrderSearchDisplayResults.pagetitle']}" rendered="#{sdpOrderSearchResultsDatatable.sdpOrderSearchTabbedPaneHandler.searchResultTabCurrent}" />
+		<h:outputText value="#{msg['sdpOrderSearchVendorResults.pagetitle']}" rendered="#{sdpOrderSearchResultsDatatable.sdpOrderSearchTabbedPaneHandler.searchVendorResultTabCurrent}" />
+		
+		<!--#{msg['sdpOrderSearch.pagetitle']}-->
+	</ui:define>
+
+	<ui:define name="subTitle">
+		<h:outputText value="#{msg['sdpOrderSearch.subtitle']}" rendered="#{sdpOrderSearchResultsDatatable.sdpOrderSearchTabbedPaneHandler.searchTabCurrent}" />
+		<h:outputText value="#{msg['sdpOrderSearchResults.subtitle']}" rendered="#{sdpOrderSearchResultsDatatable.sdpOrderSearchTabbedPaneHandler.searchResultTabCurrent}" />
+		<h:outputText value="#{msg['sdpOrderSearchVendorResults.tabtitle']}" rendered="#{sdpOrderSearchResultsDatatable.sdpOrderSearchTabbedPaneHandler.searchVendorResultTabCurrent}" />
+	</ui:define>
+
+	<ui:define name="content">
+		<h:panelGroup id="search_panel" rendered="#{sdpOrderSearchResultsDatatable.sdpOrderSearchTabbedPaneHandler.searchTabCurrent}">
+		<table >
+			<tr height="230px">
+				<td id="sdp_order_query_panel" style="vertical-align:top; width: 350px;">
+					<ui:include src="/pages/sdpOrderSearch/sdpOrderSearch_singlefieldsearch.xhtml" />
+				</td>
+				<td id="sdp_order_query_panel" style="vertical-align:top; width: 350px;">
+					<ui:include src="/pages/sdpOrderSearch/sdpOrderSearch_transactionsearch.xhtml" />
+				</td>
+				<td id="sdp_order_query_panel" style="vertical-align:top; width: 350px;">
+					<ui:include src="/pages/sdpOrderSearch/sdpOrderSearch_errorstatussearch1.xhtml" />
+				</td>
+				<td valign="top" align="left">
+					<ui:include src="/pages/sdpOrderSearch/sdpordersearch_clearall.xhtml" />
+				</td>
+			</tr>
+			<tr height="230px">
+				<td id="sdp_order_query_panel" style="vertical-align:top; width: 350px;">
+					<ui:include src="/pages/sdpOrderSearch/sdpOrderSearch_customersearch1.xhtml" />
+				</td>
+				<td colspan="2" id="sdp_order_query_panel" style="vertical-align:top; width: 350px;">
+					<ui:include src="/pages/sdpOrderSearch/sdpOrderSearch_vendorprovisionsearch.xhtml" />
+				</td>
+			</tr>
+		</table>
+		</h:panelGroup>
+
+
+	<h:panelGroup id="search_result_panel" rendered="#{sdpOrderSearchResultsDatatable.sdpOrderSearchTabbedPaneHandler.searchResultTabCurrent}">
+		<ui:include src="/pages/sdpOrderSearchResults/sdpOrderSearchResults_datatable.xhtml" />
+	</h:panelGroup>
+	
+	<h:panelGroup id="vndr_search_result_panel" rendered="#{sdpOrderSearchResultsDatatable.sdpOrderSearchTabbedPaneHandler.searchVendorResultTabCurrent}">
+		<ui:include src="/pages/sdpOrderSearchResults/sdpOrderSearchVendorResults_datatable.xhtml" />
+	</h:panelGroup>
+
+	</ui:define>
+
+</ui:composition>

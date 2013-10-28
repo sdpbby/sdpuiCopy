@@ -1,0 +1,24 @@
+<h:panelGroup id="edit_panel" rendered="#{preorderTabbedPaneHandler.editTabCurrent}" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<div id="leftcol" class="normal_left_column">
+		<ui:include src="/pages/preorder/preorder_detail.xhtml" />
+	</div> 
+	<div id="midcol" class="normal_left_column">
+		<ui:include src="/pages/preorder/preorder_history.xhtml" />
+	</div> 
+	
+	<div id="rightcol" class="normal_column">
+		<h:form id="preorder_streetdate_edit">
+			<h:outputText styleClass="error" value="#{msg['preorder.warning.product_has_preorder_schedule']} STATUS=#{preorderHandler.oldPreorderBean.statusName}" rendered="#{preorderHandler.productAlreadyHasPreorderScheduled}" />
+			<h:panelGrid id="preorder_inputform_streetdate" columns="2">
+				<h:outputLabel for="edit_StreetDate" value="Street Date: " styleClass="normal field_spacing" />
+				<ice:selectInputDate id="edit_StreetDate" renderMonthAsDropdown="true" renderYearAsDropdown="true" value="#{preorderHandler.newPreorderBean.streetDate}" rendered="true" title="MM/DD/YYYY HH:MM PM" renderAsPopup="true" styleClass="normal field_spacing">
+        			<f:convertDateTime pattern="#{msg['ui.date.calendar_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+    			</ice:selectInputDate>
+			</h:panelGrid>
+			<h:message styleClass="error" for="edit_StreetDate" />
+			
+			<h:commandButton id="save_changes_button" value="Save" action="#{preorderHandler.saveChangesButtonClick}" styleClass="normal field_spacing" disabled="#{!userManagerBean.permissionsBean.updatePreorderAllowed || !preorderHandler.oldPreorderBean.editAllowed}" />
+			<h:commandButton id="cancel_product_button" immediate="true" value="Cancel" action="#{preorderHandler.cancelChangesButtonClick}" styleClass="normal field_spacing" />
+		</h:form>
+	</div>
+</h:panelGroup>

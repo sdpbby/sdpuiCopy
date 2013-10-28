@@ -1,0 +1,23 @@
+<h:panelGrid styleClass="normal" columns="2" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+			
+	<h:outputText style="font-weight: bold;" value="Vendor: " />
+	<h:outputText value="#{preorderHandler.oldPreorderBean.vendorId}" />
+						
+	<h:outputText style="font-weight: bold;" value="SKU: " />
+	<h:outputText value="#{preorderHandler.oldPreorderBean.productSku}" />
+						
+	<h:outputText style="font-weight: bold;" value="Description: " />
+	<h:outputText value="#{preorderHandler.oldPreorderBean.description}" />
+					
+	<h:outputText style="font-weight: bold;" value="Street Date: " />
+	<h:outputText value="#{preorderHandler.oldPreorderBean.streetDate}">
+  		<f:convertDateTime pattern="#{msg['ui.date.calendar_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+	</h:outputText>
+					
+	<h:outputText style="font-weight: bold;" value="Pre-Order Count: " />
+	<h:outputText value="#{preorderHandler.oldPreorderBean.preorderCount}" />
+					
+	<h:outputText style="font-weight: bold;" value="Status: " />
+	<h:outputText value="#{preorderHandler.oldPreorderBean.statusName}" />
+			
+</h:panelGrid>

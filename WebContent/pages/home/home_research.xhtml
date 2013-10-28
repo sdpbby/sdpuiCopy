@@ -1,0 +1,48 @@
+<h:panelGroup id="detail_panel_research" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<div>
+	<h:form id="research_form">
+		<table id ="home" border="0" width="240px" height="300px">
+				<thead id ="home">
+					<tr>
+						<th class="singleCol" style="
+
+	font-size: 12pt;
+	padding-right: 11px;
+	padding-left: 11px;
+	padding-top: 6px;
+	padding-bottom: 8px;background-color:#0035ad;"><font color="white">Research</font></th>
+					</tr>
+				</thead>
+				<tbody id ="home">
+					
+					<tr>
+						<td class="singleCol"><h:commandLink id="querySubscriptions" action="#{menuBarHandler.gotoQuerySdpOrdersButtonClick}" styleClass="btnRemoveAtt">Query SDP Orders</h:commandLink></td>
+					</tr>
+					<tr>
+						<td class="singleCol"><h:commandLink id="recentSubscriptionsLink" action="#{menuBarHandler.gotoRecentSdpOrdersButtonClick}" styleClass="btnRemoveAtt">Recent SDP Orders</h:commandLink></td>
+					</tr>
+					<tr>
+						<td class="singleCol"><h:commandLink id="exceptions" value="Exceptions" action="#{menuBarHandler.gotoExceptionsButtonClick}" styleClass="btnRemoveAtt" /></td>
+					</tr>
+					<!--<tr>
+						<td class="singleCol"><h:commandLink id="vendorProvisioning" action="#{menuBarHandler.gotoVendorProvisioningButtonClick}" styleClass="btnRemoveAtt" >Vendor Provisioning</h:commandLink></td>
+					</tr>-->
+					<tr>
+						<td class="singleCol"><h:commandLink id="auditTrail" value="Audit Trail" action="#{menuBarHandler.gotoAuditTrailButtonClick}" styleClass="btnRemoveAtt" /></td>
+					</tr>
+					<tr>
+						<td class="singleCol"><h:commandLink id="cusCare" action="#{menuBarHandler.gotoEccConsoleButtonClick}" value = "ECCUI" styleClass="btnRemoveAtt" /></td>
+					</tr>
+				</tbody>
+				<tfoot id ="home">
+					<tr>
+						<th  class="singleCol"></th>
+					</tr>
+				</tfoot>
+		</table>
+
+
+	</h:form>
+  </div>
+
+</h:panelGroup>

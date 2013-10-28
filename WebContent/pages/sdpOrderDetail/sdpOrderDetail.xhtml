@@ -1,0 +1,38 @@
+<ui:composition template="/pages/templates/masterLayout.xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml">
+	<ui:define name="windowTitle">
+		#{msg['sdpOrderDetail.windowtitle']}
+	</ui:define>
+	
+	<ui:define name="tabTitle">
+		<h:outputText value="#{msg['sdpOrderDetail.tabtitle']}" />
+		
+	</ui:define>
+	
+	<ui:define name="pageTitle">
+		#{msg['sdpOrderDetail.pagetitle']}
+	</ui:define>
+	
+	<ui:define name="subTitle">
+		<h:outputText value="#{msg['sdpOrderDetail.subtitle']}" />
+	</ui:define>
+	
+	<ui:define name="content">
+		<table id="top_content">
+			<tr>
+				<td id="sdp_order_detail_panel" style="vertical-align:top; width: 350px;">
+					<ui:include src="/pages/sdpOrderDetail/sdpOrderDetail_orderDetail.xhtml" />
+				</td>
+				<td id="history_panel" style="vertical-align:top; width: 100%;">
+					<ui:include src="/pages/sdpOrderDetail/sdpOrderDetail_transactionHistory.xhtml" />
+					<ui:include src="/pages/sdpOrderDetail/sdpOrderDetail_vendorRequestHistory.xhtml" />
+					<ui:include src="/pages/sdpOrderDetail/sdpOrderDetail_commsatHistory.xhtml" />
+					<ui:include src="/pages/sdpOrderDetail/sdpOrderDetail_exceptionHistory.xhtml" />
+					<ui:include src="/pages/sdpOrderDetail/sdpOrderDetail_statusHistory.xhtml" />
+					<ui:include src="/pages/sdpOrderDetail/sdpOrderDetail_adjustmentHistory.xhtml" />
+					<ui:include src="/pages/sdpOrderDetail/sdpOrderDetail_relatedAuditLogs.xhtml" />
+				</td>
+			</tr>
+		</table>
+	</ui:define>
+	
+</ui:composition>

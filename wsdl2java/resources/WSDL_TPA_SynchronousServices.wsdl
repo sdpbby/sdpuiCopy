@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s0:definitions name="WSDL_TPA_Services" targetNamespace="http://www.bestbuy.com/sdp/tpa/WSDL_TPA_Services/" xmlns:s0="http://schemas.xmlsoap.org/wsdl/" xmlns:s1="http://www.bestbuy.com/sdp/tpa/WSDL_TPA_Services/" xmlns:s2="http://sdp.bestbuy.com/tpa/VendorProvisioningResponse" xmlns:s3="http://schemas.xmlsoap.org/wsdl/soap/">
+  <s0:types>
+    <xsd:schema targetNamespace="http://www.bestbuy.com/sdp/tpa/WSDL_TPA_Services/" xmlns:ns="http://schemas.xmlsoap.org/soap/encoding/" xmlns:ns1="xml.accenture.com/sdp/bby/ServiceResult" xmlns:ns10="xml.accenture.com/sdp/bby/om/InstallationDate" xmlns:ns11="xml.accenture.com/sdp/bby/om/PricingInformation" xmlns:ns12="xml.accenture.com/sdp/bby/om/Product" xmlns:ns13="xml.accenture.com/sdp/bby/om/ProductCollection" xmlns:ns14="xml.accenture.com/sdp/bby/om/SubCategory" xmlns:ns15="xml.accenture.com/sdp/bby/om/Type" xmlns:ns16="xml.accenture.com/sdp/bby/om/Vendor" xmlns:ns17="xml.accenture.com/sdp/bby/om/VendorOffer" xmlns:ns18="xml.accenture.com/sdp/bby/utilities/Address" xmlns:ns19="xml.accenture.com/sdp/bby/utilities/Authentication" xmlns:ns2="xml.accenture.com/sdp/bby/om/BBYOrder" xmlns:ns20="xml.accenture.com/sdp/bby/utilities/Birth" xmlns:ns21="xml.accenture.com/sdp/bby/utilities/Constraints" xmlns:ns22="xml.accenture.com/sdp/bby/utilities/CreditCheck" xmlns:ns23="xml.accenture.com/sdp/bby/utilities/Description" xmlns:ns24="xml.accenture.com/sdp/bby/utilities/Identifier" xmlns:ns25="xml.accenture.com/sdp/bby/utilities/TermsAndConditions" xmlns:ns26="xml.accenture.com/sdp/bby/utilities/Time" xmlns:ns27="xml.accenture.com/sdp/bby/utilities/TransactionInformation" xmlns:ns3="xml.accenture.com/sdp/bby/cm/BankAccount" xmlns:ns4="xml.accenture.com/sdp/bby/cm/CreditCard" xmlns:ns5="xml.accenture.com/sdp/bby/cm/Customer" xmlns:ns6="xml.accenture.com/sdp/bby/cm/TenderInformation" xmlns:ns7="xml.accenture.com/sdp/bby/om/Attribute" xmlns:ns8="xml.accenture.com/sdp/bby/om/BBYOffer" xmlns:ns9="xml.accenture.com/sdp/bby/om/BillingInformation" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.bestbuy.com/sdp/tpa/WSDL_TPA_Services/" xmlns:tpa="http://www.bestbuy.com/sdp/tpa" xmlns:vpr="http://sdp.bestbuy.com/tpa/VendorProvisioningResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://www.bestbuy.com/sdp/tpa" schemaLocation="XSD_TPA_ProvisioningRequest.xsd"/>
+      <xsd:import namespace="http://sdp.bestbuy.com/tpa/VendorProvisioningResponse" schemaLocation="XSD_VendorProvisioningResponse.xsd"/>
+      <xsd:element name="tpaProvisioningRequest" type="tpa:tpaProvisioningRequestType"/>
+    </xsd:schema>
+  </s0:types>
+  <s0:message name="tpaRequest">
+    <s0:part element="s1:tpaProvisioningRequest" name="parameters"/>
+  </s0:message>
+  <s0:message name="VendorProvisioningResponse">
+    <s0:part element="s2:VendorProvisioningResponse" name="parameters"/>
+  </s0:message>
+  <s0:portType name="SynchronousServices">
+    <s0:operation name="VendorSynchronousOperation">
+      <s0:input message="s1:tpaRequest"/>
+      <s0:output message="s1:VendorProvisioningResponse"/>
+    </s0:operation>
+  </s0:portType>
+  <s0:binding name="SynchronousServicesSOAP" type="s1:SynchronousServices">
+    <s3:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <s0:operation name="VendorSynchronousOperation">
+      <s3:operation soapAction="www.bestbuy.com/sdp/tpa/WSDL_TPA_Services/sendTPA_Request"/>
+      <s0:input>
+        <s3:body use="literal"/>
+      </s0:input>
+      <s0:output>
+        <s3:body use="literal"/>
+      </s0:output>
+    </s0:operation>
+  </s0:binding>
+  <s0:service name="TPASynchronousServices">
+    <s0:port binding="s1:SynchronousServicesSOAP" name="TPASynchronousServicesSOAP">
+      <s3:address location="https://dld22app.na.bestbuy.com:30043/BCS_VendorFulfillmentAdapter"/>
+    </s0:port>
+  </s0:service>
+</s0:definitions>

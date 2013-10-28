@@ -1,0 +1,30 @@
+<ui:composition template="/pages/templates/masterLayout.xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml">
+	<ui:define name="windowTitle">
+		#{msg['logDetail.windowtitle']}
+	</ui:define>
+	
+	<ui:define name="tabTitle">
+		#{msg['logDetail.tabtitle']}
+	</ui:define>
+	
+	<ui:define name="pageTitle">
+		#{msg['logDetail.pagetitle']}
+	</ui:define>
+	
+	<ui:define name="subTitle">
+		#{msg['logDetail.subtitle']}
+	</ui:define>
+	
+	<ui:define name="content">
+	
+		<div id="top_content">
+			<ui:include src="/pages/transLog/transLog_detail.xhtml" />
+		</div>
+
+		<div id="datatable_panel">
+			<ui:include src="/pages/transLog/transLog_xml.xhtml" />
+		</div>
+		
+	</ui:define>
+	
+</ui:composition>

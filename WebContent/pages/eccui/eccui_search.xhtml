@@ -1,0 +1,43 @@
+<h:panelGroup id="search_panel"  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
+	 <h:form id="order_search_form">
+	 	<h:messages styleClass="error"/>
+	 	<table>
+	 		<tr>
+			 	<td id="leftcol" class="short_left_column">
+			 		<h:panelGroup>
+						<h:panelGrid id="order_BBYID_search_panel" columns="2">
+								<h:outputLabel for="search_BBYID" value="BBY Order ID: " styleClass="normal field_spacing" />
+								<h:inputText id="search_BBYID" value="#{eccuiDatatable.bbyOrderIDSearchField}" styleClass="normal field_spacing standard_width" required="false" />
+						</h:panelGrid>
+					</h:panelGroup>
+				</td>
+				<td id="midtcol" class="normal_left_column">
+					<h:panelGrid id="order_fourpartkey_search_panel" columns="2">
+						<h:outputLabel for="search_date_4pk" value="Date of Sale: " styleClass="normal field_spacing" />
+						<h:panelGroup>
+							<ice:selectInputDate id="search_date_4pk" renderMonthAsDropdown="true" renderYearAsDropdown="true" value="#{eccuiDatatable.date4pkSearchField}" rendered="true" title="MM/DD/YYYY" renderAsPopup="true" styleClass="normal field_spacing standard_width">
+	        					<f:convertDateTime pattern="#{msg['ui.date.store_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+	    					</ice:selectInputDate>
+	    					<h:message styleClass="error" for="search_date_4pk" />
+	    				</h:panelGroup>
+						<h:outputLabel for="search_store_4pk" value="Store #: " styleClass="normal field_spacing" />
+						<h:inputText id="search_store_4pk" value="#{eccuiDatatable.storeId4pkSearchField}" styleClass="normal field_spacing standard_width" required="false" />
+						<h:outputLabel for="search_reg_4pk" value="Register #: " styleClass="normal field_spacing" />
+						<h:inputText id="search_reg_4pk" value="#{eccuiDatatable.registerId4pkSearchField}" styleClass="normal field_spacing standard_width" required="false" />
+						<h:outputLabel for="search_trans_4pk" value="Transaction #: " styleClass="normal field_spacing" />
+						<h:inputText id="search_trans_4pk" value="#{eccuiDatatable.transactionId4pkSearchField}" styleClass="normal field_spacing standard_width" required="false" />
+					</h:panelGrid>
+				</td>
+			</tr>
+			<tr>
+				<td id="rightcol" class="normal_column" colspan="2" style="text-align: center;">
+					<h:panelGrid id="order_search_panel" columns="2">
+						<h:commandButton id="search_order_submit" value="Search" action="#{eccuiDatatable.searchOrderDButtonClick}" styleClass="normal field_spacing" />
+						<f:verbatim><input type="reset" value="Clear" /></f:verbatim>
+						
+					</h:panelGrid>
+				</td>
+			</tr>
+		</table>
+	</h:form>
+</h:panelGroup>

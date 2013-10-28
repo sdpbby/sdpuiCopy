@@ -1,0 +1,189 @@
+<h:panelGroup rendered="#{sdpRequestHandler.sdpRequestFormHandler.adjustActivationPsaFormCurrent}"  xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<h:panelGrid columns="1" styleClass="editable_form_panel normal" columnClasses="editable_form_panel normal,editable_form_panel normal">
+		<h:outputText styleClass="error" value="#{msg['sdpRequest.message.special_character_found']}" rendered="#{sdpRequestHandler.specialCharacterFoundInsertFlag}" />
+	</h:panelGrid>
+		
+	<h:panelGrid columns="2" styleClass="editable_form_panel normal" columnClasses="editable_form_panel normal,editable_form_panel normal">
+		<h:panelGrid columns="4" styleClass="editable_form_panel normal" columnClasses="right,left,left,left_fixed">
+			
+			<f:facet name="header">
+				<h:outputText value="Transaction Details" />
+			</f:facet>
+			
+			<!-- TRANSACTION DATE -->
+			<h:outputLabel for="sdpRequest_psa_adjustActivation_transaction_date" value="Transaction Date:" />
+			<h:outputText value="*" styleClass="error" />
+			<ice:selectInputDate id="sdpRequest_psa_adjustActivation_transaction_date" value="#{sdpRequestHandler.sdpRequestBean.data.fpkTransactionDate}" required="true" renderMonthAsDropdown="true" renderYearAsDropdown="true" title="MM/DD/YYYY" renderAsPopup="true" styleClass="medium_field field_spacing">
+				<f:convertDateTime pattern="#{msg['ui.date.store_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+			</ice:selectInputDate>
+			<h:message for="sdpRequest_psa_adjustActivation_transaction_date" styleClass="error" />
+				
+				
+			<!-- STORE # -->
+			
+			<h:outputLabel for="sdpRequest_psa_adjustActivation_store_num" value="Store #:" />
+			<h:outputText value="*" styleClass="error" />
+			<h:inputText id="sdpRequest_psa_adjustActivation_store_num" value="#{sdpRequestHandler.sdpRequestBean.data.fpkStoreId}" required="true" styleClass="medium_field field_spacing" />
+			<h:message for="sdpRequest_psa_adjustActivation_store_num" styleClass="error" />
+				
+			
+			<!-- REGISTER # -->
+			
+			<h:outputLabel for="sdpRequest_psa_adjustActivation_register_num" value="Register #:" />
+			<h:outputText value="*" styleClass="error" />
+			<h:inputText id="sdpRequest_psa_adjustActivation_register_num" value="#{sdpRequestHandler.sdpRequestBean.data.fpkRegisterId}" required="true" styleClass="medium_field field_spacing" />
+			<h:message for="sdpRequest_psa_adjustActivation_register_num" styleClass="error" />
+			
+		
+			<!-- TRANSACTION # -->
+			
+			<h:outputLabel for="sdpRequest_psa_adjustActivation_transaction_num" value="Transaction #:" />
+			<h:outputText value="*" styleClass="error" />
+			<h:inputText id="sdpRequest_psa_adjustActivation_transaction_num" value="#{sdpRequestHandler.sdpRequestBean.data.fpkTransactionId}" required="true" styleClass="medium_field field_spacing" />
+			<h:message for="sdpRequest_psa_adjustActivation_transaction_num" styleClass="error" />
+			
+		
+			<!-- LINE # -->
+			
+			<h:outputLabel for="sdpRequest_psa_adjustActivation_line_num" value="Line #:" />
+			<h:outputText value="*" styleClass="error" />
+			<h:inputText id="sdpRequest_psa_adjustActivation_line_num" value="#{sdpRequestHandler.sdpRequestBean.data.fpkLineId}" required="true" styleClass="medium_field field_spacing" />
+			<h:message for="sdpRequest_psa_adjustActivation_line_num" styleClass="error" />
+		
+		
+		
+			<f:verbatim><br /></f:verbatim>
+			<f:verbatim><br /></f:verbatim>
+			<f:verbatim><br /></f:verbatim>
+			<f:verbatim><br /></f:verbatim>
+			
+			<!-- ORIGINAL TRANSACTION DATE -->
+			<h:outputLabel for="sdpRequest_psa_adjustActivation_original_transaction_date" value="Original Transaction Date:" />
+			<h:outputText value="*" styleClass="error" />
+			<ice:selectInputDate id="sdpRequest_psa_adjustActivation_original_transaction_date" value="#{sdpRequestHandler.sdpRequestBean.data.originalFpkTransactionDate}" required="true" renderMonthAsDropdown="true" renderYearAsDropdown="true" title="MM/DD/YYYY" renderAsPopup="true" styleClass="medium_field field_spacing">
+				<f:convertDateTime pattern="#{msg['ui.date.store_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+			</ice:selectInputDate>
+			<h:message for="sdpRequest_psa_adjustActivation_original_transaction_date" styleClass="error" />
+				
+				
+			<!-- ORIGINAL STORE # -->
+			
+			<h:outputLabel for="sdpRequest_psa_adjustActivation_original_store_num" value="Original Store #:" />
+			<h:outputText value="*" styleClass="error" />
+			<h:inputText id="sdpRequest_psa_adjustActivation_original_store_num" value="#{sdpRequestHandler.sdpRequestBean.data.originalFpkStoreId}" required="true" styleClass="medium_field field_spacing" />
+			<h:message for="sdpRequest_psa_adjustActivation_original_store_num" styleClass="error" />
+				
+			
+			<!-- ORIGINAL REGISTER # -->
+			
+			<h:outputLabel for="sdpRequest_psa_adjustActivation_original_register_num" value="Original Register #:" />
+			<h:outputText value="*" styleClass="error" />
+			<h:inputText id="sdpRequest_psa_adjustActivation_original_register_num" value="#{sdpRequestHandler.sdpRequestBean.data.originalFpkRegisterId}" required="true" styleClass="medium_field field_spacing" />
+			<h:message for="sdpRequest_psa_adjustActivation_original_register_num" styleClass="error" />
+			
+		
+			<!-- ORIGINAL TRANSACTION # -->
+			
+			<h:outputLabel for="sdpRequest_psa_adjustActivation_original_transaction_num" value="Original Transaction #:" />
+			<h:outputText value="*" styleClass="error" />
+			<h:inputText id="sdpRequest_psa_adjustActivation_original_transaction_num" value="#{sdpRequestHandler.sdpRequestBean.data.originalFpkTransactionId}" required="true" styleClass="medium_field field_spacing" />
+			<h:message for="sdpRequest_psa_adjustActivation_original_transaction_num" styleClass="error" />
+			
+		
+			<!-- ORIGINAL LINE # -->
+			
+			<h:outputLabel for="sdpRequest_psa_adjustActivation_original_line_num" value="Original Line #:" />
+			<h:outputText value="*" styleClass="error" />
+			<h:inputText id="sdpRequest_psa_adjustActivation_original_line_num" value="#{sdpRequestHandler.sdpRequestBean.data.originalFpkLineId}" required="true" styleClass="medium_field field_spacing" />
+			<h:message for="sdpRequest_psa_adjustActivation_original_line_num" styleClass="error" />
+		
+		
+		
+			<f:verbatim><br /></f:verbatim>
+			<f:verbatim><br /></f:verbatim>
+			<f:verbatim><br /></f:verbatim>
+			<f:verbatim><br /></f:verbatim>
+			
+				
+				<!-- PRODUCT (PRIMARY) SKU -->
+				
+				<h:outputLabel for="sdpRequest_psa_adjustActivation_primary_sku" value="Product SKU:" />
+				<h:outputText value="*" styleClass="error" />
+				<h:inputText id="sdpRequest_psa_adjustActivation_primary_sku" value="#{sdpRequestHandler.sdpRequestBean.data.primarySku}" required="true" styleClass="medium_field field_spacing" readonly="true" />
+				<h:panelGroup>
+					<h:outputText style="text-stile: italic;" value="#{sdpRequestHandler.description}" />
+					<h:message for="sdpRequest_psa_adjustActivation_primary_sku" styleClass="error" />
+				</h:panelGroup>
+				
+			
+				<!-- PRODUCT (PRIMARY) SKU PRICE -->
+				
+				<h:outputLabel for="sdpRequest_psa_adjustActivation_primary_sku_price" value="Price:" />
+				<h:outputText value=" " styleClass="error" />
+				<h:inputText id="sdpRequest_psa_adjustActivation_primary_sku_price" value="#{sdpRequestHandler.sdpRequestBean.data.primarySkuPrice}" required="false" styleClass="medium_field field_spacing" />
+				<h:message for="sdpRequest_psa_adjustActivation_primary_sku_price" styleClass="error" />
+				
+			
+				<!-- PRODUCT (PRIMARY) TAX AMOUNT -->
+				
+				<h:outputLabel for="sdpRequest_psa_adjustActivation_primary_sku_tax_amount" value="Tax Amount:" />
+				<h:outputText value=" " styleClass="error" />
+				<h:inputText id="sdpRequest_psa_adjustActivation_primary_sku_tax_amount" value="#{sdpRequestHandler.sdpRequestBean.data.primarySkuTaxAmount}" required="false" styleClass="medium_field field_spacing" />
+				<h:message for="sdpRequest_psa_adjustActivation_primary_sku_tax_amount" styleClass="error" />
+				
+			
+				<!-- PRODUCT (PRIMARY) TAX RATE -->
+				
+				<h:outputLabel for="sdpRequest_psa_adjustActivation_primary_sku_tax_rate" value="Tax Rate:" />
+				<h:outputText value=" " styleClass="error" />
+				<h:inputText id="sdpRequest_psa_adjustActivation_primary_sku_tax_rate" value="#{sdpRequestHandler.sdpRequestBean.data.primarySkuTaxRate}" required="false" styleClass="medium_field field_spacing" />
+				<h:message for="sdpRequest_psa_adjustActivation_primary_sku_tax_rate" styleClass="error" />
+			
+		
+			
+				
+			
+				<f:verbatim><br /></f:verbatim>
+				<f:verbatim><br /></f:verbatim>
+				<f:verbatim><br /></f:verbatim>
+				<f:verbatim><br /></f:verbatim>
+			
+			
+				<!-- REASON CODE -->
+				
+				<h:outputLabel for="sdpRequest_psa_adjustActivation_reason_code" value="Reason Code:" />
+				<h:outputText value="*" styleClass="error" />
+				<h:selectOneMenu id="sdpRequest_psa_adjustActivation_reason_code" value="#{sdpRequestHandler.sdpRequestBean.data.adjustmentReasonCode}" required="true" styleClass="medium_field field_spacing" >
+					<f:selectItem id="sdpRequest_psa_adjustActivation_reason_code_null" itemLabel="" />
+					<f:selectItems id="sdpRequest_psa_adjustActivation_reason_code_list" value="#{dropdownListManager.sortedAdjustmentReasonCodeSelectItems}" />
+				</h:selectOneMenu>
+				<h:message for="sdpRequest_psa_adjustActivation_reason_code" styleClass="error" />
+				
+				
+				<!-- SERIAL NUMBER -->
+				
+					<h:outputLabel for="sdpRequest_psa_adjustActivation_serial_number" value="Serial Number:" />
+					<h:outputText value=" " styleClass="error" />
+					<h:inputText id="sdpRequest_psa_adjustActivation_serial_number" value="#{sdpRequestHandler.sdpRequestBean.data.serialNumber}" required="false" styleClass="medium_field field_spacing" />
+					<h:message for="sdpRequest_psa_adjustActivation_serial_number" styleClass="error" />
+				
+				
+				<!-- REWARD ZONE NUMBER -->
+				
+					<h:outputLabel for="sdpRequest_psa_adjustActivation_reward_zone_num" value="RewardZone Number:" />
+					<h:outputText value=" " styleClass="error" />
+					<h:inputText id="sdpRequest_psa_adjustActivation_reward_zone_num" value="#{sdpRequestHandler.sdpRequestBean.data.rewardZoneNumber}" required="false" styleClass="medium_field field_spacing" />
+					<h:message for="sdpRequest_psa_adjustActivation_reward_zone_num" styleClass="error" />
+				
+			
+				<!-- CA PARTY ID -->
+				
+					<h:outputLabel for="sdpRequest_psa_adjustActivation_ca_party_id" value="CA Party ID:" />
+					<h:outputText value=" " styleClass="error" />
+					<h:inputText id="sdpRequest_psa_adjustActivation_ca_party_id" value="#{sdpRequestHandler.sdpRequestBean.data.caPartyId}" required="false" styleClass="medium_field field_spacing" />
+					<h:message for="sdpRequest_psa_adjustActivation_ca_party_id" styleClass="error" />
+				
+			</h:panelGrid>
+
+		</h:panelGrid>
+</h:panelGroup>

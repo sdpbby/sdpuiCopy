@@ -1,0 +1,26 @@
+<h:form id="depletion_report_top_panel" rendered="#{keycodeBankReportTabbedPaneHandler.depletionReportTabCurrent}" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
+	
+		<h:panelGroup id="depletion_report" rendered="#{keycodeBankReportTabbedPaneHandler.depletionReportTabCurrent}">
+			<h:panelGrid columns="4">
+				<h:outputLabel value="Recalculate average depletion to last " for="daysToDepletion" />
+				<h:selectOneMenu id="daysToDepletion" value="#{keycodeBankReportDatatable.daysToDepletion}">
+					<f:selectItems value="#{keycodeBankReportDatatable.daysToDepletionOptions}" />
+				</h:selectOneMenu>
+				<h:commandButton value="Query" action="#{keycodeBankReportDatatable.generateDepletionReportButtonClick}" />
+				<h:commandButton value="Return to Dashboard" action="#{keycodeBankReportDatatable.backButtonClick}" />
+				<h:panelGroup>
+					<h:selectBooleanCheckbox id="showBelowThresholdOnly" value="#{keycodeBankReportDatatable.showBelowThresholdOnly}" title="If checked, only products having fewer than the configured amount of keycodes available will be displayed in the report after clicking the refresh button. Unchecked will display all products." />
+					<h:outputLabel for="showBelowThresholdOnly" value="Show only below threshold" />
+				</h:panelGroup>
+			</h:panelGrid>
+			
+			<br /><br />
+			<h:outputLink value="/SDPUI/export/depletionFile">
+				<f:param name="arg0" value="#{keycodeBankReportDatatable.showBelowThresholdOnly}" />
+				<f:param name="arg1" value="#{keycodeBankReportDatatable.daysToDepletion}" />
+				<h:outputText value="Export Depletion Report" />	
+			</h:outputLink>
+				
+		</h:panelGroup>
+
+</h:form>

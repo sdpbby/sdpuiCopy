@@ -1,0 +1,36 @@
+<ui:composition template="/pages/templates/masterLayout.xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml">
+	<ui:define name="windowTitle">
+		#{msg['catalog.windowtitle']}
+	</ui:define>
+	
+	<ui:define name="tabTitle">
+		<h:outputText value="#{msg['catalog.tabtitle.search']}" rendered="#{catalogTabbedPaneHandler.searchTabCurrent}" />
+		<h:outputText value="#{msg['catalog.tabtitle.view']}" rendered="#{catalogTabbedPaneHandler.viewTabCurrent}" />
+		<h:outputText value="#{msg['catalog.tabtitle.edit']}" rendered="#{catalogTabbedPaneHandler.editTabCurrent}" />
+	</ui:define>
+	
+	<ui:define name="pageTitle">
+		#{msg['catalog.pagetitle']}
+	</ui:define>
+	
+	<ui:define name="subTitle">
+		<h:outputText value="#{msg['catalog.subtitle.search']}" rendered="#{catalogTabbedPaneHandler.searchTabCurrent}" />
+		<h:outputText value="#{msg['catalog.subtitle.view']}" rendered="#{catalogTabbedPaneHandler.viewTabCurrent}" />
+		<h:outputText value="#{msg['catalog.subtitle.edit']}" rendered="#{catalogTabbedPaneHandler.editTabCurrent}" />
+	</ui:define>
+	
+	<ui:define name="content">
+	
+		<div id="top_content">
+			<ui:include src="/pages/catalog/catalog_search.xhtml" />
+			<ui:include src="/pages/catalog/catalog_view.xhtml" />
+			<ui:include src="/pages/catalog/catalog_edit.xhtml" />
+		</div>
+		
+		<div id="datatable_panel">
+			<ui:include src="/pages/catalog/catalog_datatable.xhtml" />
+		</div>
+		
+	</ui:define>
+	
+</ui:composition>

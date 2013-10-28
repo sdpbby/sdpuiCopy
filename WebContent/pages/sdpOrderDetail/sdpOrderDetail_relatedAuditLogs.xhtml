@@ -1,0 +1,92 @@
+<h:form id="relatedAuditLog_form" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<table class="datatable_paginator_wrapper" style="width: 100%;">
+		<thead class="paginator">
+			<tr>
+				<td class="header">
+					<h:commandLink value="[+]" action="#{sdpOrderDetailHandler.relatedAuditLogDatatable.toggleHide}" rendered="#{sdpOrderDetailHandler.relatedAuditLogDatatable.hide}" />
+					<h:commandLink value="[-]" action="#{sdpOrderDetailHandler.relatedAuditLogDatatable.toggleHide}" rendered="#{!sdpOrderDetailHandler.relatedAuditLogDatatable.hide}" />	
+					<h:outputText value=" AUDIT TRAIL " />				
+				</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<ice:dataTable rendered="#{!sdpOrderDetailHandler.relatedAuditLogDatatable.hide}" width="100%" binding="#{sdpOrderDetailHandler.relatedAuditLogDatatable.dataTable}" value="#{sdpOrderDetailHandler.relatedAuditLogDatatable.rows}" var="itr" id="relatedAuditLog_datatable" styleClass="datatable" rowClasses="odd,even">
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Date" />
+							</f:facet>
+							<ice:outputText value="#{itr.date}">
+								<f:convertDateTime pattern="#{msg['ui.date.timestamp_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+							</ice:outputText>
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Action" />
+							</f:facet>
+							<ice:outputText value="#{itr.action}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="User ID" />
+							</f:facet>
+							<ice:outputText value="#{itr.userId}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Serial Number" />
+							</f:facet>
+							<ice:outputText value="#{itr.serialNumber}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Delivery Email" />
+							</f:facet>
+							<ice:outputText value="#{itr.deliveryEmail}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Trans Date" />
+							</f:facet>
+							<ice:outputText value="#{itr.transactionDate}">
+								<f:convertDateTime pattern="#{msg['ui.date.store_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+							</ice:outputText>
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Stor #" />
+							</f:facet>
+							<ice:outputText value="#{itr.storeId}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Reg #" />
+							</f:facet>
+							<ice:outputText value="#{itr.registerId}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Trans #" />
+							</f:facet>
+							<ice:outputText value="#{itr.transactionId}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Line #" />
+							</f:facet>
+							<ice:outputText value="#{itr.lineId}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Action" />
+							</f:facet>
+							<ice:commandButton value="View" action="#{sdpOrderDetailHandler.relatedAuditLogDatatable.viewButtonClick}" />
+						</ice:column>
+					</ice:dataTable>
+					<ice:outputText styleClass="error" value="No records to display." rendered="#{!sdpOrderDetailHandler.relatedAuditLogDatatable.hide and sdpOrderDetailHandler.relatedAuditLogDatatable.tableEmpty}" />
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</h:form>

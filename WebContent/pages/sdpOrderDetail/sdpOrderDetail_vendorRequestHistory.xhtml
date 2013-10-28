@@ -1,0 +1,63 @@
+<h:form id="vendorRequestHistory_form" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<table class="datatable_paginator_wrapper" style="width: 100%;">
+		<thead class="paginator">
+			<tr>
+				<td class="header">
+					<h:commandLink value="[+]" action="#{sdpOrderDetailHandler.vendorRequestHistoryDatatable.toggleHide}" rendered="#{sdpOrderDetailHandler.vendorRequestHistoryDatatable.hide}" />
+					<h:commandLink value="[-]" action="#{sdpOrderDetailHandler.vendorRequestHistoryDatatable.toggleHide}" rendered="#{!sdpOrderDetailHandler.vendorRequestHistoryDatatable.hide}" />
+					<h:outputText value=" VENDOR REQUEST HISTORY " />
+				</td>
+				<td class="header" style="text-align:right;">
+					<h:commandButton value="New Request" action="#{sdpOrderDetailHandler.newVendorRequestButtonClick}" />
+				</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td colspan="2">
+					<ice:dataTable rendered="#{!sdpOrderDetailHandler.vendorRequestHistoryDatatable.hide}" width="100%" binding="#{sdpOrderDetailHandler.vendorRequestHistoryDatatable.dataTable}" value="#{sdpOrderDetailHandler.vendorRequestHistoryDatatable.rows}" var="itr" id="vendorRequestHistory_datatable" styleClass="datatable" rowClasses="odd,even">
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Created Date" />
+							</f:facet>
+							<ice:outputText value="#{itr.createdDate}">
+								<f:convertDateTime pattern="#{msg['ui.date.timestamp_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+							</ice:outputText>
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Request Type" />
+							</f:facet>
+							<ice:outputText value="#{itr.requestType}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Status" />
+							</f:facet>
+							<ice:outputText value="#{itr.status}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Vendor Code" />
+							</f:facet>
+							<ice:outputText value="#{itr.vendorCode}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Serial Number" />
+							</f:facet>
+							<ice:outputText value="#{itr.serialNumber}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Action" />
+							</f:facet>
+							<h:commandButton value="View" action="#{sdpOrderDetailHandler.vendorRequestHistoryDatatable.viewVpsButtonClick}" />
+						</ice:column>
+					</ice:dataTable>
+					<ice:outputText styleClass="error" value="No records to display." rendered="#{!sdpOrderDetailHandler.vendorRequestHistoryDatatable.hide and sdpOrderDetailHandler.vendorRequestHistoryDatatable.tableEmpty}" />
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</h:form>

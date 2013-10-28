@@ -1,0 +1,57 @@
+<h:panelGroup id="search_kcb_cat_panel" rendered="#{keycodeBankManageLoadTabbedPaneHandler.searchTabCurrent}" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core">
+	<div id="leftcol" class="normal_column">
+		
+		<h:form id="kcbmanageLoad_loadid_search_form">
+			<h:panelGrid id="kcbmanageLoad_loadid_search_panel" columns="3">
+				<h:outputLabel for="search_loadid" value="Batch Load ID: " styleClass="normal field_spacing" />
+				<h:inputText id="search_loadid" value="#{keycodeBankManageLoadDatatable.batchLoadIdSearchField}" required="true" />
+				<h:commandButton id="search_loadid_submit" value="Search" action="#{keycodeBankManageLoadDatatable.searchByBatchLoadIdButtonClick}" styleClass="normal field_spacing" />
+			</h:panelGrid>
+			<h:message styleClass="error" for="search_loadid" />
+		</h:form>
+		
+		<h:form id="kcbmanageLoad_merchsku_search_form">
+			<h:panelGrid id="kcbmanageLoad_merchsku_search_panel" columns="3">
+				<h:outputLabel for="search_merchsku" value="Merchandise SKU: " styleClass="normal field_spacing" />
+				<h:inputText id="search_merchsku" value="#{keycodeBankManageLoadDatatable.merchandiseSkuSearchField}" required="true" />
+				<h:commandButton id="search_merchsku_submit" value="Search" action="#{keycodeBankManageLoadDatatable.searchByMerchandiseSkuButtonClick}" styleClass="normal field_spacing" />
+			</h:panelGrid>
+			<h:message styleClass="error" for="search_merchsku" />
+		</h:form>
+		
+		<h:form id="kcbmanageLoad_nonmerchsku_search_form">
+			<h:panelGrid id="kcbmanageLoad_nonmerchsku_search_panel" columns="3">
+				<h:outputLabel for="search_nonmerchsku" value="Non-Merchandise SKU: " styleClass="normal field_spacing" />
+				<h:inputText id="search_nonmerchsku" value="#{keycodeBankManageLoadDatatable.nonMerchandiseSkuSearchField}" required="true" />
+				<h:commandButton id="search_nonmerchsku_submit" value="Search" action="#{keycodeBankManageLoadDatatable.searchByNonMerchandiseSkuButtonClick}" styleClass="normal field_spacing" />
+			</h:panelGrid>
+			<h:message styleClass="error" for="search_nonmerchsku" />
+		</h:form>
+		
+		<h:form id="kcbmanageLoad_masteritemid_search_form">
+			<h:panelGrid id="kcbmanageLoad_masteritemid_search_panel" columns="3">
+				<h:outputLabel for="search_masteritemid" value="Master Item ID: " styleClass="normal field_spacing" />
+				<h:inputText id="search_masteritemid" value="#{keycodeBankManageLoadDatatable.masterItemIdSearchField}" required="true"/>
+				<h:commandButton id="search_masteritemid_submit" value="Search" action="#{keycodeBankManageLoadDatatable.searchByMasterItemIdButtonClick}" styleClass="normal field_spacing" />
+			</h:panelGrid>
+			<h:message styleClass="error" for="search_masteritemid" />
+		</h:form>
+		
+		<h:form id="kcbmanageLoad_vendorid_search_form">
+			<h:panelGrid id="kcbmanageLoad_vendorid_search_panel" columns="3">
+				<h:outputLabel for="search_vendorid" value="Vendor: " styleClass="normal field_spacing" />
+				<h:selectOneMenu id="search_vendorid" value="#{keycodeBankManageLoadDatatable.vendorIdSearchField}">
+					<f:selectItems value="#{dropdownListManager.sortedVendorSelectItems}" />
+				</h:selectOneMenu>
+				<h:commandButton id="search_vendorid_submit" value="Search" action="#{keycodeBankManageLoadDatatable.searchByVendorIdButtonClick}" styleClass="normal field_spacing" />
+			</h:panelGrid>
+			<h:message styleClass="error" for="search_vendorid" />
+		</h:form>
+		
+	</div>
+	<div id="rightcol" class="wide_column">
+		<h:form id="kcbmanageLoad_productsku_create_form">
+			<h:commandButton id="dashboard_button" value="Return to Dashboard" action="#{keycodeBankManageLoadHandler.dashboardButtonClick}" styleClass="normal field_spacing" />
+		</h:form>
+	</div>
+</h:panelGroup>

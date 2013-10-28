@@ -1,0 +1,54 @@
+<ui:composition template="/pages/templates/masterLayout.xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml">
+	<ui:define name="windowTitle">
+		#{msg['sdpRequest.windowtitle']}
+	</ui:define>
+	
+	<ui:define name="tabTitle">
+		<h:outputText value="#{msg['sdpRequest.tabtitle.operation']}" rendered="#{sdpRequestHandler.sdpRequestTabHandler.operationsTabCurrent}" />
+		<h:outputText value="#{msg['sdpRequest.tabtitle.act_s2']}" rendered="#{sdpRequestHandler.sdpRequestTabHandler.formTabCurrent and sdpRequestHandler.sdpRequestFormHandler.fulfillActivationS2FormCurrent}" />
+		<h:outputText value="#{msg['sdpRequest.tabtitle.cnl_s2']}" rendered="#{sdpRequestHandler.sdpRequestTabHandler.formTabCurrent and sdpRequestHandler.sdpRequestFormHandler.cancelFulfillmentS2FormCurrent}" />
+		<h:outputText value="#{msg['sdpRequest.tabtitle.adj_s2']}" rendered="#{sdpRequestHandler.sdpRequestTabHandler.formTabCurrent and sdpRequestHandler.sdpRequestFormHandler.adjustActivationS2FormCurrent}" />
+		<h:outputText value="#{msg['sdpRequest.tabtitle.act_psa']}" rendered="#{sdpRequestHandler.sdpRequestTabHandler.formTabCurrent and sdpRequestHandler.sdpRequestFormHandler.fulfillActivationPsaFormCurrent}" />
+		<h:outputText value="#{msg['sdpRequest.tabtitle.cnl_psa']}" rendered="#{sdpRequestHandler.sdpRequestTabHandler.formTabCurrent and sdpRequestHandler.sdpRequestFormHandler.cancelFulfillmentPsaFormCurrent}" />
+		<h:outputText value="#{msg['sdpRequest.tabtitle.adj_psa']}" rendered="#{sdpRequestHandler.sdpRequestTabHandler.formTabCurrent and sdpRequestHandler.sdpRequestFormHandler.adjustActivationPsaFormCurrent}" />
+		<h:outputText value="#{msg['sdpRequest.tabtitle.act_digital']}" rendered="#{sdpRequestHandler.sdpRequestTabHandler.formTabCurrent and sdpRequestHandler.sdpRequestFormHandler.fulfillActivationDigitalFormCurrent}" />
+		<h:outputText value="#{msg['sdpRequest.tabtitle.cnl_digital']}" rendered="#{sdpRequestHandler.sdpRequestTabHandler.formTabCurrent and sdpRequestHandler.sdpRequestFormHandler.cancelFulfillmentDigitalFormCurrent}" />
+		<h:outputText value="#{msg['sdpRequest.tabtitle.adj_digital']}" rendered="#{sdpRequestHandler.sdpRequestTabHandler.formTabCurrent and sdpRequestHandler.sdpRequestFormHandler.adjustActivationDigitalFormCurrent}" />
+		<h:outputText value="#{msg['sdpRequest.tabtitle.act_tech_support']}" rendered="#{sdpRequestHandler.sdpRequestTabHandler.formTabCurrent and sdpRequestHandler.sdpRequestFormHandler.fulfillActivationTechSupportFormCurrent}" />
+		<h:outputText value="#{msg['sdpRequest.tabtitle.cnl_tech_support']}" rendered="#{sdpRequestHandler.sdpRequestTabHandler.formTabCurrent and sdpRequestHandler.sdpRequestFormHandler.cancelFulfillmentTechSupportFormCurrent}" />
+		<h:outputText value="#{msg['sdpRequest.tabtitle.adj_tech_support']}" rendered="#{sdpRequestHandler.sdpRequestTabHandler.formTabCurrent and sdpRequestHandler.sdpRequestFormHandler.adjustActivationTechSupportFormCurrent}" />
+		<h:outputText value="#{msg['sdpRequest.tabtitle.submitted']}" rendered="#{sdpRequestHandler.sdpRequestTabHandler.formSubmittedTabCurrent}" />
+	</ui:define>
+	
+	<ui:define name="pageTitle">
+		#{msg['sdpRequest.pagetitle']}
+	</ui:define>
+	
+	<ui:define name="subTitle">
+		<h:outputText value="#{msg['sdpRequest.subtitle.operation']}" rendered="#{sdpRequestHandler.sdpRequestTabHandler.operationsTabCurrent}" />
+		<h:outputText value="#{msg['sdpRequest.subtitle.act_s2']}" rendered="#{sdpRequestHandler.sdpRequestTabHandler.formTabCurrent and sdpRequestHandler.sdpRequestFormHandler.fulfillActivationS2FormCurrent}" />
+		<h:outputText value="#{msg['sdpRequest.subtitle.cnl_s2']}" rendered="#{sdpRequestHandler.sdpRequestTabHandler.formTabCurrent and sdpRequestHandler.sdpRequestFormHandler.cancelFulfillmentS2FormCurrent}" />
+		<h:outputText value="#{msg['sdpRequest.subtitle.adj_s2']}" rendered="#{sdpRequestHandler.sdpRequestTabHandler.formTabCurrent and sdpRequestHandler.sdpRequestFormHandler.adjustActivationS2FormCurrent}" />
+		<h:outputText value="#{msg['sdpRequest.subtitle.act_psa']}" rendered="#{sdpRequestHandler.sdpRequestTabHandler.formTabCurrent and sdpRequestHandler.sdpRequestFormHandler.fulfillActivationPsaFormCurrent}" />
+		<h:outputText value="#{msg['sdpRequest.subtitle.cnl_psa']}" rendered="#{sdpRequestHandler.sdpRequestTabHandler.formTabCurrent and sdpRequestHandler.sdpRequestFormHandler.cancelFulfillmentPsaFormCurrent}" />
+		<h:outputText value="#{msg['sdpRequest.subtitle.adj_psa']}" rendered="#{sdpRequestHandler.sdpRequestTabHandler.formTabCurrent and sdpRequestHandler.sdpRequestFormHandler.adjustActivationPsaFormCurrent}" />
+		<h:outputText value="#{msg['sdpRequest.subtitle.act_digital']}" rendered="#{sdpRequestHandler.sdpRequestTabHandler.formTabCurrent and sdpRequestHandler.sdpRequestFormHandler.fulfillActivationDigitalFormCurrent}" />
+		<h:outputText value="#{msg['sdpRequest.subtitle.cnl_digital']}" rendered="#{sdpRequestHandler.sdpRequestTabHandler.formTabCurrent and sdpRequestHandler.sdpRequestFormHandler.cancelFulfillmentDigitalFormCurrent}" />
+		<h:outputText value="#{msg['sdpRequest.subtitle.adj_digital']}" rendered="#{sdpRequestHandler.sdpRequestTabHandler.formTabCurrent and sdpRequestHandler.sdpRequestFormHandler.adjustActivationDigitalFormCurrent}" />
+		<h:outputText value="#{msg['sdpRequest.subtitle.act_tech_support']}" rendered="#{sdpRequestHandler.sdpRequestTabHandler.formTabCurrent and sdpRequestHandler.sdpRequestFormHandler.fulfillActivationTechSupportFormCurrent}" />
+		<h:outputText value="#{msg['sdpRequest.subtitle.cnl_tech_support']}" rendered="#{sdpRequestHandler.sdpRequestTabHandler.formTabCurrent and sdpRequestHandler.sdpRequestFormHandler.cancelFulfillmentTechSupportFormCurrent}" />
+		<h:outputText value="#{msg['sdpRequest.subtitle.adj_tech_support']}" rendered="#{sdpRequestHandler.sdpRequestTabHandler.formTabCurrent and sdpRequestHandler.sdpRequestFormHandler.adjustActivationTechSupportFormCurrent}" />
+		<h:outputText value="#{msg['sdpRequest.subtitle.submitted']}" rendered="#{sdpRequestHandler.sdpRequestTabHandler.formSubmittedTabCurrent}" />
+	</ui:define>
+	
+	<ui:define name="content">
+	
+		<div id="top_content">
+			<ui:include src="/pages/sdpRequest/sdpRequest_operation.xhtml" />
+			<ui:include src="/pages/sdpRequest/sdpRequest_form.xhtml" />
+			<ui:include src="/pages/sdpRequest/sdpRequest_submitted.xhtml" />
+		</div>
+		
+	</ui:define>
+	
+</ui:composition>

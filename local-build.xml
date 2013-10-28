@@ -1,0 +1,142 @@
+<project name="sdp-ui" basedir="." default="main">
+
+	<property file="local-build.properties"/>
+	<property file="${user.home}/build.properties"/>
+	
+	<property name="project.name" value="${ant.project.name}" />	
+	<property name="build.dir" value="${basedir}/bin" />
+	<property name="java.dir" value="${basedir}/src" />
+	<property name="classes.dir" value="${build.dir}/classes" />
+	<property name="dist.dir" value="${basedir}/dist" />
+	<property name="web.dir" value="${basedir}/WebContent" />
+	<property name="webinf.dir" value="${web.dir}/WEB-INF" />
+	<property name="lib.dir" value="${basedir}/lib" />
+	<property name="resources.dir" value="${web.dir}/resources" />
+	<property name="output.file" value="${dist.dir}/${project.name}-${label}.war" />
+	
+	<tstamp prefix="build-info">
+		<format property="current-date" pattern="EEE MMM d, yyyy" locale="US/Central" />
+		<format property="current-time" pattern="h:mm:ss a z" locale="US/Central" />
+	</tstamp>
+		
+	<path id="compile.classpath">
+		<fileset dir="${lib.dir}">
+			<patternset refid="lib.compile" />
+		</fileset>
+		<fileset dir="${lib.dir}/axis2">
+			<patternset refid="lib.compile" />
+		</fileset>
+	</path>
+	
+	<patternset id="lib.compile">
+		<include name="*.jar" />
+		<exclude name="j2ee.jar" /> <!-- this should already be in containers classpath -->
+	</patternset>
+	
+	<target name="debug">
+		<echo message="PROPERTY PRINTOUT" />
+		<echo message="project.name = ${project.name}" />	
+		<echo message="build.dir    = ${build.dir}" />	
+		<echo message="java.dir     = ${java.dir}" />	
+		<echo message="classes.dir  = ${classes.dir}" />	
+		<echo message="dist.dir     = ${dist.dir}" />	
+		<echo message="web.dir      = ${web.dir}" />	
+		<echo message="webinf.dir   = ${webinf.dir}" />	
+		<echo message="lib.dir      = ${lib.dir}" />
+		<echo />
+		<echo message="THE FOLLOWING MUST BE DEFINED IN local-build.properties" />
+		<echo message="weblogic.home          = ${weblogic.home}" />	
+		<echo message="DEPLOY.host            = ${DEPLOY.host}" />	
+		<echo message="DEPLOY.port            = ${DEPLOY.port}" />	
+		<echo message="DEPLOY.targetURL       = ${DEPLOY.targetURL}" />	
+		<echo message="DEPLOY.targetDirectory = ${DEPLOY.targetDirectory}" />	
+		<echo message="DEPLOY.username        = " />	
+		<echo message="DEPLOY.password        = " />		
+		<echo />
+		<echo message="OUTPUT" />
+		<echo message="output.file  = ${output.file}" />
+	</target>
+				
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+	</target>
+	
+	<target name="pre.compile">
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${classes.dir}"/>
+		<mkdir dir="${dist.dir}"/>
+	</target>
+	
+	<target name="compile" depends="pre.compile">
+		<javac srcdir="${java.dir}" destdir="${classes.dir}" source="1.6" target="1.6" debug="true" excludes="junit/**">
+			<classpath refid="compile.classpath"/>
+			<classpath refid="weblogic.classpath"/>
+		</javac>
+		
+		<copy todir="${classes.dir}">
+			<fileset dir="${java.dir}">
+				<include name="**/*.properties" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="label">
+		<copy file="${webinf.dir}/web.xml" todir="${build.dir}" />
+		<replace file="${build.dir}/web.xml" token="@@VERSION_LABEL@@" value="${label}" />
+	</target>
+	
+	<target name="war" depends="compile,label">
+		<war basedir="${web.dir}" destfile="${output.file}" webxml="${build.dir}/web.xml" excludes="**/web.xml">
+			<lib dir="${lib.dir}">
+				<patternset refid="lib.compile" />
+				<exclude name="axis2" />
+			</lib>
+			<lib dir="${lib.dir}/axis2">
+				<patternset refid="lib.compile" />
+			</lib>
+			<classes dir="${classes.dir}" />
+			<manifest>
+				<attribute name="Java-Version" value="${ant.java.version}" />
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Built-On" value="${build-info.current-date}" />
+				<attribute name="Built-At" value="${build-info.current-time}" />
+			</manifest>
+		</war>
+		<unzip src="${output.file}" dest="${dist.dir}/exploded" />
+	</target>
+	
+	<target name="main" depends="debug, clean, war, deploy" />
+	
+<!--####################################-->
+<!-- BEGIN WEBLOGIC TARGETS -->
+<!--####################################-->
+	<taskdef name="wldeploy" classname="weblogic.ant.taskdefs.management.WLDeploy">
+		<classpath>
+			<pathelement location="${weblogic.home}/server/lib/weblogic.jar"/>
+		</classpath>
+	</taskdef>
+	
+	<path id="weblogic.classpath">
+		<pathelement location="${weblogic.home}/server/lib"/>
+		<fileset dir="${weblogic.home}/server/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+	
+	<target name="undeploy" description="Remove the war file.">
+		<wldeploy action="stop" failonerror="false" verbose="false" debug="false" name="${project.name}" user="${DEPLOY.username}" password="${DEPLOY.password}" adminurl="${DEPLOY.targetURL}" targets="${DEPLOY.targetDirectory}"/>
+		<wldeploy action="undeploy" failonerror="false" verbose="false" debug="false" name="${project.name}" user="${DEPLOY.username}" password="${DEPLOY.password}" adminurl="${DEPLOY.targetURL}" targets="${DEPLOY.targetDirectory}"/>		
+	</target>
+	
+	<target name="deploy" description="Deploy the war file." depends="undeploy">
+		<wldeploy action="deploy" upload="true" verbose="false" debug="false" name="${project.name}" source="${output.file}" user="${DEPLOY.username}" password="${DEPLOY.password}" adminurl="${DEPLOY.targetURL}" targets="${DEPLOY.targetDirectory}"/>
+		<wldeploy action="start" verbose="false" debug="false" name="${project.name}" user="${DEPLOY.username}" password="${DEPLOY.password}" adminurl="${DEPLOY.targetURL}" targets="${DEPLOY.targetDirectory}"/>
+	</target>
+	
+<!--####################################-->
+<!-- END WEBLOGIC TARGETS -->
+<!--####################################-->
+
+</project>

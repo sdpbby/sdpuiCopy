@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html">
+	<h:head>
+		<title>#{msg['error.windowtitle']}</title>
+		<link rel="stylesheet" href="/SDPUI/resources/css/stylesheet.css" type="text/css"  />
+	</h:head>
+	<h:body>
+		<div id="error">
+			<h:form name="error_form" id="error_form">
+				<div id="error_title">
+					<h1>#{msg['error.pagetitle']}</h1>
+					<h2><h:outputText value="#{exceptionHandler.customMessage}" /></h2>
+				</div>
+				<div id="error_body">
+					<p><strong><h:outputText value="#{exceptionHandler.exceptionType}" /><span>: </span></strong><h:outputText value="#{exceptionHandler.exceptionMessage}" /></p>
+					<p><strong><h:outputText value="#{msg['error.ref.num']}: " /></strong><h:outputText value="#{exceptionHandler.referenceNum}" /></p>
+					<p><strong><h:outputText value="#{msg['error.timestamp']}: " /></strong><h:outputText value="#{exceptionHandler.timestamp}" /></p>
+					<p><br /></p>
+					<p><strong><h:outputText value="#{msg['error.stacktrace']}: " /></strong></p>
+					<p>
+						<h:inputTextarea style="color: red" styleClass="code" rendered="#{userManagerBean.permissionsBean.displayStackTrace}" value="#{exceptionHandler.stackTrace}" rows="40" cols="120" readonly="true" />
+						<h:inputTextarea style="color: red" styleClass="code" rendered="#{!userManagerBean.permissionsBean.displayStackTrace}" value="#{msg['error.alttext.stacktrace']}" rows="10" cols="120" readonly="true" />
+					</p>
+				</div>
+			</h:form>
+		</div>
+	</h:body>
+</html>

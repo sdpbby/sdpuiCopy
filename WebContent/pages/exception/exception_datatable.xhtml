@@ -1,0 +1,151 @@
+<h:form id="exception_datatable_form" rendered="#{exceptionPageTabbedPaneHandler.searchTabCurrent}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<table class="datatable_paginator_wrapper">
+		<thead class="paginator">
+			<tr>
+				<td class="header" colspan="3">
+					<ice:dataPaginator
+						id="datadetail1" for="datatable" rowsCountVar="rowsCount">
+						<ice:outputFormat value="#{msg['exception.datatable.title']} ({0})">
+							<f:param value="#{rowsCount}" />
+						</ice:outputFormat>
+					</ice:dataPaginator>
+
+				</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td colspan="3"><ice:dataTable width="100%" binding="#{exceptionPageDatatable.dataTable}"
+						value="#{exceptionPageDatatable.rows}" var="itr" rows="25"
+						id="datatable" sortColumn="#{exceptionPageDatatable.sortColumnName}"
+						sortAscending="#{exceptionPageDatatable.ascending}"
+						styleClass="datatable" rowClasses="odd,even">
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader
+									columnName="#{exceptionPageDatatable.createDateColumnName}"
+									arrow="true">
+									<ice:outputText value="#{exceptionPageDatatable.createDateColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.createdDate}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader
+									columnName="#{exceptionPageDatatable.sourceSystemColumnName}"
+									arrow="true">
+									<ice:outputText
+										value="#{exceptionPageDatatable.sourceSystemColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.sourceSystem}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader
+									columnName="#{exceptionPageDatatable.errorCodeColumnName}"
+									arrow="true">
+									<ice:outputText
+										value="#{exceptionPageDatatable.errorCodeColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.code}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader
+									columnName="#{exceptionPageDatatable.descriptionColumnName}"
+									arrow="true">
+									<ice:outputText
+										value="#{exceptionPageDatatable.descriptionColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.description}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader
+									columnName="#{exceptionPageDatatable.sdpIdColumnName}"
+									arrow="true">
+									<ice:outputText
+										value="#{exceptionPageDatatable.sdpIdColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.sdpId}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="#{exceptionPageDatatable.actionColumnName}" />
+							</f:facet>
+							<h:commandButton value="View" action="#{exceptionPageDatatable.viewButtonClick}" />
+						</ice:column>
+					</ice:dataTable></td>
+			</tr>
+		</tbody>
+		<tfoot class="paginator">
+			<tr>
+				<td class="results"><ice:dataPaginator
+						rendered="#{!exceptionPageDatatable.tableEmpty}" id="datadetail2"
+						for="datatable" rowsCountVar="rowsCount"
+						displayedRowsCountVar="displayedRowsCount"
+						firstRowIndexVar="firstRowIndex" lastRowIndexVar="lastRowIndex"
+						pageCountVar="pageCount" pageIndexVar="pageIndex">
+						<ice:outputFormat
+							value="{0} results found, displaying {1} result(s), from {2} to {3}. Page {4} / {5}.">
+							<f:param value="#{rowsCount}" />
+							<f:param value="#{displayedRowsCount}" />
+							<f:param value="#{firstRowIndex}" />
+							<f:param value="#{lastRowIndex}" />
+							<f:param value="#{pageIndex}" />
+							<f:param value="#{pageCount}" />
+						</ice:outputFormat>
+					</ice:dataPaginator></td>
+				<td class="navigation"><ice:dataPaginator
+						rendered="#{!exceptionPageDatatable.tableEmpty}" id="datascroller2"
+						for="datatable" paginator="true" fastStep="3"
+						paginatorMaxPages="4">
+						<f:facet name="first">
+							<ice:graphicImage
+								url="/xmlhttp/css/xp/css-images/arrow-first.gif"
+								style="border:none;" title="First Page">
+							</ice:graphicImage>
+						</f:facet>
+						<f:facet name="last">
+							<ice:graphicImage url="/xmlhttp/css/xp/css-images/arrow-last.gif"
+								style="border:none;" title="Last Page">
+							</ice:graphicImage>
+						</f:facet>
+						<f:facet name="previous">
+							<ice:graphicImage
+								url="/xmlhttp/css/xp/css-images/arrow-previous.gif"
+								style="border:none;" title="Previous Page">
+							</ice:graphicImage>
+						</f:facet>
+						<f:facet name="next">
+							<ice:graphicImage url="/xmlhttp/css/xp/css-images/arrow-next.gif"
+								style="border:none;" title="Next Page">
+							</ice:graphicImage>
+						</f:facet>
+						<f:facet name="fastforward">
+							<ice:graphicImage url="/xmlhttp/css/xp/css-images/arrow-ff.gif"
+								style="border:none;" title="Fast Forward">
+							</ice:graphicImage>
+						</f:facet>
+						<f:facet name="fastrewind">
+							<ice:graphicImage url="/xmlhttp/css/xp/css-images/arrow-fr.gif"
+								style="border:none;" title="Fast Backwards">
+							</ice:graphicImage>
+						</f:facet>
+					</ice:dataPaginator> <h:outputText rendered="#{exceptionPageDatatable.tableEmpty}"
+						value="#{msg['ui.datatable.no_results_found']}" styleClass="error" />
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+</h:form>

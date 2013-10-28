@@ -1,0 +1,180 @@
+<h:form id="datatable_form" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<h:panelGroup rendered="#{sdpOrderSearchResultsDatatable.initializeByRecent}">
+		<Strong>Display Last </Strong>
+		<h:selectOneMenu id="max_rows" value="#{sdpOrderSearchResultsDatatable.maxRows}">
+			<f:selectItem itemValue="20" itemLabel="20 Orders" />
+			<f:selectItem itemValue="50" itemLabel="50 Orders" />
+			<f:selectItem itemValue="100" itemLabel="100 Orders" />
+			<f:selectItem itemValue="250" itemLabel="250 Orders" />
+			<f:selectItem itemValue="500" itemLabel="500 Orders" />
+			<f:selectItem itemValue="1000" itemLabel="1,000 Orders" />			
+		</h:selectOneMenu>
+		<h:commandButton id="refresh" value="Refresh List" action="#{sdpOrderSearchResultsDatatable.refreshButtonClick}" />
+	</h:panelGroup>
+	<table class="datatable_paginator_wrapper">
+		<thead class="paginator">
+			<tr>
+				<td class="header" colspan="2">
+					<ice:dataPaginator id="datadetail1" for="datatable" rowsCountVar="rowsCount">
+						<ice:outputFormat value="SDP ORDER RESULTS FOUND ({0})">
+							<f:param value="#{rowsCount}" />
+						</ice:outputFormat>
+					</ice:dataPaginator>
+				</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td colspan="2">
+					<ice:dataTable varStatus="rowInfo" width="100%" binding="#{sdpOrderSearchResultsDatatable.orderDataTable}" value="#{sdpOrderSearchResultsDatatable.rows}" var="itr" rows="20" id="datatable" styleClass="datatable" rowClasses="odd,even">
+						<ice:column rendered="#{sdpOrderSearchResultsDatatable.initializeByRecent}">
+							<f:facet name="header">
+								<ice:outputText value="#" />
+							</f:facet>
+							<ice:outputText value="#{rowInfo.index + 1}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Created Date" />
+							</f:facet>
+							<ice:outputText value="#{itr.createdDate}">
+								<f:convertDateTime pattern="#{msg['ui.date.timestamp_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+							</ice:outputText>
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Source System" />
+							</f:facet>
+							<ice:outputText value="#{itr.sourceSystem}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Contract ID" />
+							</f:facet>
+							<ice:outputText value="#{itr.contractId}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Serial Number" />
+							</f:facet>
+							<ice:outputText value="#{itr.serialNumber}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="LineItem ID" />
+							</f:facet>
+							<ice:outputText value="#{itr.lineItemId}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Customer Name" />
+							</f:facet>
+							<ice:outputText value="#{itr.customerFullName}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Delivery Email" />
+							</f:facet>
+							<ice:outputText value="#{itr.deliveryEmail}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Primary SKU" />
+							</f:facet>
+							<ice:outputText value="#{itr.primarySku}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Vendor" />
+							</f:facet>
+							<ice:outputText value="#{itr.vendorName}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Transaction Date" />
+							</f:facet>
+							<ice:outputText value="#{itr.fpkTransactionDate}">
+								<f:convertDateTime pattern="#{msg['ui.date.store_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+							</ice:outputText>
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Store #" />
+							</f:facet>
+							<ice:outputText value="#{itr.fpkStoreId}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Register #" />
+							</f:facet>
+							<ice:outputText value="#{itr.fpkRegisterId}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Transaction #" />
+							</f:facet>
+							<ice:outputText value="#{itr.fpkTransactionId}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Line #" />
+							</f:facet>
+							<ice:outputText value="#{itr.fpkLineId}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Status" />
+							</f:facet>
+							<ice:outputText value="#{itr.sdpOrderStatusName}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Action" />
+							</f:facet>
+							<h:commandButton value="View" action="#{sdpOrderSearchResultsDatatable.viewOrderDetailButtonClick}" />
+						</ice:column>
+					</ice:dataTable>
+				</td>
+			</tr>
+		</tbody>
+		<tfoot class="paginator">
+			<tr>
+				<td class="results">
+					<ice:dataPaginator rendered="#{!sdpOrderSearchResultsDatatable.tableEmpty}" id="datadetail2" for="datatable" rowsCountVar="rowsCount" displayedRowsCountVar="displayedRowsCount" firstRowIndexVar="firstRowIndex" lastRowIndexVar="lastRowIndex" pageCountVar="pageCount" pageIndexVar="pageIndex">
+						<ice:outputFormat value="{0} results found, displaying {1} result(s), from {2} to {3}. Page {4} / {5}.">
+							<f:param value="#{rowsCount}" />
+							<f:param value="#{displayedRowsCount}" />
+							<f:param value="#{firstRowIndex}" />
+							<f:param value="#{lastRowIndex}" />
+							<f:param value="#{pageIndex}" />
+							<f:param value="#{pageCount}" />
+						</ice:outputFormat>
+					</ice:dataPaginator>
+				</td>
+				<td class="navigation">
+					<ice:dataPaginator rendered="#{!sdpOrderSearchResultsDatatable.tableEmpty}" id="datascroller2" for="datatable" paginator="true" fastStep="3" paginatorMaxPages="4">
+						<f:facet name="first">
+							<ice:graphicImage url="/xmlhttp/css/xp/css-images/arrow-first.gif" style="border:none;" title="First Page" />
+						</f:facet>
+						<f:facet name="last">
+							<ice:graphicImage url="/xmlhttp/css/xp/css-images/arrow-last.gif" style="border:none;" title="Last Page" />
+						</f:facet>
+						<f:facet name="previous">
+							<ice:graphicImage url="/xmlhttp/css/xp/css-images/arrow-previous.gif" style="border:none;" title="Previous Page" />
+						</f:facet>
+						<f:facet name="next">
+							<ice:graphicImage url="/xmlhttp/css/xp/css-images/arrow-next.gif" style="border:none;" title="Next Page" />
+						</f:facet>
+						<f:facet name="fastforward">
+							<ice:graphicImage url="/xmlhttp/css/xp/css-images/arrow-ff.gif" style="border:none;" title="Fast Forward" />
+						</f:facet>
+						<f:facet name="fastrewind">
+							<ice:graphicImage url="/xmlhttp/css/xp/css-images/arrow-fr.gif" style="border:none;" title="Fast Backwards" />
+						</f:facet>
+					</ice:dataPaginator>
+					<h:outputText rendered="#{sdpOrderSearchResultsDatatable.tableEmpty}" value="#{msg['ui.datatable.no_results_found']}" styleClass="error" />
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+</h:form>

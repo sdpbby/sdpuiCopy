@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="xml.accenture.com/sdp/bby/cm/Customer" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:Customer="xml.accenture.com/sdp/bby/cm/Customer" xmlns:Address="xml.accenture.com/sdp/bby/utilities/Address" xmlns:Birth="xml.accenture.com/sdp/bby/utilities/Birth" xmlns:TenderInformation="xml.accenture.com/sdp/bby/cm/TenderInformation">
+	<xs:import namespace="xml.accenture.com/sdp/bby/utilities/Address" schemaLocation="XSD_Address.xsd"/>
+	<xs:import namespace="xml.accenture.com/sdp/bby/utilities/Birth" schemaLocation="XSD_Birth.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Customer Entity</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="Name">
+		<xs:sequence>
+			<xs:element name="FirstName" type="xs:string"/>
+			<xs:element name="MiddleName" type="xs:string" minOccurs="0"/>
+			<xs:element name="LastName" type="xs:string"/>
+			<xs:element name="FullName" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Customer">
+		<xs:sequence>
+			<xs:element name="CustomerName" type="Customer:Name"/>
+			<xs:element name="EmailAddress" type="xs:string" minOccurs="0"/>
+			<xs:element name="BirthInfo" type="Birth:Birth" minOccurs="0"/>
+			<xs:element name="ECCustomerID" type="xs:string" minOccurs="0"/>
+			<xs:element name="C4CustomerID" type="xs:string" minOccurs="0"/>
+			<xs:element name="ContactAddress" type="Address:Address"/>
+			<xs:element name="TelephoneNumber" type="Address:TelephoneNumber"/>
+			<xs:element name="SecondaryTelephoneNumber" type="Address:TelephoneNumber" minOccurs="0"/>
+			<xs:element name="CustomerInfoUpdate" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="NEW"/>
+						<xs:enumeration value="EXISTING"/>
+						<xs:enumeration value="UPDATED"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="RewardZoneNumber" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AddressList">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:complexType name="ArrayofCustomer">
+		<xs:sequence>
+			<xs:element name="Customer" type="Customer:Customer" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

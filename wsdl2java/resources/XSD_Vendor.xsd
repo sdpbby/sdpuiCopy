@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="xml.accenture.com/sdp/bby/om/Vendor" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:CreditCheck="xml.accenture.com/sdp/bby/utilities/CreditCheck" xmlns:Authentication="xml.accenture.com/sdp/bby/utilities/Authentication" xmlns:Vendor="xml.accenture.com/sdp/bby/om/Vendor">
+	<xs:import namespace="xml.accenture.com/sdp/bby/utilities/CreditCheck" schemaLocation="XSD_CreditCheck.xsd"/>
+	<xs:import namespace="xml.accenture.com/sdp/bby/utilities/Authentication" schemaLocation="XSD_Authentication.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Vendor Entity</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="Vendor">
+		<xs:sequence>
+			<xs:element name="Name" type="xs:string" minOccurs="0"/>
+			<xs:element name="ID" type="xs:string"/>
+			<xs:element name="ImageID" type="xs:string" minOccurs="0"/>
+			<xs:element name="ContactNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="CreditCheckInfo" type="CreditCheck:CreditCheckInfo"/>
+			<!-- True for AT&T & G2B
+					False for DTV (coming from CSM) !-->
+			<xs:element name="SetInstallationDateRequired" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="CreateSubscriptionRequired" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="OfferQualificationRequired" type="xs:boolean" minOccurs="0"/>
+			<!-- True for DTV 
+					False for & G2B AT&T !-->
+			<xs:element name="OfferReQualificationRequired" type="xs:boolean" minOccurs="0"/>
+			<!-- True for DTV 
+					False for & G2B AT&T !-->
+			<xs:element name="GenerateOrderSummaryRequired" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="CreditCheckRequired" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="OfferValidationRequired" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="VendorAuthenticationDetails" type="Authentication:VendorAuthentication" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="arrayofVendor">
+		<xs:sequence>
+			<xs:element name="Vendor" type="Vendor:Vendor" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

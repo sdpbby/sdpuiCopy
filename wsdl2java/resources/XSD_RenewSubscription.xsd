@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://schemas.bestbuy.com/sdp/renewSubscription" elementFormDefault="qualified" xmlns="http://schemas.bestbuy.com/sdp/renewSubscription" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	
+	<xs:element name="RenewSubscriptionRequest">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:element name="RenewalOrder" type="RenewalOrderType" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:complexType>
+	</xs:element>
+	<!-- Renewal Order type definition -->
+		<xs:complexType name="RenewalOrderType">
+			<xs:sequence>
+				<xs:element name="Date" type="xs:date"/>
+				<xs:element name="Source" type="SourceType"/>
+				<xs:element name="Subscription" type="SubscriptionType3" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="ID" type="xs:string" use="optional"/>
+	</xs:complexType>
+	
+	<!--  Source type definition  -->
+	<xs:complexType name="SourceType">
+		<xs:sequence>
+			<!-- Store element required for PC Image: -->
+			<xs:element name="Store" type="StoreType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ID" type="xs:string" use="required"/>
+		<!-- UserID Required for PC Image: -->
+		<xs:attribute name="UserID" type="xs:string" use="optional"/>
+	</xs:complexType>
+	
+	<!-- Store type definition  -->
+	<xs:complexType name="StoreType">
+		<xs:sequence>
+			<!-- RegisterID and TransactionID are required EXCEPT by PC Image: -->
+			<xs:element name="RegisterID" type="SimpleString1" minOccurs="0"/>
+			<xs:element name="TransactionID" type="SimpleString1" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ID" type="SimpleString1" use="required"/>
+	</xs:complexType>
+	
+	<!-- Subscription type definition -->
+	<xs:complexType name="SubscriptionType3">
+		<xs:sequence>
+			<xs:element name="ContractID" type="xs:string"/>
+			<xs:element name="ExpireDate" type="xs:date" nillable="true" minOccurs="0"/>
+			<xs:element name="LineItem" type="LineItemType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="ID" type="xs:string" use="optional"/>
+	</xs:complexType>
+	
+	<!-- Line Item type definition -->
+	<xs:complexType name="LineItemType">
+		<xs:sequence>
+			<xs:element name="SKU" type="SimpleString1"/>
+			<xs:element name="Attribute" type="AttributeType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="AssociatedProduct" type="AssociatedProductType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ID" type="xs:string" use="optional"/>
+	</xs:complexType>
+	
+	<!-- Attribute type definition -->
+		<xs:complexType name="AttributeType">
+			<xs:sequence>
+				<xs:element name="Name" type="xs:string"/>
+				<xs:element name="Value" type="xs:string"/>
+			</xs:sequence>
+	</xs:complexType>
+	
+	<!-- Associated Product type definition  -->
+		<xs:complexType name="AssociatedProductType">
+			<xs:sequence>
+				<xs:element name="SKU" type="SimpleString1"/>
+				<xs:element name="Attribute" type="AttributeType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="ID" type="xs:string" use="optional"/>
+	</xs:complexType>
+	
+	<!-- Response will indicate success or failure, at a minimum.  In the event of failure, error details will be provided
+			and in event of success token would be returned back. -->
+		<xs:element name="RenewSubscriptionResponse">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:element name="ResultStatus" type="ResultStatusType"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+	
+		<!--  ResultStatusType  -->
+			<xs:complexType name="ResultStatusType">
+				<xs:annotation>
+					<xs:documentation>
+						Intended for use as a metadata element in service
+						response schemas. It contains a simple "Successful" flag
+						that indicates whether or not the responding service
+						completed normally. If the value is "false", there was
+						some error and an enclosed ErrorInformation element
+						should be populated.
+		
+						Note that a Successful status of "true" does not
+						necessarily indicate functional success - only technical
+						success. Functional success should be determined from
+						data in the service's response schema. Services may
+						choose to use the ResultStatus element to indicate
+						functional success as well, but such decisions should be
+						explicitly documented by those services.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="ErrorInformation" type="ErrorInfoType" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="Successful" type="xs:boolean"/>
+			</xs:complexType>
+			
+			<!-- ErrorInfoType -->
+			<xs:complexType name="ErrorInfoType">
+				<xs:annotation>
+					<xs:documentation>
+						Intended for inclusion in ResultStatusType elements, to
+						be used to return error information in service response
+						schemas.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="Code" type="xs:string"/>
+					<xs:element name="Message" type="xs:string"/>
+					<xs:element name="ErrorStack" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+		
+	<!-- **************************** Simple Type Definitions **************************** -->
+	<xs:simpleType name="SimpleString1">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

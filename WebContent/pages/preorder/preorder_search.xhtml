@@ -1,0 +1,33 @@
+<h:panelGroup id="search_panel" rendered="#{preorderTabbedPaneHandler.searchTabCurrent}" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core">
+	 <div id="leftcol" class="normal_column">
+		<h:form id="preorder_productsku_search_form">
+			<h:panelGrid id="preorder_productsku_search_panel" columns="3">
+				<h:outputLabel for="search_productSku" value="Product SKU: " styleClass="normal field_spacing" />
+				<h:inputText id="search_productSku" value="#{preorderDatatable.productSkuSearchField}" styleClass="short_field field_spacing" required="true" />
+				<h:commandButton id="search_productSku_submit" value="Search" action="#{preorderDatatable.searchByProductSkuButtonClick}" styleClass="normal field_spacing" />
+			</h:panelGrid>
+			<h:message styleClass="error" for="search_productSku" />
+		</h:form>
+		<h:form id="preorder_vendorid_search_form">
+			<h:panelGrid id="preorder_vendorid_search_panel" columns="3">
+				<h:outputLabel for="search_vendorid" value="Vendor: " styleClass="normal field_spacing" />
+				<h:selectOneMenu id="search_vendorid" value="#{preorderDatatable.vendorIdSearchField}" styleClass="short_field field_spacing" >
+					<f:selectItem itemLabel="- Select -" />
+					<f:selectItems value="#{preorderDatatable.vendors}" />
+				</h:selectOneMenu>
+				<h:commandButton id="search_vendorid_submit" value="Search" action="#{preorderDatatable.searchByVendorIdButtonClick}" styleClass="normal field_spacing" />
+			</h:panelGrid>
+			<h:message styleClass="error" for="search_vendorid" />
+		</h:form>
+		<h:form id="preorder_getAll">
+			<h:panelGrid id="preorder_getAll_search_panel" columns="1">
+				<h:commandButton id="search_getAll_submit" value="Show All Pre-Orders" action="#{preorderDatatable.searchByAllButtonClick}" styleClass="normal field_spacing" />
+			</h:panelGrid>
+		</h:form>
+	</div> 
+	<div id="rightcol" class="wide_column">
+		<h:form id="preorder_productsku_create_form">
+			<h:commandButton id="create_product_button" value="Create New Pre-Order Scheduler" action="#{preorderHandler.createPreorderSchedulerButtonClick}" styleClass="normal field_spacing" disabled="#{!userManagerBean.permissionsBean.createPreorderAllowed}" />
+		</h:form>
+	</div>
+</h:panelGroup>

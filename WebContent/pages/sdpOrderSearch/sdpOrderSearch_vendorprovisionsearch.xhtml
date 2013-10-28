@@ -1,0 +1,80 @@
+<h:panelGroup id="detail_panel_vndr_provsn" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+	<div id="leftcol" class="panel_main_search_vendor normal">
+		<h:form id="vndr_provsn_search">
+			<table width="780px" height="250px">
+			<tr width="640px">
+				<td colspan="3">
+					<h2>Search Vendor Provisioning</h2>
+				</td>
+			</tr>
+			<tr width="640px">
+				<td>
+					<h:outputLabel for="search_vendorid" value="Vendor: " styleClass="normal field_spacing" />
+				</td>
+				<td >
+					<h:panelGroup>
+						<h:selectOneMenu id="search_vendorid" value="#{sdpOrderSearchResultsDatatable.vendorIdSearchField}" valueChangeListener="#{sdpOrderSearchResultsDatatable.updateVendorCodeList}" style="width:550px" onchange="submit();" immediate="true">
+							<!--<f:selectItem id="ALL_VENDORS" itemLabel="ALL VENDORS" itemValue="ALL" />-->
+							<f:selectItems value="#{sdpOrderSearchResultsDatatable.vendorIdList}" />
+						</h:selectOneMenu>
+					</h:panelGroup>
+				</td>
+				<td>
+					<h:commandButton id="search_vndr_prov_submit" value="Search" action="#{sdpOrderSearchResultsDatatable.searchByVendorErrorCodeButtonClick}" styleClass="normal field_spacing"/>
+				</td>
+			</tr>
+			<tr>
+				<td width="300px">
+					<h:message for="search_vendorid" style="color:red" />
+				</td>
+			</tr>
+			<tr width="640px">
+				<td>
+					<h:outputLabel for="search_res_cde" value="Response Code: " styleClass="normal field_spacing" />
+				</td>
+				<td>
+					<h:panelGroup>
+						<h:selectOneMenu id="search_res_cde" value="#{sdpOrderSearchResultsDatatable.responseCodeSearchField}" style="width:550px" >
+							<!--<f:selectItem itemLabel="- Select -" />-->
+							<f:selectItems value="#{sdpOrderSearchResultsDatatable.vendorCodeList}" />
+						</h:selectOneMenu>
+					</h:panelGroup>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr width="340px">
+				<td>
+					<h:outputLabel for="search_strt_date" value="Start Date: " styleClass="normal field_spacing" />
+				</td>
+				<td>
+						<h:panelGroup>
+							<ice:selectInputDate id="search_strt_date" renderMonthAsDropdown="true" renderYearAsDropdown="true" value="#{sdpOrderSearchResultsDatatable.vendorSearchDateStart}" rendered="true" title="MM/DD/YYYY" renderAsPopup="true" styleClass="normal field_spacing standard_width">
+	        					<f:convertDateTime pattern="#{msg['ui.date.calendar_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+	    					</ice:selectInputDate>
+	    				</h:panelGroup>
+	    		</td>
+	    		<td>
+	    		</td>
+			</tr>
+
+			<tr width="340px">
+				<td>
+					<h:outputLabel for="search_end_date" value="End Date: " styleClass="normal field_spacing" />
+				</td>
+				<td>
+					<h:panelGroup>
+						<ice:selectInputDate id="search_end_date" renderMonthAsDropdown="true" renderYearAsDropdown="true" value="#{sdpOrderSearchResultsDatatable.vendorSearchDateEnd}" rendered="true" title="MM/DD/YYYY" renderAsPopup="true" styleClass="normal field_spacing standard_width">
+	        				<f:convertDateTime pattern="#{msg['ui.date.calendar_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+	    				</ice:selectInputDate>
+	    			</h:panelGroup>
+				</td>
+				<td>
+				</td>
+			</tr>
+		</table>
+	</h:form>
+  </div>
+
+</h:panelGroup>

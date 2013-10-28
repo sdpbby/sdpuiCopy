@@ -1,0 +1,39 @@
+<h:panelGrid styleClass="normal" columns="2" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+			
+	<h:outputText style="font-weight: bold;" value="Send Request to Vendor: " />
+	<h:outputText value="#{catalogHandler.oldCatalogBean.needsVendorProvisioning}" />
+						
+	<h:outputText style="font-weight: bold;" value="Retrieve Token from Keycode Bank: " />
+	<h:outputText value="#{catalogHandler.oldCatalogBean.needsVendorKey}" />
+						
+	<h:outputText style="font-weight: bold;" value="Requires Open-cIS Contract: " />
+	<h:outputText value="#{catalogHandler.oldCatalogBean.contractTrigger}" />
+					
+	<h:outputText style="font-weight: bold;" value="Send to Customer Account (CA): " />
+	<h:outputText value="#{catalogHandler.oldCatalogBean.needCA}" />
+					
+	<h:outputText style="font-weight: bold;" value="Redirect to Old SDP Architecture: " />
+	<h:outputText value="#{catalogHandler.oldCatalogBean.redirectToOldArch}" />
+	
+	<f:verbatim><br /></f:verbatim>
+	<f:verbatim><br /></f:verbatim>
+						
+	<h:outputText style="font-weight: bold;" value="Send Email: " />
+	<h:outputText value="#{catalogHandler.oldCatalogBean.needsCommsatInteg}" />
+					
+	<h:outputText style="font-weight: bold;" value="CommSat Template ID: " />
+	<h:outputText value="#{catalogHandler.oldCatalogBean.commSatTemplateId}" />
+					
+	<f:verbatim><br /></f:verbatim>
+	<f:verbatim><br /></f:verbatim>
+					
+	<h:outputText style="font-weight: bold;" value="Pre-Order Hold: " />
+	<h:outputText value="#{catalogHandler.oldCatalogBean.preOrderHold}" />
+					
+	<h:outputText style="font-weight: bold;" value="Pre-Order Street Date: " />
+	<h:outputText value="#{catalogHandler.oldCatalogBean.preorderStreetDate}" />
+					
+	<h:outputText style="font-weight: bold;" value="Pre-Order Status: " />
+	<h:outputText value="#{catalogHandler.oldCatalogBean.preorderStatusName}" />
+			
+</h:panelGrid>

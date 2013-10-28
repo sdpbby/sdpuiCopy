@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="xml.accenture.com/sdp/bby/utilities/Address" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:Address="xml.accenture.com/sdp/bby/utilities/Address">
+	<xs:annotation>
+		<xs:documentation> Address Entity</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="TelephoneNumber">
+		<xs:sequence>
+			<xs:element name="Type" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Mobile"/>
+						<xs:enumeration value="Home"/>
+						<xs:enumeration value="Work"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="AreaCode">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[0-9][0-9][0-9]"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ExchCode">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[0-9][0-9][0-9]"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="LocalNumCode">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[0-9][0-9][0-9][0-9]"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Extension" type="xs:string" minOccurs="0"/>
+			<xs:element name="Label" type="xs:string" minOccurs="0"/>			
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Demographics">
+		<xs:sequence>
+			<xs:element name="CountyCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="CountyName" type="xs:string" minOccurs="0"/>
+			<xs:element name="ZipCode">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="5"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ZipCode4" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="4"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="City" type="xs:string" minOccurs="0"/>
+			<xs:element name="State" type="xs:string" minOccurs="0"/>
+			<xs:element name="Country" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ParsedAddress">
+		<xs:sequence>
+			<xs:element name="HouseNumber" type="xs:string"/>
+			<xs:element name="StreetName" type="xs:string"/>
+			<xs:element name="AddressLine2" type="xs:string" minOccurs="0"/>
+			<xs:element name="UnitID" type="xs:string" minOccurs="0"/>
+			<xs:element name="SuiteID" type="xs:string" minOccurs="0"/>
+			<xs:element name="HouseNumberRange" type="xs:string" minOccurs="0"/>
+			<xs:element name="UnitNumberRange" type="xs:string" minOccurs="0"/>
+			<xs:element name="Demographics" type="Address:Demographics"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UnParsedAddress">
+		<xs:sequence>
+			<xs:element name="AddressLine1" type="xs:string"/>
+			<xs:element name="AddressLine2" type="xs:string" minOccurs="0"/>
+			<xs:element name="Demographics" type="Address:Demographics"/>
+			<xs:element name="Label" type="xs:string" minOccurs="0"/>			
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Address">
+		<xs:sequence>
+			<xs:element name="ParsedAddress" type="Address:ParsedAddress" minOccurs="0"/>
+			<xs:element name="UnParsedAddress" type="Address:UnParsedAddress" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.bestbuy.com/sdp/tpa" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.bestbuy.com/sdp/tpa">
+	<xs:element name="tpaProvisioningRequests">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="tpaProvisioningRequest" type="tpaProvisioningRequestType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="vendor" type="xs:string"/>
+			<xs:attribute name="action" type="actionType"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="tpaProvisioningRequest" type="tpaProvisioningRequestType"/>
+	<xs:complexType name="tpaProvisioningRequestType">
+		<xs:sequence>
+			<xs:element name="sdpID" type="xs:string"/>
+			<xs:element name="csmOfferID" type="xs:string" minOccurs="0"/>
+			<xs:element name="vendorKey" type="xs:string" minOccurs="0"/>
+			<xs:element name="requestMessage" type="requestMessageType"/>
+		</xs:sequence>
+		<xs:attribute name="vendor" type="xs:string"/>
+		<xs:attribute name="action" type="actionType"/>
+	</xs:complexType>
+	<xs:complexType name="requestMessageType">
+		<xs:sequence>
+			<xs:any processContents="skip" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="format" type="xs:string" use="optional"/>
+		<xs:attribute name="version" type="xs:int" use="optional"/>
+	</xs:complexType>
+	<xs:simpleType name="actionType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="activate"/>
+			<xs:enumeration value="cancel"/>
+			<xs:enumeration value="renew"/>
+                        <xs:enumeration value="updateStatus"/>     
+                        <xs:enumeration value="reactivate"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

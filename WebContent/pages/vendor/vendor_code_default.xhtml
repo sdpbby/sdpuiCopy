@@ -1,0 +1,7 @@
+<h:panelGroup id="default_panel" rendered="#{vendorCodeTabbedPaneHandler.defaultTabCurrent}" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core">
+	<h:form id="vendor_code_default">
+		<h:commandButton id="back_button" value="Back" action="#{vendorCodeHandler.backButtonClick}" styleClass="normal field_spacing" />
+		<h:commandButton id="create_button" value="Add New Status Code" action="#{vendorCodeHandler.createVendorCodeButtonClick}" styleClass="normal field_spacing" disabled="#{!userManagerBean.permissionsBean.createVendorAllowed}" />
+	
+	</h:form>
+</h:panelGroup>

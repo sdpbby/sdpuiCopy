@@ -1,0 +1,684 @@
+/*
+* browser specific
+*/
+.ieButtonClickHack {width:0px; display:none;padding:0px; margin:0px;}
+
+div.shim {
+	clear: both;
+	margin: 0;
+	padding: 0;	
+}
+
+/*
+	uncomment for testing
+*/
+/*
+body div {
+	border: dotted #ff0000 1px;
+}
+
+table, tr, td, th, thead, tbody, tfoot {
+	border: dotted blue 1px;	
+}
+*/
+/*
+	all content
+*/
+
+
+html, body {
+	padding: 0px;
+	margin: 0px;
+}
+
+body .normal {
+	font-family: arial, sans-serif;
+	font-size: 8pt;
+}
+
+body .bold {
+	font-weight: bold;
+}
+
+body .error {
+	font-family: arial, sans-serif;
+	font-size: 8pt;
+	color: #ff0000;
+}
+
+body .code, body .even_code, body .odd_code {
+	white-space: pre-wrap;
+	font-family: "Courier New", monospace, serif;
+	font-size: 8pt;
+}
+
+/*
+	forms
+*/
+body form {
+	margin: 0px;
+	padding: 0px;
+}
+
+body form input, 
+body form textarea, 
+body form select{
+	font-family: arial, sans-serif;
+	font-size: 8pt;
+}
+
+body form .short_field {
+	width: 100px;
+}
+
+body form .medium_field {
+	width: 150px;
+}
+
+body form .long_field {
+	width: 275px;
+}
+
+body form .field_spacing {
+	
+}
+
+.disabled {
+	background-color: #e0e0e0;
+	border: 1px #cecece solid;
+}
+
+/*
+	header content styles
+*/
+
+body div#header_content {
+	padding: 0px;
+	margin: 0px;
+	width: 100%;
+}
+
+body div#header_content div#top_header, 
+body div#header_content div#lower_header {
+	margin: 0px;
+	width: 100%;
+}
+
+body div#header_content table {
+	border-collapse: collapse;
+	padding: 0px;
+	margin: 0px;
+	width: 100%;
+}
+
+body div#header_content tr,
+body div#header_content td {
+	padding: 0px;
+	margin: 0px;
+}
+
+body div#header_content div#top_header {
+	background-image: url('/SDPUI/resources/images/Header_fill.PNG'); background-repeat: repeat-x; padding: 0px; margin: 0px;
+	padding: 0px;
+}
+
+body div#header_content div#top_header td#app_name, 
+body div#header_content div#top_header td#app_build, 
+body div#header_content div#top_header td#app_user, 
+body div#header_content div#top_header td#app_logout {
+	height: 33px;
+}
+
+body div#header_content div#top_header td#app_name {
+	width: 364px;
+	background-image: url('/SDPUI/resources/images/Header_left.PNG'); background-repeat: no-repeat;
+	font-family: arial, sans-serif;
+	font-size: 10pt;
+	color: #ffffff;
+	font-weight: bold;
+	padding-left: 50px;
+}
+
+body div#header_content div#top_header td#app_build {
+	font-family: arial, sans-serif;
+	font-size: 10pt;
+	color: #ffffff;
+}
+
+body div#header_content div#top_header td#app_user {
+	font-family: arial, sans-serif;
+	font-size: 10pt;
+	color: #ffffff;
+	whitespace: nowrap;
+	text-align: right;
+	width: 200px;
+}
+
+body div#header_content div#top_header td#app_logout {
+	width: 60px;
+}
+
+
+body div#header_content div#lower_header {
+	background-image: url('/SDPUI/resources/images/grey.PNG'); background-repeat: repeat-x; padding: 0px; margin: 0px;
+	height: 40px;
+}
+
+body div#header_content div#lower_header table {
+
+}
+
+body div#header_content div#lower_header td#app_page_title, 
+body div#header_content div#lower_header td#quick_nav {
+	height: 40px;
+}
+
+body div#header_content td#app_page_title {
+
+	width: 255px;
+	background-image: url('/SDPUI/resources/images/grey_left.PNG'); background-repeat: no-repeat;
+	font-family: arial, sans-serif;
+	font-size: 11pt;
+	font-weight: bold;
+	text-align: center;
+	color: #0035ad;
+	padding-top: 10px;
+}
+
+body div#header_content td#quick_nav {
+	text-align: right;
+}
+
+
+/*
+	main content area
+*/
+body div#content {
+	clear: both;
+	margin: 10px;
+	padding: 10px;	
+}
+
+
+/*
+	title section
+*/
+body div#title_content {
+	clear: both;
+	margin-left: 10px;
+	margin-right: 0px;
+	margin-top: 30px;
+	margin-bottom: 20px;
+	padding-left: 10px;
+	padding-right: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+body div#title_content h1, body div#title_content h2 {
+	font-family: arial, sans-serif;
+	padding: 0px;
+	margin: 0px;
+}
+
+body div#title_content h1 {
+	font-size: 14pt;
+	color: #000000;
+}
+
+body div#title_content h2 {
+	font-size: 11pt;
+	color: #808080;
+}
+
+
+
+
+
+/*
+	format forms into three or two columns
+*/
+body div#top_content {
+	margin-bottom: 20px;
+	clear: both;
+}
+
+body div#top_content .wide_column {
+	width: 800px;
+	float: left;
+	text-align: right;
+	vertical-align: top;
+}
+
+body div#top_content .normal_column {
+	width: 400px;
+	float: left;
+	text-align: right;
+	vertical-align: top;
+}
+
+body div#top_content .short_column {
+	width: 250px;
+	float: left;
+	text-align: right;
+	vertical-align: top;
+}
+
+body div#top_content .wide_left_column {
+	width: 800px;
+	float: left;
+	text-align: left;
+	vertical-align: top;
+}
+
+body div#top_content .normal_left_column {
+	width: 400px;
+	float: left;
+	text-align: left;
+	vertical-align: top;
+}
+
+body div#top_content .short_left_column {
+	width: 250px;
+	float: left;
+	text-align: left;
+	vertical-align: top;
+}
+
+body div#top_content .full_column {
+	width: 1200px;
+	vertical-align: top;
+}
+
+
+
+/*
+	formatting data tables
+*/
+body div#datatable_panel {
+	clear: both;
+	margin-top: 30px;
+	width: 100%;
+}
+
+body table.datatable_paginator_wrapper {
+	width: 100%;
+	border-collapse: collapse;
+	border: 1px solid #cfcfcf;
+	background-color: #cfcfcf;
+	padding: 0px;
+	margin: 0px;	
+}
+
+body table.datatable {
+	width: 100%;
+	font-family: verdana;
+	font-size: 8pt;
+	border-collapse: collapse;
+	border: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+body table.datatable_auto {
+	width: auto;
+	font-family: verdana;
+	font-size: 8pt;
+	border-collapse: collapse;
+	border: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+
+body table.datatable thead td, body table.datatable tbody td {
+	border: 1px solid #808080;
+}
+
+body table.datatable thead td {
+	font-weight: bold;
+}
+
+body table.datatable_paginator_wrapper .header {
+	background-image: url('/SDPUI/resources/images/banner2.PNG'); background-repeat: repeat-x; padding: 0px; margin: 0px;
+	font-size: 10pt;
+	font-weight: bold;
+	color: #ffffff;
+	height: 33px;
+	text-align: left;
+}
+body table.datatable_paginator_wrapper .header a,
+body table.datatable_paginator_wrapper .header a:active,
+body table.datatable_paginator_wrapper .header a:hover,
+body table.datatable_paginator_wrapper .header a:link,
+body table.datatable_paginator_wrapper .header a:visited {
+	text-decoration: none;
+	font-size: 10pt;
+	font-weight: bold;
+	color: #ffffff;
+	height: 33px;
+	text-align: left;
+	font-family: "Courier New", monospace, serif;
+}
+
+
+body table.datatable tbody .even, body table.datatable_auto tbody .even {
+	background-color: #e0e0e0;
+}
+
+body table.datatable tbody .odd, body table.datatable_auto tbody .odd {
+	background-color: #cecece;
+}
+
+body table.datatable tbody .warning_row, body table.datatable_auto tbody .warning_row {
+	background-color: #ffff00;
+}
+
+body table.datatable tbody .error_row, body table.datatable_auto tbody .error_row {
+	background-color: #ff0000;
+	color: #ffffff;
+}
+
+body table.datatable tbody .top, body table.datatable_auto tbody .top {
+	vertical-align: top;
+}
+
+
+body table.datatable_paginator_wrapper .normal {
+	font-family: arial, verdana, sans-serif;
+	font-size: 12pt;
+}
+
+body table.datatable_paginator_wrapper .paginator .results {
+	vertical-align: top;
+}
+
+body table.datatable_paginator_wrapper .paginator .navigation {
+	text-align: right;
+}
+
+
+
+/*
+	formatting menu tables
+*/
+body table.menutable {
+	width: 100%;
+	font-family: verdana;
+	font-size: 8pt;
+	border-collapse: collapse;
+	border: none;
+	padding: 0px;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-bottom: 15px;
+	margin-right: 15px;
+	
+}
+
+body table.menutable thead td, body table.menutable tbody td {
+	border: 1px solid #808080;
+}
+
+body table.menutable thead td {
+	background-image: url('/SDPUI/resources/images/banner2.PNG'); background-repeat: repeat-x; padding: 0px; margin: 0px;
+	font-size: 10pt;
+	font-weight: bold;
+	color: #ffffff;
+	height: 33px;
+	text-align: left;
+}
+
+body table.menutable tbody .even {
+	background-color: #e0e0e0;
+}
+
+body table.menutable tbody .odd {
+	background-color: #cecece;
+}
+
+
+/*
+*	reflow form styles
+*/
+.panel_main {
+	border: 1px solid #808080;
+	background-color: #cfcfcf;
+	padding:8px;
+}
+
+.panel_main_row {
+	background-color: #cfcfcf;
+}
+
+.panel_main_label {
+	text-align: right;
+	border: none;
+	white-space: nowrap;
+}
+
+.editable_form_panel {
+	vertical-align: top;
+}
+
+.editable_form_panel .left {
+	text-align: left;
+}
+
+.editable_form_panel .left_fixed {
+	text-align: left;
+	width: 150px;
+	margin-right: 20px;
+}
+
+.editable_form_panel .right {
+	text-align: right;
+}
+
+.panel_main .panel_main_value {
+	text-align: left;
+	border: 1px solid #808080;
+	background-color: #ffffff;
+	width: 150px;
+}
+
+.editable_form_panel th, .panel_main th {
+	text-align:left;
+	font-style:italic;
+}
+
+.panel_main_search {
+	border: 1px solid #808080;
+	background-color: #cfcfcf;
+	padding:8px;
+	text-align: left;
+	width: 380px;
+	height: 270px;
+}
+
+.iceSelInpDateInput-dis{ 
+	background-color: #c0c0c0;
+	width: 120px; 
+}
+.panel_main_search th {
+	text-align:left;
+	font-style:italic;
+}
+
+.panel_main_search_vendor {
+	border: 1px solid #808080;
+	background-color: #cfcfcf;
+	padding:8px;
+	text-align: left;
+	width: 785px;
+	height: 270px;
+}
+
+.panel_main_search_vendor th {
+	text-align:left;
+	font-style:italic;
+}
+
+
+body div#error div#error_title, body div#error div#error_body {
+	clear: both;
+	margin-left: 10px;
+	margin-right: 0px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding: 0px;
+}
+
+body div#error div#error_title h1, body div#error div#error_title h2 {
+	font-family: arial, sans-serif;
+	font-weight: bold;
+	margin-left: 15px;
+	margin-right: 0px;
+	width: 800px;
+}
+
+body div#error div#error_title h1 {
+	color: gray;
+	font-size: 14pt;
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+	border-bottom: black solid 2px;
+}
+
+body div#error div#error_title h2 {
+	font-size: 8pt;
+}
+
+body div#error p {
+	font-family: arial, sans-serif;
+	font-size: 8pt;
+	padding: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 15px;
+	margin-right: 0px;
+}
+
+table#home {
+	border-collapse:collapse;
+	background-color: #CCCCCC;
+}
+
+thead#home th {
+	border-top: 1px black solid;
+	font-size: 14pt;
+	padding-right: 15px;
+	padding-left: 15px;
+	padding-top: 5px;
+	padding-bottom: 15px;
+}
+
+tbody#home td.singleCol {
+	padding-right: 15px;
+	padding-left: 15px;
+	padding-top: 10px;
+	padding-bottom: 5px;
+	margin-right: 50px;
+	margin-left: 50px;
+	border-right: 1px black solid;
+	border-left: 1px black solid;
+	background-color: #CCCCCC;
+}
+
+tbody#home th.singleCol{
+	padding-right: 15px;
+	padding-left: 15px;
+	padding-top: 10px;
+	padding-bottom: 5px;
+}
+
+tfoot#home th {
+	border-bottom: 1px black solid;
+	padding-right: 15px;
+	padding-left: 15px;
+	padding-top: 5px;
+	padding-bottom: 15px;
+}
+
+
+.backgroundimageDisabled, span.opsLink {
+	padding: 0;
+	margin: 0;
+	background-image: url('/SDPUI/resources/images/btnDisabled.GIF');
+	color:#ffffff;
+	cursor:default;
+	height:46px;	
+	width:88px;	
+	display: block;
+	text-align:center;
+	font-family:veranda, arial, sans-serif;
+	font-size:10pt;
+	text-decoration:none;
+}
+.btnRemoveAtt
+                {
+                                height:16px;
+                                border-style:solid;
+                                border-width:1px;
+                                border-color:#000000;
+				background-color:#FFFF00;                              
+				padding-left:10px;
+                                padding-right:10px;
+                                padding-top:2px;
+                                padding-bottom:2px;
+                                font-family:Arial,Helvetica,sans-serif;
+                                text-align:center;
+                                font-size:9pt;
+                                font-weight:Bold;
+                                text-transform:uppercase;
+                                color:#000000;
+                                filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr='#8cbc32',EndColorStr='#b0d961');
+
+                                text-decoration: none;
+
+                }
+
+
+a:link.btnRemoveAtt
+                {
+                                height:16px;
+                                border-width:1px;
+                                border-color:#000000;
+				padding-left:10px;
+                                padding-right:10px;
+                                padding-top:2px;
+                                padding-bottom:2px;
+                                text-align:center;
+                                font-family:Arial,Helvetica,sans-serif;
+                                font-size:9pt;
+                                font-weight:Bold;
+                                text-transform:uppercase;
+                                color:#000000;
+                                filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr='#8cbc32',EndColorStr='#b0d961');
+
+                                text-decoration: none;
+                }
+a:hover.btnRemoveAtt
+                {
+                                height:16px;
+                                border-style:solid;
+                                border-width:1px;
+                                border-color:#F2FA00;
+                                background-color:#42009E;
+                                padding-left:10px;
+                                padding-right:10px;
+                                padding-top:2px;
+                                padding-bottom:2px;
+                                text-align:center;
+                                font-family:Arial,Helvetica,sans-serif;
+                                font-size:9pt;
+                                font-weight:Bold;
+                                text-transform:uppercase;
+                                color:#F2FA00;
+                                filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr='#b0d961',EndColorStr='#8cbc32');
+                                text-decoration: none;
+                }
+
+
+
+

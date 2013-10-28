@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="xml.accenture.com/sdp/bby/SOCommonHeader" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soc="xml.accenture.com/sdp/bby/SOCommonHeader">
+	<xs:element name="CommonHeader">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ServiceID" type="xs:string"/>
+				<xs:element name="ServiceLabel" type="xs:string"/>
+				<xs:element name="SOServiceLabel" type="xs:string" minOccurs="0"/>
+				<xs:element name="RequestQueue" type="xs:string" minOccurs="0"/>
+				<xs:element name="ResponseQueue" type="xs:string" minOccurs="0"/>
+				<xs:element name="CorrelationId" type="xs:string" minOccurs="0"/>
+				<xs:element name="SourceSystemId" type="xs:string" minOccurs="0"/>
+				<xs:element name="Priority" type="xs:string" minOccurs="0"/>
+				<xs:element name="ActivityName" type="xs:string" minOccurs="0"/>
+				<xs:element name="InstanceID" type="xs:string" minOccurs="0"/>
+				<xs:element ref="soc:Metering" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Metering">
+		<xs:complexType>
+			<xs:sequence minOccurs="0">
+				<xs:element name="ComponentServiceName" type="xs:string" minOccurs="0"/>
+				<xs:element name="MeteringType" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

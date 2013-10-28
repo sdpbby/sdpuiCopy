@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wsswssecurity-.0.xsd" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wsswssecurity- utility-1.0.xsd" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wsswssecurity-.0.xsd">
+	<xs:element name="CanonicalizationMethod">
+		<xs:complexType>
+			<xs:attribute name="Algorithm" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:anyURI">
+						<xs:enumeration value="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DigestMethod">
+		<xs:complexType>
+			<xs:attribute name="Algorithm" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:anyURI">
+						<xs:enumeration value="http://www.w3.org/2000/09/xmldsig#sha1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DigestValue">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="string"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="KeyInfo">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="wsse:SecurityTokenReference"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ReferenceSig">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="wsse:DigestMethod"/>
+				<xs:element ref="wsse:DigestValue"/>
+			</xs:sequence>
+			<xs:attribute name="URI" type="xs:anyURI" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SignatureMethod">
+		<xs:complexType>
+			<xs:attribute name="Algorithm" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:anyURI">
+						<xs:enumeration value="http://www.w3.org/2000/09/xmldsig#hmac-sha1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SignatureValue">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="string"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="SignedInfo">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="wsse:CanonicalizationMethod"/>
+				<xs:element ref="wsse:SignatureMethod"/>
+				<xs:element ref="wsse:ReferenceSig"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Signature">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="wsse:SignedInfo"/>
+				<xs:element ref="wsse:SignatureValue"/>
+				<xs:element ref="wsse:KeyInfo"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Password">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="Type" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="PasswordText"/>
+								<xs:enumeration value="PasswordDigest"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Reference">
+		<xs:complexType>
+			<xs:attribute name="URI" type="xs:anyURI" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Security">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="wsse:UsernameToken" minOccurs="0"/>
+				<xs:element name="BinarySecurityToken" minOccurs="0">
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:base64Binary">
+								<xs:attribute name="Id" type="xs:string"/>
+								<xs:attribute name="Valuetype" type="xs:string"/>
+								<xs:attribute name="EncodingType" type="xs:string"/>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="wsse:Signature"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SecurityTokenReference">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="wsse:Reference"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Username">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="string"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Created">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="string"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="UsernameToken">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="wsse:Username"/>
+				<xs:element ref="wsse:Password"/>
+				<xs:element name="Nonce" type="xs:anySimpleType" minOccurs="0"/>
+				<xs:element ref="wsse:Created" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

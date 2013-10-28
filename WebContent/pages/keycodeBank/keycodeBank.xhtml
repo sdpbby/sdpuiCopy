@@ -1,0 +1,38 @@
+<ui:composition template="/pages/templates/masterLayout.xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml">
+	<ui:define name="windowTitle">
+		#{msg['keycodeBank.windowtitle']}
+	</ui:define>
+	
+	<ui:define name="tabTitle">
+		<h:outputText value="#{msg['keycodeBank.tabtitle.dashboard']}" rendered="#{keycodeBankReportTabbedPaneHandler.dashboardTabCurrent}" />
+		<h:outputText value="#{msg['keycodeBank.tabtitle.report']}" rendered="#{keycodeBankReportTabbedPaneHandler.reportTabCurrent}" />
+		
+	</ui:define>
+	
+	<ui:define name="pageTitle">
+		#{msg['keycodeBank.pagetitle']}
+	</ui:define>
+	
+	<ui:define name="subTitle">
+		<h:outputText value="#{msg['keycodeBank.subtitle.dashboard']}" rendered="#{keycodeBankReportTabbedPaneHandler.dashboardTabCurrent}" />
+		<h:outputText value="#{msg['keycodeBank.subtitle.daily_report']}" rendered="#{keycodeBankReportTabbedPaneHandler.dailyReportTabCurrent}" />
+		<h:outputText value="#{msg['keycodeBank.subtitle.monthly_report']}" rendered="#{keycodeBankReportTabbedPaneHandler.monthlyReportTabCurrent}" />
+		<h:outputText value="#{msg['keycodeBank.subtitle.depletion_report']}" rendered="#{keycodeBankReportTabbedPaneHandler.depletionReportTabCurrent}" />
+	</ui:define>
+	
+	<ui:define name="content">
+	
+		<div id="top_content">
+			<ui:include src="/pages/keycodeBank/keycodeBank_dashboard.xhtml" />
+			<ui:include src="/pages/keycodeBank/keycodeBank_dashboard_depletion_report.xhtml" />
+			<ui:include src="/pages/keycodeBank/keycodeBank_dashboard_daily_report.xhtml" />
+			<ui:include src="/pages/keycodeBank/keycodeBank_dashboard_monthly_report.xhtml" />
+		</div>
+		
+		<div id="datatable_panel">
+			<ui:include src="/pages/keycodeBank/keycodeBank_dashboard_report.xhtml" />
+		</div>
+		
+	</ui:define>
+	
+</ui:composition>

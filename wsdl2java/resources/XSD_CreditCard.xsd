@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="xml.accenture.com/sdp/bby/cm/CreditCard" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:CreditCard="xml.accenture.com/sdp/bby/cm/CreditCard" xmlns:Address="xml.accenture.com/sdp/bby/utilities/Address" xmlns:Customer="xml.accenture.com/sdp/bby/cm/Customer">
+	<xs:import namespace="xml.accenture.com/sdp/bby/utilities/Address" schemaLocation="XSD_Address.xsd"/>
+	<xs:import namespace="xml.accenture.com/sdp/bby/cm/Customer" schemaLocation="XSD_Customer.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Credit Card Entity</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="CreditCard">
+		<xs:sequence>
+			<xs:element name="CreditCardOwner" type="Customer:Name"/>
+			<xs:element name="CardNumber" type="xs:long"/>
+			<xs:element name="ExpDate">
+				<!-- The format for the Credit Card Expiration Date is MM/YY -->
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[0][0-9]/[0-9][0-9]"/>
+						<xs:pattern value="[1][0-2]/[0-9][0-9]"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Type" type="xs:string"/>
+			<xs:element name="CVVCode" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

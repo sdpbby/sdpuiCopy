@@ -1,0 +1,20 @@
+<h:form id="daily_report_top_panel" rendered="#{keycodeBankReportTabbedPaneHandler.dailyReportTabCurrent}" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
+	
+		<h:panelGroup id="daily_report" rendered="#{keycodeBankReportTabbedPaneHandler.dailyReportTabCurrent}">
+			<h:panelGrid columns="6">
+				<h:outputText value="Jump To: " />
+				<h:selectOneMenu id="year" value="#{keycodeBankReportDatatable.year}" valueChangeListener="#{keycodeBankReportDatatable.processYearChange}"  immediate="true" onchange="submit()" >
+					<f:selectItems value="#{keycodeBankReportDatatable.yearsList}" />
+				</h:selectOneMenu>
+				<h:selectOneMenu id="month" value="#{keycodeBankReportDatatable.month}" valueChangeListener="#{keycodeBankReportDatatable.processMonthChange}"  immediate="true" onchange="submit()">
+					<f:selectItems value="#{keycodeBankReportDatatable.monthsList}" />
+				</h:selectOneMenu>
+				<h:selectOneMenu id="day" value="#{keycodeBankReportDatatable.dayOfMonth}">
+					<f:selectItems value="#{keycodeBankReportDatatable.daysDropdownList}" />
+				</h:selectOneMenu>
+				<h:commandButton value="Query" action="#{keycodeBankReportDatatable.generateDailyReportButtonClick}" />
+				<h:commandButton value="Return to Dashboard" action="#{keycodeBankReportDatatable.backButtonClick}" />
+			</h:panelGrid>
+		</h:panelGroup>
+
+</h:form>

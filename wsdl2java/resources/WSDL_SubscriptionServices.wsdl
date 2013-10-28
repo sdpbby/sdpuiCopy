@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s2:definitions targetNamespace="xml.accenture.com/sdp/bby/ICDM" xmlns:s0="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:s1="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:s2="http://schemas.xmlsoap.org/wsdl/" xmlns:s3="http://schemas.bestbuy.com/sdp/cancelSubscription" xmlns:s4="http://schemas.bestbuy.com/sdp/renewSubscription" xmlns:s5="http://schemas.bestbuy.com/sdp/modifySubscription" xmlns:s6="http://schemas.bestbuy.com/sdp/updateSubscriptionStatus" xmlns:s7="xml.accenture.com/sdp/bby/ICDM" xmlns:s8="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+  <s0:Policy s1:Id="Mtom.xml">
+    <wsoma:OptimizedMimeSerialization xmlns:wsoma="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization"/>
+  </s0:Policy>
+  <wsp:UsingPolicy s2:Required="true"/>
+  <s2:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://schemas.bestbuy.com/sdp" xmlns:ns="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://schemas.xmlsoap.org/soap/encoding/" xmlns:s0="http://schemas.xmlsoap.org/wsdl/" xmlns:s1="http://schemas.bestbuy.com/sdp/cancelSubscription" xmlns:s2="http://schemas.bestbuy.com/sdp/cancelSubscription" xmlns:s3="xml.accenture.com/sdp/bby/ICDM" xmlns:s4="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s5="http://schemas.bestbuy.com/sdp/renewSubscription" xmlns:s6="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s7="http://schemas.bestbuy.com/sdp/modifySubscription" xmlns:s8="http://schemas.bestbuy.com/sdp/updateSubscriptionStatus" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.bestbuy.com/sdp/cancelSubscription" schemaLocation="XSD_CancelSubscription.xsd"/>
+      <xs:import namespace="http://schemas.bestbuy.com/sdp/renewSubscription" schemaLocation="XSD_RenewSubscription.xsd"/>
+      <xs:import namespace="http://schemas.bestbuy.com/sdp/modifySubscription" schemaLocation="XSD_ModifySubscription.xsd"/>
+      <xs:import namespace="http://schemas.bestbuy.com/sdp/updateSubscriptionStatus" schemaLocation="XSD_UpdateSubscriptionStatus.xsd"/>
+      <xs:annotation>
+        <xs:documentation>Input and Output interfaces for Subscription service</xs:documentation>
+      </xs:annotation>
+    </xs:schema>
+  </s2:types>
+  <s2:message name="CancelSubscriptionRequest">
+    <s2:part element="s3:CancelSubscriptionRequest" name="parameters"/>
+  </s2:message>
+  <s2:message name="CancelSubscriptionResponse">
+    <s2:part element="s3:CancelSubscriptionResponse" name="parameters"/>
+  </s2:message>
+  <s2:message name="RenewSubscriptionRequest">
+    <s2:part element="s4:RenewSubscriptionRequest" name="parameters"/>
+  </s2:message>
+  <s2:message name="RenewSubscriptionResponse">
+    <s2:part element="s4:RenewSubscriptionResponse" name="parameters"/>
+  </s2:message>
+  <s2:message name="ModifySubscriptionRequest">
+    <s2:part element="s5:ModifySubscriptionRequest" name="parameters"/>
+  </s2:message>
+  <s2:message name="ModifySubscriptionResponse">
+    <s2:part element="s5:ModifySubscriptionResponse" name="parameters"/>
+  </s2:message>
+  <s2:message name="UpdateSubscriptionStatusRequest">
+    <s2:part element="s6:UpdateSubscriptionStatusRequest" name="parameters"/>
+  </s2:message>
+  <s2:message name="UpdateSubscriptionStatusResponse">
+    <s2:part element="s6:UpdateSubscriptionStatusResponse" name="parameters"/>
+  </s2:message>
+  <s2:portType name="SubscriptionPort">
+    <s2:operation name="CancelSubscription">
+      <s2:input message="s7:CancelSubscriptionRequest"/>
+      <s2:output message="s7:CancelSubscriptionResponse"/>
+    </s2:operation>
+    <s2:operation name="RenewSubscription">
+      <s2:input message="s7:RenewSubscriptionRequest"/>
+      <s2:output message="s7:RenewSubscriptionResponse"/>
+    </s2:operation>
+    <s2:operation name="ModifySubscription">
+      <s2:input message="s7:ModifySubscriptionRequest"/>
+      <s2:output message="s7:ModifySubscriptionResponse"/>
+    </s2:operation>
+    <s2:operation name="UpdateSubscriptionStatus">
+      <s2:input message="s7:UpdateSubscriptionStatusRequest"/>
+      <s2:output message="s7:UpdateSubscriptionStatusResponse"/>
+    </s2:operation>
+  </s2:portType>
+  <s2:binding name="SubscriptionSoapBinding" type="s7:SubscriptionPort">
+    <s8:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsp:Policy>
+      <wsp:PolicyReference URI="#Mtom.xml"/>
+    </wsp:Policy>
+    <s2:operation name="CancelSubscription">
+      <s8:operation soapAction="xml.accenture.com/sdp/bby/CancelSubscription" style="document"/>
+      <s2:input>
+        <s8:body use="literal"/>
+      </s2:input>
+      <s2:output>
+        <s8:body use="literal"/>
+      </s2:output>
+    </s2:operation>
+    <s2:operation name="RenewSubscription">
+      <s8:operation soapAction="xml.accenture.com/sdp/bby/RenewSubscription" style="document"/>
+      <s2:input>
+        <s8:body use="literal"/>
+      </s2:input>
+      <s2:output>
+        <s8:body use="literal"/>
+      </s2:output>
+    </s2:operation>
+    <s2:operation name="ModifySubscription">
+      <s8:operation soapAction="xml.accenture.com/sdp/bby/ModifySubscription" style="document"/>
+      <s2:input>
+        <s8:body use="literal"/>
+      </s2:input>
+      <s2:output>
+        <s8:body use="literal"/>
+      </s2:output>
+    </s2:operation>
+    <s2:operation name="UpdateSubscriptionStatus">
+      <s8:operation soapAction="xml.accenture.com/sdp/bby/UpdateSubscriptionStatus" style="document"/>
+      <s2:input>
+        <s8:body use="literal"/>
+      </s2:input>
+      <s2:output>
+        <s8:body use="literal"/>
+      </s2:output>
+    </s2:operation>
+  </s2:binding>
+  <s2:service name="Subscription">
+    <s2:port binding="s7:SubscriptionSoapBinding" name="SubscriptionSoapPort">
+      <s8:address location="http://dld17app.na.bestbuy.com:31080/BS_SubscriptionServices"/>
+    </s2:port>
+  </s2:service>
+</s2:definitions>

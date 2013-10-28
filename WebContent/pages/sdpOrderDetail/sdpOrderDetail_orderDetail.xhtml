@@ -1,0 +1,97 @@
+<h:panelGroup id="detail_panel" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core">
+
+	<h:panelGrid columns="2" styleClass="panel_main normal" columnClasses="panel_main_label,panel_main_value">
+	
+		<h:outputText value="SDP Order ID: " />
+		<h:outputText value="#{sdpOrderDetailHandler.data.sdpOrderId}" />
+		
+		<h:outputText value="Created Date: " />
+		<h:outputText value="#{sdpOrderDetailHandler.data.recordCreatedDate}">
+			<f:convertDateTime pattern="#{msg['ui.date.timestamp_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+		</h:outputText>
+		
+		<h:outputText value="Status: " />
+		<h:outputText value="#{sdpOrderDetailHandler.sdpOrderStatusName}" />
+		
+		<h:outputText value="Line Item ID: " />
+		<h:outputText value="#{sdpOrderDetailHandler.data.lineItemId}" />
+		
+		<h:outputText value="Source System: " />
+		<h:outputText value="#{sdpOrderDetailHandler.data.sourceSystemId}" />
+		
+		<h:outputText value="Transaction Date: " />
+		<h:outputText value="#{sdpOrderDetailHandler.data.fpkTransactionDate}">
+			<f:convertDateTime pattern="#{msg['ui.date.store_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+		</h:outputText>
+		
+		<h:outputText value="Store #: " />
+		<h:outputText value="#{sdpOrderDetailHandler.data.fpkStoreId}" />
+		
+		<h:outputText value="Register #: " />
+		<h:outputText value="#{sdpOrderDetailHandler.data.fpkRegisterId}" />
+		
+		<h:outputText value="Transaction #: " />
+		<h:outputText value="#{sdpOrderDetailHandler.data.fpkTransactionId}" />
+		
+		<h:outputText value="Line #: " />
+		<h:outputText value="#{sdpOrderDetailHandler.data.fpkLineId}" />
+		
+		<h:outputText value="Serial Number: " />
+		<h:outputText value="#{sdpOrderDetailHandler.data.serialNumber}" />
+		
+		<h:outputText value="Keycode: " />
+		<h:outputText value="#{sdpOrderDetailHandler.data.keyCode}" />
+		
+		<h:outputText value="Confirmation Code: " />
+		<h:outputText value="#{sdpOrderDetailHandler.data.confirmationCode}" />
+		
+		<h:outputText value="Value Package ID: " />
+		<h:outputText value="#{sdpOrderDetailHandler.data.valuePackageId}" />
+		
+		<h:outputText value="Contract ID: " />
+		<h:outputText value="#{sdpOrderDetailHandler.data.contractId}" />
+		
+		<h:outputText value="Contract End Date: " />
+		<h:outputText value="#{sdpOrderDetailHandler.data.contractEndDate}">
+			<f:convertDateTime pattern="#{msg['ui.date.store_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+		</h:outputText>
+		
+		<h:outputText value="Primary SKU: " rendered="#{!sdpOrderDetailHandler.digitalAttributesPresent}" />
+		<h:outputText value="#{sdpOrderDetailHandler.data.primarySku}" rendered="#{!sdpOrderDetailHandler.digitalAttributesPresent}" />
+		
+		<h:outputText value="Related SKU: " rendered="#{!sdpOrderDetailHandler.digitalAttributesPresent}" />
+		<h:outputText value="#{sdpOrderDetailHandler.data.relatedSku}" rendered="#{!sdpOrderDetailHandler.digitalAttributesPresent}" />
+		
+		<h:outputText value="Master Item ID: " rendered="#{sdpOrderDetailHandler.digitalAttributesPresent}" />
+		<h:outputText value="#{sdpOrderDetailHandler.data.masterItemId}" rendered="#{sdpOrderDetailHandler.digitalAttributesPresent}" />
+		
+		<h:outputText value="Description: " />
+		<h:outputText value="#{sdpOrderDetailHandler.data.productDescription}" />
+		
+		<h:outputText value="Master Vendor ID: " rendered="#{sdpOrderDetailHandler.digitalAttributesPresent}" />
+		<h:outputText value="#{sdpOrderDetailHandler.data.masterVendorId}" rendered="#{sdpOrderDetailHandler.digitalAttributesPresent}" />
+		
+		<h:outputText value="Product Type: " rendered="#{sdpOrderDetailHandler.digitalAttributesPresent}" />
+		<h:outputText value="#{sdpOrderDetailHandler.data.productType}" rendered="#{sdpOrderDetailHandler.digitalAttributesPresent}" />
+		
+		<h:outputText value="Vendor Trigger SKU: " />
+		<h:outputText value="#{sdpOrderDetailHandler.data.vendorProductSku}" />
+		
+		<h:outputText value="Vendor: " />
+		<h:outputText value="#{sdpOrderDetailHandler.vendorName}" />
+		
+		<h:outputText value="Customer Name: " />
+		<h:outputText value="#{sdpOrderDetailHandler.data.customerFullName}" />
+		
+		<h:outputText value="Contact Email: " />
+		<h:outputText value="#{sdpOrderDetailHandler.data.customerContactEmail}" />
+		
+		<h:outputText value="Delivery Email: " />
+		<h:outputText value="#{sdpOrderDetailHandler.data.deliveryEmail}" />
+		
+		<h:outputText value="State Address: " />
+		<h:outputText value="#{sdpOrderDetailHandler.data.addressState}" />
+	</h:panelGrid>
+
+</h:panelGroup>
+		

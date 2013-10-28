@@ -1,0 +1,36 @@
+<ui:composition template="/pages/templates/masterLayout.xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml">
+	<ui:define name="windowTitle">
+		#{msg['keycodeBank.load.windowtitle']}
+	</ui:define>
+	
+	<ui:define name="tabTitle">
+		<h:outputText value="#{msg['keycodeBank.load.tabtitle.form']}" rendered="#{keycodeBankLoadTabbedPaneHandler.formTabCurrent}" />
+		<h:outputText value="#{msg['keycodeBank.load.tabtitle.validate']}" rendered="#{keycodeBankLoadTabbedPaneHandler.validateTabCurrent}" />
+		<h:outputText value="#{msg['keycodeBank.load.tabtitle.complete']}" rendered="#{keycodeBankLoadTabbedPaneHandler.completeTabCurrent}" />
+	</ui:define>
+	
+	<ui:define name="pageTitle">
+		#{msg['keycodeBank.pagetitle']}
+	</ui:define>
+	
+	<ui:define name="subTitle">
+		<h:outputText value="#{msg['keycodeBank.load.subtitle.form']}" rendered="#{keycodeBankLoadTabbedPaneHandler.formTabCurrent}" />
+		<h:outputText value="#{msg['keycodeBank.load.subtitle.validate']}" rendered="#{keycodeBankLoadTabbedPaneHandler.validateTabCurrent}" />
+		<h:outputText value="#{msg['keycodeBank.load.subtitle.complete']}" rendered="#{keycodeBankLoadTabbedPaneHandler.completeTabCurrent}" />
+	</ui:define>
+	
+	<ui:define name="content">
+	
+		<div id="top_content">
+			<ui:include src="/pages/keycodeBank/keycodeBank_load_form.xhtml" />
+			<ui:include src="/pages/keycodeBank/keycodeBank_load_validate.xhtml" />
+			<ui:include src="/pages/keycodeBank/keycodeBank_load_complete.xhtml" />
+		</div>
+		
+		<div id="datatable_panel">
+			<ui:include src="/pages/keycodeBank/keycodeBank_load_datatable.xhtml" />
+		</div>
+		
+	</ui:define>
+	
+</ui:composition>

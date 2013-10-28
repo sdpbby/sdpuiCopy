@@ -1,0 +1,107 @@
+<h:panelGroup id="detail_panel_tran_search" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+	<div id="leftcol" class="panel_main_search normal">
+		<table width="380px" height="250px" >
+			<h:form id="order_5pk_search">
+
+				<tr>
+					<td colspan="3">
+						<h2>Search By transaction</h2>
+					</td>
+				</tr>
+				<tr width="450px">
+					<td width="80px">
+						<h:outputLabel for="search_date_4pk" value="Transaction Date: " styleClass="normal field_spacing" />
+					</td>
+					<td width="250px">
+							<ice:selectInputDate id="search_date_4pk" renderMonthAsDropdown="true" renderYearAsDropdown="true" value="#{sdpOrderSearchResultsDatatable.fpkTransactionDateSearchField}" rendered="true" title="MM/DD/YYYY" renderAsPopup="true" styleClass="normal field_spacing standard_width">
+								<f:convertDateTime pattern="#{msg['ui.date.store_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+							</ice:selectInputDate>
+					</td>
+					<td width="50px">
+						<h:commandButton id="search_4pk_submit" value="Search" action="#{sdpOrderSearchResultsDatatable.searchByFivePartButtonClick}" styleClass="normal field_spacing" />
+						<!--<h:message styleClass="error" for="search_date_4pk" id="error1"/>-->
+					</td>
+				</tr>
+				<tr>
+					<td width="400px" colspan="3">
+						<h:message for="search_date_4pk" style="color:red" />
+
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<h:outputLabel for="search_strId" value="Store Id: " styleClass="normal field_spacing" />
+					</td>
+					<td>
+						<h:inputText id="search_strId" value="#{sdpOrderSearchResultsDatatable.fpkStoreIdSearchField}" styleClass="short_field field_spacing" required="false"/>
+					</td>
+					<td>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<h:outputLabel for="search_regId" value="Register Id: " styleClass="normal field_spacing" />
+					</td>
+					<td>
+						<h:inputText id="search_regId" value="#{sdpOrderSearchResultsDatatable.fpkRegisterIdSearchField}" styleClass="short_field field_spacing" required="false"/>
+					</td>
+					<td>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<h:outputLabel for="search_tranId" value="Transaction Id: " styleClass="normal field_spacing" />
+					</td>
+					<td>
+						<h:inputText id="search_tranId" value="#{sdpOrderSearchResultsDatatable.fpkTransactionIdSearchField}" styleClass="short_field field_spacing" required="false"/>
+					</td>
+					<td>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h:outputLabel for="search_lineId" value="Line Id: " styleClass="normal field_spacing" />
+					</td>
+					<td>
+						<h:inputText id="search_lineId" value="#{sdpOrderSearchResultsDatatable.fpkLineIdSearchField}" styleClass="short_field field_spacing" required="false"/>
+					</td>
+					<td>
+					</td>
+				</tr>
+
+			</h:form>
+			<tr>
+				<td colspan="3">
+					<hr/>
+
+				</td>
+			</tr>
+			<h:form id="order_bbyId_search">
+
+				<tr>
+					<td>
+						<h:outputLabel for="search_BBYID" value="BBY Order ID: " styleClass="normal field_spacing" />
+					</td>
+					<td>
+						<h:inputText id="search_BBYID" value="#{sdpOrderSearchResultsDatatable.bbyOrderIdSearchField}" styleClass="short_field field_spacing" required="false" />
+					</td>
+					<td>
+						<h:commandButton id="search_BBYID_submit" value="Search" action="#{sdpOrderSearchResultsDatatable.searchByTransactionIdExecuteButtonClick}" styleClass="normal field_spacing" />
+					</td>
+				</tr>
+				<tr>
+					<td width="300px">
+						<h:message for="search_BBYID" style="color:red" />
+
+					</td>
+				</tr>
+
+		</h:form>
+	</table>
+  </div>
+
+</h:panelGroup>

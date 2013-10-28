@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="xml.accenture.com/sdp/bby/om/PricingInformation" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:PricingInformation="xml.accenture.com/sdp/bby/om/PricingInformation" xmlns:TermsAndConditions="xml.accenture.com/sdp/bby/utilities/TermsAndConditions">
+	<xs:import namespace="xml.accenture.com/sdp/bby/utilities/TermsAndConditions" schemaLocation="XSD_TermsAndConditions.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Price Entity</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="PriceCollection">
+		<xs:sequence>
+			<xs:element name="Price" type="PricingInformation:Price" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Price">
+		<xs:sequence>
+			<xs:element name="Type" type="PricingInformation:Type" minOccurs="0"/>
+			<xs:element name="Amount" type="xs:decimal"/>
+			<xs:element name="SubAmount" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="Tax" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="Frequency" type="PricingInformation:Frequency" minOccurs="0"/>
+			<xs:element name="Description" type="xs:string" minOccurs="0"/>
+			<xs:element name="TermsAndConditions" type="TermsAndConditions:TermsAndConditions" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="Type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Fee"/>
+			<xs:enumeration value="Rebate"/>
+			<xs:enumeration value="Installation"/>
+			<xs:enumeration value="Shipping"/>
+			<xs:enumeration value="Total"/>
+			<xs:enumeration value="StartUp"/>
+			<xs:enumeration value="Service"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Frequency">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="OneTime"/>
+			<xs:enumeration value="Daily"/>
+			<xs:enumeration value="Weekly"/>
+			<xs:enumeration value="BiWeekly"/>
+			<xs:enumeration value="Monthly"/>
+			<xs:enumeration value="Annual"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

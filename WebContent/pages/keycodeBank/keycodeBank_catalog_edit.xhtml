@@ -1,0 +1,64 @@
+<h:panelGroup id="search_kcb_cat_panel" rendered="#{keycodeBankProductCatalogTabbedPaneHandler.editTabCurrent}" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core">
+	<h:form id="vendor_code_edit">
+		<div id="leftcol" class="normal_column">
+			<h:panelGrid columns="1">
+				<h:outputText styleClass="error" value="#{msg['sdpRequest.message.special_character_found']}" rendered="#{keycodeBankProductCatalogHandler.specialCharacterFoundInsertFlag}" />
+			</h:panelGrid>
+	
+			<h:panelGrid columns="3">
+				<h:outputLabel value="Merchandise SKU: " for="merchSku" styleClass="normal field_spacing" />
+				<h:inputText id="merchSku" value="#{keycodeBankProductCatalogHandler.newKcbProductBean.merchandiseSku}" styleClass="normal field_spacing" required="true" maxLength="20" valueChangeListener="#{keycodeBankProductCatalogHandler.validateProduct}" onchange="submit();" />
+				<h:panelGroup>
+					<h:message styleClass="error" for="merchSku" />
+					<h:outputText styleClass="error" value="Product with this SKU already exists." rendered="#{keycodeBankProductCatalogHandler.displayDuplicateValueError}" />
+					<h:outputText styleClass="error" value="Special characters are not allowed." rendered="#{keycodeBankProductCatalogHandler.displaySpecialCharacterError}" />
+				</h:panelGroup>
+				
+				<h:outputLabel value="Non-Merchandise SKU: " for="nonMerchSku" styleClass="normal field_spacing" />
+				<h:inputText id="nonMerchSku" value="#{keycodeBankProductCatalogHandler.newKcbProductBean.nonMerchandiseSku}" styleClass="normal field_spacing" maxLength="20" />
+				<h:message styleClass="error" for="nonMerchSku" />
+				
+				<h:outputLabel value="Master Item ID: " for="masterItemId" styleClass="normal field_spacing" />
+				<h:inputText id="masterItemId" value="#{keycodeBankProductCatalogHandler.newKcbProductBean.masterItemId}" styleClass="normal field_spacing" maxLength="50" />
+				<h:message styleClass="error" for="masterItemId" />
+				
+				<h:outputLabel for="vendorId" value="Vendor: " styleClass="normal field_spacing" />
+				<h:selectOneMenu id="vendorId" value="#{keycodeBankProductCatalogHandler.newKcbProductBean.vendorId}" required="true" maxLengh="10">
+					<f:selectItem itemLabel="- Select Value -" />
+					<f:selectItems value="#{dropdownListManager.sortedVendorSelectItems}" />
+				</h:selectOneMenu>
+				<h:message styleClass="error" for="vendorId" />
+				
+				<h:outputLabel value="Description: " for="description" styleClass="normal field_spacing" />
+				<h:inputText id="description" value="#{keycodeBankProductCatalogHandler.newKcbProductBean.description}" styleClass="normal field_spacing" required="true" maxLength="75" />
+				<h:message styleClass="error" for="description" />
+				
+				<h:outputLabel value="Depletion Threshold: " for="threshold" styleClass="normal field_spacing" />
+				<h:inputText id="threshold" value="#{keycodeBankProductCatalogHandler.newKcbProductBean.threshold}" styleClass="normal field_spacing" required="true" >
+					<f:convertNumber type="number" />
+				</h:inputText>
+				<h:message styleClass="error" for="threshold" />
+								
+			</h:panelGrid>
+			
+			<h:commandButton id="save_changes_button" value="Save" action="#{keycodeBankProductCatalogHandler.saveChangesButtonClick}" styleClass="normal field_spacing" disabled="#{!(userManagerBean.permissionsBean.updateKcbCatalogAllowed || userManagerBean.permissionsBean.createKcbCatalogAllowed)}" />
+			<h:commandButton id="cancel_product_button" immediate="true" value="Cancel" action="#{keycodeBankProductCatalogHandler.cancelChangesButtonClick}" styleClass="normal field_spacing" />
+		
+		</div>
+		<div id="rightcol" class="normal_column">
+					<h:panelGrid columns="1">
+					Multiple Sku SEMICOLONS separated For Example - xxxxxxx;yyyyyyy;wwwwwww
+					</h:panelGrid>
+					<br />
+					<h:panelGrid columns="3">
+						<h:outputLabel value="Related SKU: " for="relatedSku" styleClass="normal field_spacing" />
+						<h:inputTextarea id="relatedSku" value="#{keycodeBankProductCatalogHandler.newKcbProductBean.relatedSKU}" cols="10" rows="5" valueChangeListener="#{keycodeBankProductCatalogHandler.validateRelatedSKU}" onchange="submit();" required="false"/>
+						<h:panelGroup>
+							<h:message styleClass="error" for="relatedSku" />
+							<h:outputText styleClass="error" value="Product with this SKU already exists." rendered="#{keycodeBankProductCatalogHandler.displayRelatedSkuDupValueError}" />
+							<h:outputText styleClass="error" value="Special characters are not allowed." rendered="#{keycodeBankProductCatalogHandler.displayRelatedSkuSpecCharError}" />
+						</h:panelGroup>
+					</h:panelGrid>
+		</div>
+	</h:form>
+</h:panelGroup>

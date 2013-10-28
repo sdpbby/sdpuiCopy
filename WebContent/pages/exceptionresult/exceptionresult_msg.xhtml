@@ -1,0 +1,46 @@
+<h:panelGroup id="detail_panel_msg" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core">
+
+	<h:panelGrid>
+	<h:form id="exceptionresult_rqstmsg_form">
+		<table class="datatable_paginator_wrapper">
+			<thead class="paginator">
+				<tr>
+					<td class="header">
+						<h:outputText value="Request Message" />
+					</td>
+				</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td >
+						<h:panelGroup style="overflow:auto;display:block;width:1250px;height:250px;">
+							<h:outputText value="#{exceptionPageHandler.data.requestMessage}" style="text-align:left;white-space:pre;word-wrap:break-word;"/>
+						</h:panelGroup>
+				</td>
+			</tr>
+		</tbody>
+		</table>
+		<table class="datatable_paginator_wrapper">
+
+				<thead class="paginator">
+						<tr>
+							<td class="header">
+									<h:outputText value="Stack Trace" />
+							</td>
+						</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td >
+							<h:panelGroup style="overflow:auto;display:block;width:1250px;height:250px;">
+								<h:outputText value="#{exceptionPageHandler.data.stackTrace}" rendered="#{exceptionPageHandler.data.stackTrace != null}" style="text-align:left;white-space:pre;word-wrap:break-word;"/>
+								<h:outputText value="NULL" rendered="#{exceptionPageHandler.data.stackTrace == null}" style="text-align:left;white-space:pre;word-wrap:break-word;"/>
+							</h:panelGroup>
+						</td>
+					</tr>
+				</tbody>
+		</table>
+	</h:form>
+</h:panelGrid>
+
+</h:panelGroup>

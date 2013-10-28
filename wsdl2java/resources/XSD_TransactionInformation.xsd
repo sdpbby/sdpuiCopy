@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="xml.accenture.com/sdp/bby/utilities/TransactionInformation" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:TransactionInformation="xml.accenture.com/sdp/bby/utilities/TransactionInformation">
+
+            <xs:annotation>
+
+                        <xs:documentation>Transaction Information Entity</xs:documentation>
+
+            </xs:annotation>
+
+            <xs:complexType name="TransactionInformation">
+
+                        <xs:sequence>
+
+                                    <xs:element name="TransactionID" type="xs:string" minOccurs="0"/>
+
+                                    <xs:element name="TransactionState" type="xs:string" minOccurs="0"/>
+
+                                    <xs:element name="ActingParty" type="TransactionInformation:ActingParty" minOccurs="0"/>
+
+                                    <xs:element name="CreditCheckAuthorization" type="xs:boolean" default="false" minOccurs="0"/>
+
+                        </xs:sequence>
+
+            </xs:complexType>
+
+            <xs:complexType name="ActingParty">
+
+                        <xs:sequence>
+
+                                    <xs:element name="StoreID" type="xs:string"/>
+
+                                    <xs:element name="PartyID" type="xs:string"/>
+
+                                    <xs:element name="SystemID" type="xs:string" minOccurs="0"/>
+
+                                    <xs:element name="Role" type="xs:string" minOccurs="0"/>
+
+                        </xs:sequence>
+
+            </xs:complexType>
+
+</xs:schema>

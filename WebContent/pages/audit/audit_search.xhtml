@@ -1,0 +1,129 @@
+<ui:composition template="/pages/templates/masterLayout.xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<ui:define name="windowTitle">
+		#{msg['audittrail.windowtitle']}
+	</ui:define>
+
+	<ui:define name="tabTitle">
+		#{msg['audittrail.tabtitle.search']}
+	</ui:define>
+
+	<ui:define name="pageTitle">
+		#{msg['audittrail.pagetitle.search']}
+	</ui:define>
+
+	<ui:define name="subTitle">
+		#{msg['audittrail.subtitle.search']}
+	</ui:define>
+
+	<ui:define name="content">
+
+		<div id="top_content">
+			<h:form id="audit_search_form">
+				<table class="editable_form_panel, normal">
+					<tr>
+						<td class="editable_form_panel, normal">
+							<h:panelGrid columns="3" styleClass="editable_form_panel normal" columnClasses="right editable_form_panel normal,left editable_form_panel normal">
+							
+								<h:outputLabel for="search_contract_id" value="Contract ID: " />
+								<h:inputText id="search_contract_id" value="#{auditTrailSearchHandler.contractId}" styleClass="normal field_spacing"/>
+								<h:message styleClass="error" for="search_contract_id" />
+								
+								<h:outputLabel for="search_serial_number" value="Serial Number: " />
+								<h:inputText id="search_serial_number" value="#{auditTrailSearchHandler.serialNumber}" styleClass="normal field_spacing"/>
+								<h:message styleClass="error" for="search_serial_number" />
+								
+								<h:outputLabel for="search_line_item_id" value="Line Item ID: " />
+								<h:inputText id="search_line_item_id" value="#{auditTrailSearchHandler.lineItemId}" styleClass="normal field_spacing"/>
+								<h:message styleClass="error" for="search_line_item_id" />
+								
+								<h:outputLabel for="search_vendor_id" value="Vendor ID: " />
+								<h:inputText id="search_vendor_id" value="#{auditTrailSearchHandler.vendorId}" styleClass="normal field_spacing" />
+								<h:message styleClass="error" for="search_vendor_id" />
+								
+								<h:outputLabel for="search_primary_sku" value="Product SKU: " />
+								<h:inputText id="search_primary_sku" value="#{auditTrailSearchHandler.primarySku}" styleClass="normal field_spacing"/>
+								<h:message styleClass="error" for="search_primary_sku" />
+								
+								<h:outputLabel for="search_master_item_id" value="Master Item ID: " />
+								<h:inputText id="search_master_item_id" value="#{auditTrailSearchHandler.masterItemId}" styleClass="normal field_spacing"/>
+								<h:message styleClass="error" for="search_master_item_id" />
+								
+								<h:outputLabel for="search_action_id" value="Action Type: " />
+								<h:selectOneMenu id="search_action_id" value="#{auditTrailSearchHandler.actionId}">
+									<f:selectItem id="search_action_id_null" itemLabel="" />
+									<f:selectItems id="search_action_id_list" value="#{dropdownListManager.sortedAuditTrailActionSelectItems}" />
+								</h:selectOneMenu>
+								<h:message styleClass="error" for="search_action_id" />
+								
+								<h:outputLabel for="search_min_date" value="Date Range Min: " />
+								<ice:selectInputDate id="search_min_date" value="#{auditTrailSearchHandler.min}" renderMonthAsDropdown="true" renderYearAsDropdown="true" title="MM/DD/YYYY" renderAsPopup="true" styleClass="normal field_spacing">
+									<f:convertDateTime pattern="#{msg['ui.date.store_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+								</ice:selectInputDate>
+								<h:message styleClass="error" for="search_min_date" />
+								
+								<h:outputLabel for="search_max_date" value="Date Range Max: " />
+								<ice:selectInputDate id="search_max_date" value="#{auditTrailSearchHandler.max}" renderMonthAsDropdown="true" renderYearAsDropdown="true" title="MM/DD/YYYY" renderAsPopup="true" styleClass="normal field_spacing">
+									<f:convertDateTime pattern="#{msg['ui.date.store_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+								</ice:selectInputDate>
+								<h:message styleClass="error" for="search_max_date" />
+								
+								<h:outputLabel for="search_user_id" value="User ID: " />
+								<h:inputText id="search_user_id" value="#{auditTrailSearchHandler.userId}" styleClass="normal field_spacing"/>
+								<h:message styleClass="error" for="search_user_id" />
+								
+								<h:outputLabel for="search_log_id" value="Log ID: " />
+								<h:inputText id="search_log_id" value="#{auditTrailSearchHandler.logId}" styleClass="normal field_spacing" />
+								<h:message styleClass="error" for="search_log_id" />
+								
+								<h:outputLabel for="search_max_limit" value="Displaying last #{auditTrailSearchHandler.displayMax} Audit Logs: " />
+								<h:selectOneMenu id="search_max_limit" value="#{auditTrailSearchHandler.displayMax}">
+									<f:selectItem id="search_max_limit_20" itemLabel="20" itemValue="20" />
+									<f:selectItem id="search_max_limit_50" itemLabel="50" itemValue="50" />
+									<f:selectItem id="search_max_limit_100" itemLabel="100" itemValue="100" />
+									<f:selectItem id="search_max_limit_250" itemLabel="250" itemValue="250" />
+									<f:selectItem id="search_max_limit_500" itemLabel="500" itemValue="500" />
+								</h:selectOneMenu>
+								<h:message styleClass="error" for="search_max_limit" />
+								
+							</h:panelGrid>
+						</td>
+						<td class="editable_form_panel, normal">
+							<h:commandButton value="Search" action="#{auditTrailSearchHandler.searchButtonClick}" />
+						</td>
+						<td class="editable_form_panel, normal">
+							<h:commandButton value="Clear" action="#{auditTrailSearchHandler.clearButtonClick}" />
+						</td>
+					</tr>
+				</table>
+			</h:form>
+		</div>
+
+		<div>
+			<h:outputLink value="/SDPUI/export/auditTrailFile">
+				<f:param name="arg0" value="#{auditTrailSearchHandler.logId}" />
+				<f:param name="arg1" value="#{auditTrailSearchHandler.contractId}" />
+				<f:param name="arg2" value="#{auditTrailSearchHandler.serialNumber}" />
+				<f:param name="arg3" value="#{auditTrailSearchHandler.lineItemId}" />
+				<f:param name="arg4" value="#{auditTrailSearchHandler.vendorId}" />
+				<f:param name="arg5" value="#{auditTrailSearchHandler.primarySku}" />
+				<f:param name="arg6" value="#{auditTrailSearchHandler.masterItemId}" />
+				<f:param name="arg7" value="#{auditTrailSearchHandler.actionId}" />
+				<f:param name="arg8" value="#{auditTrailSearchHandler.minStr}" />
+				<f:param name="arg9" value="#{auditTrailSearchHandler.maxStr}" />
+				<f:param name="arg10" value="#{auditTrailSearchHandler.userId}" />
+				<f:param name="arg11" value="#{auditTrailSearchHandler.displayMax}" />
+				<h:outputText value="Export" />	
+			</h:outputLink>
+		</div>
+		<div id="datatable_panel">
+			<ui:include src="/pages/audit/audit_searchResults.xhtml" />
+		</div>
+
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,73 @@
+<h:panelGroup id="edit_kcb_cat_panel" rendered="#{keycodeBankManageLoadTabbedPaneHandler.editTabCurrent}" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<h:form id="vendor_code_edit">
+		
+		<div id="leftcol" class="normal_column">
+			
+			<h:panelGrid columns="2">
+			
+				<h:outputText style="font-weight: bold;" value="Vendor: " />
+				<h:outputText value="#{keycodeBankManageLoadHandler.oldKeycodeBatchBean.vendorName}" />
+			
+				<h:outputText style="font-weight: bold;" value="Merchandise SKU: " />
+				<h:outputText value="#{keycodeBankManageLoadHandler.oldKeycodeBatchBean.merchandiseSku}" />
+			
+				<h:outputText style="font-weight: bold;" value="Non-Merchandise SKU: " />
+				<h:outputText value="#{keycodeBankManageLoadHandler.oldKeycodeBatchBean.nonMerchandiseSku}" />
+			
+				<h:outputText style="font-weight: bold;" value="Master Item ID: " />
+				<h:outputText value="#{keycodeBankManageLoadHandler.oldKeycodeBatchBean.masterItemId}" />
+			
+				<h:outputText style="font-weight: bold;" value="Description: " />
+				<h:outputText value="#{keycodeBankManageLoadHandler.oldKeycodeBatchBean.description}" />
+			
+				<h:outputText style="font-weight: bold;" value="Start Date: " />
+				<h:outputText value="#{keycodeBankManageLoadHandler.oldKeycodeBatchBean.minDate}">
+					<f:convertDateTime pattern="#{msg['ui.date.calendar_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+				</h:outputText>
+			
+				<h:outputText style="font-weight: bold;" value="End Date: " />
+				<h:outputText value="#{keycodeBankManageLoadHandler.oldKeycodeBatchBean.maxDate}">
+					<f:convertDateTime pattern="#{msg['ui.date.calendar_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+				</h:outputText>
+			
+				<f:verbatim><br /></f:verbatim>
+				<f:verbatim><br /></f:verbatim>
+			
+				<h:outputText style="font-weight: bold;" value="Keycodes to be Uploaded: " />
+				<h:outputText value="#{keycodeBankManageLoadHandler.oldKeycodeBatchBean.loadSize}" />
+			
+				<h:outputText style="font-weight: bold;" value="Batch Load ID: " />
+				<h:outputText value="#{keycodeBankManageLoadHandler.oldKeycodeBatchBean.batchLoadId}" />
+			
+				<f:verbatim><br /></f:verbatim>
+				<h:panelGroup>
+					<br /><br />
+					<h:commandButton value="Delete this batch" action="#{keycodeBankManageLoadHandler.deleteBatchButtonClick}" disabled="#{!userManagerBean.permissionsBean.deleteKeycodesAllowed}" />
+				</h:panelGroup>
+			
+			</h:panelGrid>
+		</div>
+		
+		<div id="righttcol" class="normal_column">
+			
+			<h:panelGrid columns="3">
+				<h:outputLabel for="minDate" value="Start Date: " styleClass="normal field_spacing" />
+				<ice:selectInputDate id="minDate" renderMonthAsDropdown="true" renderYearAsDropdown="true" value="#{keycodeBankManageLoadHandler.newKeycodeBatchBean.minDate}" rendered="true" title="MM/DD/YYYY HH:MM PM" renderAsPopup="true" styleClass="normal field_spacing">
+        			<f:convertDateTime pattern="#{msg['ui.date.calendar_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+    			</ice:selectInputDate>
+    			<h:message styleClass="error" for="minDate" />
+				
+				<h:outputLabel for="maxDate" value="End Date: " styleClass="normal field_spacing" />
+				<ice:selectInputDate id="maxDate" renderMonthAsDropdown="true" renderYearAsDropdown="true" value="#{keycodeBankManageLoadHandler.newKeycodeBatchBean.maxDate}" rendered="true" title="MM/DD/YYYY HH:MM PM" renderAsPopup="true" styleClass="normal field_spacing">
+        			<f:convertDateTime pattern="#{msg['ui.date.calendar_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+    			</ice:selectInputDate>
+				<h:message styleClass="error" for="maxDate" />
+								
+			</h:panelGrid>
+			
+			<h:commandButton id="save_changes_button" value="Save" action="#{keycodeBankManageLoadHandler.saveChangesButtonClick}" styleClass="normal field_spacing" disabled="#{!userManagerBean.permissionsBean.updateKeycodesAllowed}" />
+			<h:commandButton id="cancel_product_button" immediate="true" value="Cancel" action="#{keycodeBankManageLoadHandler.cancelChangesButtonClick}" styleClass="normal field_spacing" />
+		
+		</div>
+	</h:form>
+</h:panelGroup>

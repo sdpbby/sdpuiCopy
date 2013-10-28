@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="xml.accenture.com/sdp/bby/SOHeader" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soc="xml.accenture.com/sdp/bby/SOCommonHeader" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wsswssecurity-.0.xsd" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:Header="xml.accenture.com/sdp/bby/SOHeader">
+	<xs:import namespace="xml.accenture.com/sdp/bby/SOCommonHeader" schemaLocation="XSD_Header.xsd"/>
+	<xs:import namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wsswssecurity-.0.xsd" schemaLocation="XSD_Security.xsd"/>
+	<xs:import namespace="http://schemas.xmlsoap.org/ws/2004/08/addressing" schemaLocation="XSD_Addressing.xsd"/>
+	<xs:element name="Header" type="Header:Header"/>
+	<xs:complexType name="Header">
+		<xs:sequence>
+			<xs:element ref="wsse:Security" minOccurs="0"/>
+			<xs:element ref="wsa:EndpointReference" minOccurs="0"/>
+			<xs:element ref="soc:CommonHeader"/>
+		</xs:sequence>
+		<xs:attribute name="actor"/>
+		<xs:attribute name="mustUnderstand"/>
+	</xs:complexType>
+</xs:schema>

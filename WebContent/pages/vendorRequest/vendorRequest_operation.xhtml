@@ -1,0 +1,59 @@
+<h:panelGroup id="operation_panel" rendered="#{directToVendorHandler.tabHandler.operationsTabCurrent}" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml">
+	 <div id="leftcol">
+		<h:form id="operation_panel_form">
+			<h:panelGrid columns="3" rendered="#{!directToVendorHandler.reflowFromSdpOrderDetail}">
+				<h:outputLabel for="input_sku" value="Primary SKU: " />
+				<h:inputText id="input_sku" value="#{directToVendorHandler.inputSku}" required="true" />
+				<h:commandButton id="input_sku_submit" value="Search" action="#{directToVendorHandler.searchBySkuButtonClick}" />
+			</h:panelGrid>
+			<h:commandButton immediate="true" value="&lt;&lt; Back" action="#{directToVendorHandler.backToSdpOrderDetailButtonClick}" rendered="#{directToVendorHandler.reflowFromSdpOrderDetail}" />
+					
+			<h:message for="input_sku" styleClass="error" />
+			<h:outputText styleClass="error" value="#{msg['sdpRequest.message.sku_not_found']}" rendered="#{directToVendorHandler.skuNotFoundFlag}" />
+			<h:outputText styleClass="error" value="#{msg['sdpRequest.message.multiple_skus_found']}" rendered="#{directToVendorHandler.multipleSkusFoundFlag}" />
+			<h:outputText styleClass="error" value="#{msg['sdpRequest.message.no_category_found']}" rendered="#{directToVendorHandler.noCategoryFound}" />
+			<h:outputText styleClass="error" value="#{msg['sdpRequest.message.special_character_found']}" rendered="#{directToVendorHandler.specialCharacterFoundFlag}" />
+			<br />
+			<h:panelGroup rendered="#{directToVendorHandler.categorySet}">
+				<table class="panel_main normal">
+					<tr>
+						<td class="panel_main_label"><h:outputText value="Primary SKU: " /></td>
+						<td class="panel_main_value"><h:outputText value="#{directToVendorHandler.primarySku}" /></td>
+					</tr>
+					<tr>
+						<td class="panel_main_label"><h:outputText value="Description: " /></td>
+						<td class="panel_main_value"><h:outputText value="#{directToVendorHandler.description}" /></td>
+					</tr>
+					<tr>
+						<td class="panel_main_label"><h:outputText value="Vendor: " /></td>
+						<td class="panel_main_value"><h:outputText value="#{directToVendorHandler.vendor}" /></td>
+					</tr>
+					<tr>
+						<td class="panel_main_label"><h:outputText value="Vendor Category: " /></td>
+						<td class="panel_main_value"><h:outputText value="#{directToVendorHandler.category}" /></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<br />
+							<h2>Select Operation</h2>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<h:outputText styleClass="error" value="#{msg['sdpRequest.message.reprocess_not_supported']}" rendered="#{directToVendorHandler.categoryUnsupported}" />
+							<h:commandButton id="act_s2" immediate="true" value="Activate" action="#{directToVendorHandler.displayActivateS2ButtonClick}" rendered="#{directToVendorHandler.categoryS2}" />
+							<h:commandButton id="cnl_s2" immediate="true" value="Cancel" action="#{directToVendorHandler.displayCancelS2ButtonClick}" rendered="#{directToVendorHandler.categoryS2}" />
+							<h:commandButton id="rnw_s2" immediate="true" value="Renew" action="#{directToVendorHandler.displayRenewS2ButtonClick}" rendered="#{directToVendorHandler.categoryS2}" />
+							<h:commandButton id="upd_s2" immediate="true" value="Modify Status" action="#{directToVendorHandler.displayUpdateStatusS2ButtonClick}" rendered="#{directToVendorHandler.categoryS2}" />
+							<h:commandButton id="act_psa" immediate="true" value="Activate" action="#{directToVendorHandler.displayActivatePsaButtonClick}" rendered="#{directToVendorHandler.categoryPsa}" />
+							<h:commandButton id="cnl_psa" immediate="true" value="Cancel" action="#{directToVendorHandler.displayCancelPsaButtonClick}" rendered="#{directToVendorHandler.categoryPsa}" />
+							<h:commandButton id="act_posa" immediate="true" value="Activate" action="#{directToVendorHandler.displayActivatePosaButtonClick}" rendered="#{directToVendorHandler.categoryPosa}" />
+							<h:commandButton id="cnl_posa" immediate="true" value="Cancel" action="#{directToVendorHandler.displayCancelPosaButtonClick}" rendered="#{directToVendorHandler.categoryPosa}" />
+						</td>
+					</tr>
+				</table>
+			</h:panelGroup>
+		</h:form>
+	</div> 
+</h:panelGroup>
+		

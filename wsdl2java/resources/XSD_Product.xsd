@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="xml.accenture.com/sdp/bby/om/Product" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:Product="xml.accenture.com/sdp/bby/om/Product" xmlns:Identifier="xml.accenture.com/sdp/bby/utilities/Identifier" xmlns:Attribute="xml.accenture.com/sdp/bby/om/Attribute" xmlns:Constraints="xml.accenture.com/sdp/bby/utilities/Constraints" xmlns:Description="xml.accenture.com/sdp/bby/utilities/Description" xmlns:TermsAndConditions="xml.accenture.com/sdp/bby/utilities/TermsAndConditions" xmlns:PricingInformation="xml.accenture.com/sdp/bby/om/PricingInformation">
+	<xs:annotation>
+		<xs:documentation>Product Entity</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="xml.accenture.com/sdp/bby/om/PricingInformation" schemaLocation="XSD_PricingInformation.xsd"/>
+	<xs:import namespace="xml.accenture.com/sdp/bby/utilities/Constraints" schemaLocation="XSD_Constraints.xsd"/>
+	<xs:import namespace="xml.accenture.com/sdp/bby/utilities/Description" schemaLocation="XSD_Description.xsd"/>
+	<xs:import namespace="xml.accenture.com/sdp/bby/utilities/TermsAndConditions" schemaLocation="XSD_TermsAndConditions.xsd"/>
+	<xs:import namespace="xml.accenture.com/sdp/bby/om/Attribute" schemaLocation="XSD_Attribute.xsd"/>
+	<xs:import namespace="xml.accenture.com/sdp/bby/utilities/Identifier" schemaLocation="XSD_Identifier.xsd"/>
+	<xs:complexType name="ProductDetails">
+		<xs:sequence>
+			<xs:element name="Quantity" type="xs:string" minOccurs="0"/>
+			<xs:element name="PriceCollection" type="PricingInformation:PriceCollection" minOccurs="0"/>
+			<xs:element name="TermsAndConditions" type="TermsAndConditions:TermsAndConditions" minOccurs="0"/>
+			<xs:element name="MoreDetails" type="Attribute:ArrayOfSDPAttribute" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Product">
+		<xs:sequence>
+			<xs:element name="ProductIdentifier" type="Identifier:ProductIdentifier"/>
+			<xs:element name="Description" type="Description:Description" minOccurs="0"/>
+			<xs:element name="ParentRelationShip" type="Product:RelationShip" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Constraints" type="Constraints:Constraints" minOccurs="0"/>
+			<xs:element name="ProductDetails" type="Product:ProductDetails" minOccurs="0"/>
+			<xs:element name="SubType" type="xs:string" minOccurs="0"/>
+			<xs:element name="Status" type="xs:string" maxOccurs="1" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RelationShip">
+		<xs:sequence>
+			<xs:element name="Type" type="xs:string" minOccurs="0"/>
+			<xs:element name="ParentProductID" type="Identifier:ProductIdentifier" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

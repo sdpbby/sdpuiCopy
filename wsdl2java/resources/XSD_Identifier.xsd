@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="xml.accenture.com/sdp/bby/utilities/Identifier" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:Identifier="xml.accenture.com/sdp/bby/utilities/Identifier">
+	<xs:annotation>
+		<xs:documentation> Identifier Entity</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="BBYOfferIdentifier">
+		<xs:sequence>
+			<xs:element name="Name" type="xs:string" minOccurs="0"/>
+			<xs:element name="Connect4CatalogueID" type="xs:string" minOccurs="0"/>
+			<xs:element name="BBYSKU" type="Identifier:BBYSKU" minOccurs="0"/>
+			<xs:element name="ImageID" type="xs:string" minOccurs="0"/>
+			<xs:element name="ExternalIDCollection" type="Identifier:ArrayofExternalID" maxOccurs="1" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VendorOfferIdentifier">
+		<xs:sequence>
+			<xs:element name="Name" type="xs:string" minOccurs="0"/>
+			<xs:element name="Connect4CatalogueID" type="xs:string" minOccurs="0"/>
+			<xs:element name="Connect4SubscriptionOfferID" type="xs:string" minOccurs="0"/>
+			<xs:element name="ExternalIDCollection" type="Identifier:ArrayofExternalID" minOccurs="0"/>
+			<xs:element name="ConfirmationID" type="xs:string" minOccurs="0"/>
+			<xs:element name="BBYSKU" type="Identifier:BBYSKU" minOccurs="0"/>
+			<xs:element name="ImageID" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ProductIdentifier">
+		<xs:sequence>
+			<xs:element name="Name" type="xs:string" minOccurs="0"/>
+			<xs:element name="Connect4CatalogueID" type="xs:string" minOccurs="0"/>
+			<xs:element name="Connect4ProductSubscriptionID" type="xs:string" minOccurs="0"/>
+			<xs:element name="ExternalIDCollection" type="Identifier:ArrayofExternalID" minOccurs="0"/>
+			<xs:element name="ImageID" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayofExternalID">
+		<xs:sequence>
+			<xs:element name="ExternalID" type="Identifier:ExternalID" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ExternalID">
+		<xs:sequence>
+			<xs:element name="Type" type="xs:string" minOccurs="0"/>
+			<xs:element name="ID" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BBYSKU">
+		<xs:sequence>
+			<xs:element name="ArrayOfValuePackagingID" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ValuePackagingID" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ESCSKU" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="PlanSKU" type="xs:string"/>
+						<xs:element name="PrimarySKU" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

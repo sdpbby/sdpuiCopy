@@ -1,0 +1,106 @@
+<h:form rendered="#{queueMonitoringHandler.tab.queuesTabCurrent}" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<ice:panelGrid>
+		<h:commandButton id="refresh_list_link" value="Refresh List" action="#{queueMonitoringHandler.prepareJmxPage}" />
+
+		<ice:dataTable value="#{queueMonitoringHandler.serverStatusBeans}" var="server" id="serverStatusBeans"
+			styleClass="datatable_auto" rowClasses="odd,even">
+			<f:facet name="header">
+				<h:outputText id="server_status" value="Server Status" />
+			</f:facet>
+			<ice:column>
+				<f:facet name="header">
+					<h:outputText id="server_name" value="Name" />
+				</f:facet>
+				<h:outputText value="#{server.serverName}" />
+			</ice:column>
+			<ice:column>
+				<f:facet name="header">
+					<h:outputText id="server_type" value="Type" />
+				</f:facet>
+				<h:outputText value="#{server.serverType}" />
+			</ice:column>
+			<ice:column>
+				<f:facet name="header">
+					<h:outputText id="server_state" value="State" />
+				</f:facet>
+				<h:outputText value="#{server.serverState}" />
+			</ice:column>
+		</ice:dataTable>
+		<hr />
+		<table class="datatable_auto">
+			<thead>
+			<tr>
+				<td class="header">Color Key</td>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td class="warning_row">0 Consumers Current</td>
+			</tr>
+			<tr>
+				<td class="error_row">Paused Consumption</td>
+			</tr>
+			</tbody>
+		</table>
+		
+
+		<ice:dataTable value="#{queueMonitoringHandler.jmsDestinationGroups}" var="destinationGroup" id="groupDataTable"
+			binding="#{queueMonitoringHandler.destinationGroupTable}" styleClass="datatable_auto" >
+			<f:facet name="header">
+				<h:outputText id="jms_destination" value="Jms Destinations" />
+			</f:facet>
+			<ice:column id="only_column">
+
+				<ice:dataTable value="#{destinationGroup.jmsDestinationBeans}" style="margin-bottom:20px" var="destination"
+					id="destinationDataTable" binding="#{queueMonitoringHandler.destinationTable}" 
+					styleClass="datatable_auto"  rowClasses="#{destinationGroup.cssRowClasses}">
+					<f:facet name="header">
+						<h:outputText id="queueTitle" value="#{destinationGroup.groupName}" />
+					</f:facet>
+					<ice:column>
+						<f:facet name="header">
+							<f:verbatim>Module Name</f:verbatim>
+						</f:facet>
+						<h:outputText value="#{destination.moduleName}" />
+					</ice:column>
+
+					<ice:column>
+						<f:facet name="header">
+							<f:verbatim>Server Name</f:verbatim>
+						</f:facet>
+						<h:outputText value="#{destination.jmsServerName}" />
+					</ice:column>
+
+					<ice:column>
+						<f:facet name="header">
+							<f:verbatim>messages current</f:verbatim>
+						</f:facet>
+						<h:outputText value="#{destination.messagesCurrentCount}" />
+					</ice:column>
+
+					<ice:column>
+						<f:facet name="header">
+							<f:verbatim>consumers current</f:verbatim>
+						</f:facet>
+						<h:outputText value="#{destination.consumersCurrentCount}" />
+					</ice:column>
+
+					<ice:column>
+						<f:facet name="header">
+							<f:verbatim>state</f:verbatim>
+						</f:facet>
+						<h:outputText value="#{destination.state}" />
+					</ice:column>
+
+					<ice:column>
+						<f:facet name="header">
+							<f:verbatim>Pause/Resume</f:verbatim>
+						</f:facet>
+						<h:commandButton value="Pause Queue" action="#{queueMonitoringHandler.pauseSelectedQueue}" />
+						<h:commandButton value="Resume Queue" action="#{queueMonitoringHandler.resumeSelectedQueue}" />
+					</ice:column>
+				</ice:dataTable>
+			</ice:column>
+		</ice:dataTable>
+	</ice:panelGrid>
+</h:form>

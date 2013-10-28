@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="xml.accenture.com/sdp/bby/utilities/TermsAndConditions" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:TermsAndConditions="xml.accenture.com/sdp/bby/utilities/TermsAndConditions" xmlns:Time="xml.accenture.com/sdp/bby/utilities/Time">
+	<xs:import namespace="xml.accenture.com/sdp/bby/utilities/Time" schemaLocation="XSD_Time.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Terms And Conditions Entity</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="TermsAndConditions">
+		<xs:sequence>
+			<xs:element name="Terms" type="xs:string" minOccurs="0"/>
+			<xs:element name="Conditions" type="xs:string" minOccurs="0"/>
+			<xs:element name="StartDate" type="Time:Timestamp" minOccurs="0"/>
+			<xs:element name="EndDate" type="Time:Timestamp" minOccurs="0"/>
+			<xs:element name="Duration" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

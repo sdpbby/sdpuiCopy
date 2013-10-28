@@ -1,0 +1,16 @@
+<h:panelGroup id="edit_panel" rendered="#{catalogTabbedPaneHandler.editTabCurrent}" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core">
+	<h:form id="catalog_edit_form">
+		<div id="leftcol" class="normal_left_column">
+			<ui:include src="/pages/catalog/catalog_edit_detail.xhtml" />
+		</div> 
+		<div id="midcol" class="normal_left_column">
+			<ui:include src="/pages/catalog/catalog_edit_attributes.xhtml" />
+		</div>
+		<div id="rightcol" class="normal_left_column">
+		
+			<h:commandButton value="Cancel" immediate="true" action="#{catalogHandler.cancelChangesButtonClick}" />
+			<h:commandButton value="Save" action="#{catalogHandler.saveChangesButtonClick}" disabled="#{!(userManagerBean.permissionsBean.createCatalogAllowed || userManagerBean.permissionsBean.updateCatalogAllowed)}" />
+			
+		</div> 
+	</h:form>
+</h:panelGroup>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="xml.accenture.com/sdp/bby/utilities/Birth" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:Birth="xml.accenture.com/sdp/bby/utilities/Birth">
+	<xs:annotation>
+		<xs:documentation>Comment describing your root element</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="Birth">
+		<xs:sequence>
+			<!-- The format for the Date of Birth is YYYY-MM-DD -->
+			<xs:element name="DateOfBirth" type="xs:date" minOccurs="0"/>
+			<xs:element name="CityOfBirth" type="xs:string" minOccurs="0"/>
+			<xs:element name="StateOfBirth" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

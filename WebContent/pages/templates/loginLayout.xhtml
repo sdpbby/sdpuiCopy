@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component" xmlns:icecore="http://www.icefaces.org/icefaces/core" xmlns:ace="http://www.icefaces.org/icefaces/components">
+	<h:head>
+		<title>
+			<ui:insert name="windowTitle" />
+		</title>
+		<h:outputStylesheet library="css" name="stylesheet.css" />
+		<ice:outputStyle href="/xmlhttp/css/rime/rime.css"/>
+		<h:outputScript library="javascript" name="autocomplete.js"/>
+		<!--<link rel="stylesheet" href="/xmlhttp/css/rime/rime.css" type="text/css" />-->
+	</h:head>
+<!-- As autocomplete="off" is not valid xhtml we use javascript as workaround -->
+	<h:body onload="disable_autocomplete();">
+		<div id="header_content">
+			<ui:include src="/pages/sections/blankHeader.xhtml" />
+		</div>
+		<div id="main">
+			<div id="title_content">
+				<h1><ui:insert name="pageTitle" /></h1> 
+				<h2><ui:insert name="subTitle" /></h2>
+			</div>
+			<div id="content">
+				<ui:insert name="content" />
+			</div>
+		</div>
+	</h:body>
+</html>

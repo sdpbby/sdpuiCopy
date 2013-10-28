@@ -1,0 +1,105 @@
+<h:panelGroup id="detail_panel_search" rendered="#{exceptionPageTabbedPaneHandler.searchTabCurrent}" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<div id="leftcol" class="normal_column">
+		<table width="400px" height="150px" >
+			<h:form id="exception_sdpid_search_form">
+			<tr width="400px">
+				<td >
+					<h:outputLabel for="search_sdp_id" value="SDP ID: " styleClass="normal field_spacing" />
+				</td>
+				<td>
+					<h:inputText id="search_sdp_id" value="#{exceptionPageDatatable.sdpIdSearchField}" styleClass="short_field field_spacing" required="false"/>
+				</td>
+				<td>
+					<h:commandButton id="search_sdp_id_submit" value="Search" action="#{exceptionPageDatatable.searchbySdpIdExecuteButtonClick}" styleClass="normal field_spacing" />
+				</td>
+			</tr>
+			<tr>
+				<td width="300px" colspan="3">
+					<h:message for="search_sdp_id" style="color:red" />
+
+				</td>
+			</tr>
+			</h:form>
+
+			<h:form id="exception_date_search_form">
+			<tr width="400px">
+				<td>
+					<h:outputLabel for="search_strt_date" value="Start Date: " styleClass="normal field_spacing" />
+				</td>
+				<td>
+						<h:panelGroup>
+							<ice:selectInputDate id="search_strt_date" renderMonthAsDropdown="true" renderYearAsDropdown="true" value="#{exceptionPageDatatable.dateRangeStart}" rendered="true" title="MM/DD/YYYY" renderAsPopup="true" styleClass="normal field_spacing standard_width">
+	        					<f:convertDateTime pattern="#{msg['ui.date.store_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+	    					</ice:selectInputDate>
+	    				</h:panelGroup>
+	    		</td>
+	    		<td>
+	    			<h:commandButton id="search_date_submit" value="Search" action="#{exceptionPageDatatable.searchByDateRangeButtonClick}" styleClass="normal field_spacing" />
+	    		</td>
+			</tr>
+			<tr>
+				<td width="300px" colspan="3">
+					<h:message for="search_strt_date" style="color:red" />
+
+				</td>
+			</tr>
+
+			<tr width="400px">
+				<td>
+					<h:outputLabel for="search_end_date" value="End Date: " styleClass="normal field_spacing" />
+				</td>
+				<td>
+					<h:panelGroup>
+						<ice:selectInputDate id="search_end_date" renderMonthAsDropdown="true" renderYearAsDropdown="true" value="#{exceptionPageDatatable.dateRangeEnd}" rendered="true" title="MM/DD/YY" renderAsPopup="true" styleClass="normal field_spacing standard_width">
+	        				<f:convertDateTime pattern="#{msg['ui.date.store_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+	    				</ice:selectInputDate>
+	    			</h:panelGroup>
+				</td>
+				<td>
+				</td>
+			</tr>
+
+			</h:form>
+
+			<h:form id="exception_size_search_form">
+			<tr width="400px">
+				<td>
+					<h:outputLabel for="search_list_size" value="Display Last: " styleClass="normal field_spacing" />
+				</td>
+				<td>
+					<h:panelGroup>
+						<h:selectOneMenu id="search_list_size" value="#{exceptionPageDatatable.recentExceptionListSize}" styleClass="short_field field_spacing" >
+							<f:selectItem id="max_25" itemLabel="25" itemValue="25" />
+							<f:selectItem id="max_50" itemLabel="50" itemValue="50" />
+							<f:selectItem id="max_100" itemLabel="100" itemValue="100" />
+							<f:selectItem id="max_500" itemLabel="500" itemValue="500" />
+							<f:selectItem id="max_1000" itemLabel="1000" itemValue="1000" />
+						</h:selectOneMenu>
+					</h:panelGroup>
+				</td>
+				<td>
+					<h:commandButton id="search_recent_exp_submit" value="Recent Exceptions" action="#{exceptionPageDatatable.refreshListLinkClick}" styleClass="normal field_spacing" />
+				</td>
+			</tr>
+
+				<tr width="400px">
+				<td>
+					<h:outputLabel for="search_group" value="Filter by group: " styleClass="normal field_spacing" />
+				</td>
+				<td>
+					<h:panelGroup>
+						<h:selectOneMenu id="search_group" value="#{exceptionPageDatatable.exceptionGroup}" styleClass="short_field field_spacing" >
+							<f:selectItem id="SEARCH_BY_ALL" itemLabel="SHOW ALL" itemValue="SEARCH_BY_ALL" />
+							<f:selectItems value="#{exceptionPageDatatable.exceptionGroupList}" />
+						</h:selectOneMenu>
+					</h:panelGroup>
+				</td>
+				<td>
+				</td>
+			</tr>
+			</h:form>
+		</table>
+
+  </div>
+
+</h:panelGroup>

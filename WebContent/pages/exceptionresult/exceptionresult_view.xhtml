@@ -1,0 +1,35 @@
+<h:panelGroup id="detail_panel_view" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core">
+	<h:form id="exception_view_form">
+	<h:panelGrid columns="2" styleClass="panel_main normal" columnClasses="panel_main_label,panel_main_value">
+
+
+			<h:outputText value="Created Date: " />
+			<h:outputText value="#{exceptionPageHandler.data.createdDate}">
+					<f:convertDateTime pattern="#{msg['ui.date.timestamp_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+			</h:outputText>
+
+			<h:outputText value="SDP ID: " />
+			<h:outputText value="#{exceptionPageHandler.data.sdpId}" />
+
+			<h:outputText value="SDP ORDER ID: " />
+			<h:panelGroup>
+				<h:outputText value="#{exceptionPageHandler.data.sdpOrderId}" />
+				<!-- View Order Detail link is only rendered if the sdp_order_id is not null -->
+				<h:commandLink rendered="#{exceptionPageHandler.data.sdpOrderId != null}"
+						id="order_Detail" value=" View Order Detail"
+							action="#{exceptionPageHandler.viewOrderDetailButtonClick}" />
+			</h:panelGroup>
+
+			<h:outputText value="Source System: " />
+			<h:outputText value="#{exceptionPageHandler.data.sourceSystem}" />
+
+			<h:outputText value="Description" />
+			<h:outputText value="#{exceptionPageHandler.data.description}" />
+			
+			<h:outputText value="Error Code" />
+			<h:outputText value="#{exceptionPageHandler.data.code}" />
+
+	</h:panelGrid>
+	</h:form>
+
+</h:panelGroup>

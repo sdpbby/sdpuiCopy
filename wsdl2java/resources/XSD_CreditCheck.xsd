@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="xml.accenture.com/sdp/bby/utilities/CreditCheck" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:Birth="xml.accenture.com/sdp/bby/utilities/Birth" xmlns:CreditCheck="xml.accenture.com/sdp/bby/utilities/CreditCheck">
+	<xs:import namespace="xml.accenture.com/sdp/bby/utilities/Birth" schemaLocation="XSD_Birth.xsd"/>
+	<xs:annotation>
+		<xs:documentation> CreditCheck Entity</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="CreditCheckInfo">
+		<xs:sequence>
+			<xs:element name="CreditCheckRequired" type="xs:boolean"/>
+			<xs:element name="CreditCheckParameters" type="CreditCheck:CreditCheckParameters" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CreditCheckParameters">
+		<xs:sequence>
+			<xs:element name="SSN" type="xs:string" minOccurs="0"/>
+			<xs:element name="DriverLicense" type="CreditCheck:DriverLicense" minOccurs="0"/>
+			<xs:element name="Birth" type="Birth:Birth" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CreditCheckResult">
+		<xs:sequence>
+			<xs:element name="VendorCreditCheckResult" type="CreditCheck:VendorCreditCheckResult" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VendorCreditCheckResult">
+		<xs:sequence>
+			<xs:element name="VendorID" type="xs:string"/>
+			<xs:element name="CreditCheckSucceeded" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="IsExistingCustomer" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="Message" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DriverLicense">
+		<xs:sequence>
+			<xs:element name="DriverLicenseNumber" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

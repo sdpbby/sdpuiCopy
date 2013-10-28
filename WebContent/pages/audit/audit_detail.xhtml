@@ -1,0 +1,151 @@
+<ui:composition template="/pages/templates/masterLayout.xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<ui:define name="windowTitle">
+		#{msg['audittrail.windowtitle']}
+	</ui:define>
+
+	<ui:define name="tabTitle">
+		#{msg['audittrail.tabtitle.detail']}
+	</ui:define>
+
+	<ui:define name="pageTitle">
+		#{msg['audittrail.pagetitle.detail']}
+	</ui:define>
+
+	<ui:define name="subTitle">
+		#{msg['audittrail.subtitle.detail']}
+	</ui:define>
+
+	<ui:define name="content">
+
+		<div id="top_content">
+			<h:panelGrid columns="2" styleClass="panel_main normal" columnClasses="panel_main_label,panel_main_value">
+
+				<h:outputText value="Log ID: " />
+				<h:panelGroup>
+					<h:outputText value="#{auditTrailDetailHandler.log.id} " />
+					<h:outputLink value="/SDPUI/export/auditTrailDetailFile">
+						<f:param name="arg0" value="#{auditTrailDetailHandler.log.id}" />
+						<h:outputText value="Export" />	
+					</h:outputLink>
+				</h:panelGroup>
+
+				<h:outputText value="Action: " />
+				<h:outputText value="#{auditTrailDetailHandler.log.action}" />
+
+				<h:outputText value="User ID: " />
+				<h:outputText value="#{auditTrailDetailHandler.log.userId}" />
+
+				<h:outputText value="Created Date: " />
+				<h:outputText value="#{auditTrailDetailHandler.log.date}">
+					<f:convertDateTime
+						pattern="#{msg['ui.date.timestamp_date_pattern']}"
+						timeZone="#{msg['ui.date.timezone']}" />
+				</h:outputText>
+
+			</h:panelGrid>
+
+			<ice:dataTable value="#{auditTrailDetailHandler.log.fieldAnalysisList}" var="itr"
+				id="fields_datatable" styleClass="datatable_auto" rowClasses="odd,even">
+				<ice:column>
+					<f:facet name="header">
+						<ice:outputText value="Field" />
+					</f:facet>
+					<ice:outputText value="#{itr.fieldLabel}" />
+				</ice:column>
+				<ice:column>
+					<f:facet name="header">
+						<ice:outputText value="Original Value" />
+					</f:facet>
+					<ice:outputText value="#{itr.originalValue}" />
+				</ice:column>
+				<ice:column>
+					<f:facet name="header">
+						<ice:outputText value="New Value" />
+					</f:facet>
+					<ice:outputText value="#{itr.newValue}" />
+				</ice:column>
+				<ice:column>
+					<f:facet name="header">
+						<ice:outputText value="Change" />
+					</f:facet>
+					<ice:outputText value="#{itr.changeAnalysis}" />
+				</ice:column>
+
+			</ice:dataTable>
+			
+			<h:form>
+				<h:panelGroup id="unhidden_table" rendered="#{!auditTrailDetailHandler.hideXmlView}">
+					<table class="datatable_paginator_wrapper">
+						<thead class="paginator">
+							<tr>
+								<td class="header">
+									<h:commandLink value="[-]" actionListener="#{auditTrailDetailHandler.toggleXmlViewButtonClick}" title="Collapse xml details." />
+									<h:outputText value=" ORIGINAL XML REQUEST " />
+								</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="panel_main code">
+									<h:outputText value="#{auditTrailDetailHandler.currentXml}" />
+								</td>
+							</tr>
+						</tbody>
+						<thead class="paginator">
+							<tr>
+								<td class="header">
+									<h:outputText value=" NEW XML REQUEST " />
+								</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="panel_main code">
+									<h:outputText value="#{auditTrailDetailHandler.updatedXml}" />
+								</td>
+							</tr>
+						</tbody>
+						<thead class="paginator">
+							<tr>
+								<td class="header">
+									<h:outputText value=" XML RESPONSE " />
+								</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="panel_main code">
+									<h:outputText value="#{auditTrailDetailHandler.responseXml}" />
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</h:panelGroup>
+				
+				<h:panelGroup id="hidden_table" rendered="#{auditTrailDetailHandler.hideXmlView}">
+					<table class="datatable_paginator_wrapper">
+						<thead class="paginator">
+							<tr>
+								<td class="header">
+									<h:commandLink value="[+]" actionListener="#{auditTrailDetailHandler.toggleXmlViewButtonClick}" title="Expand xml details." />
+									<h:outputText value=" REQUEST RESPONSE LOGS " />
+								</td>
+							</tr>
+						</thead>
+					</table>	
+				</h:panelGroup>
+			</h:form>
+		</div>
+
+		<div id="datatable_panel">
+			<ui:include src="/pages/audit/audit_relatedResults.xhtml" />
+		</div>
+
+	</ui:define>
+
+</ui:composition>

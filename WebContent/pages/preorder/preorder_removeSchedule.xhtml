@@ -1,0 +1,24 @@
+<h:panelGroup id="remove_panel" rendered="#{preorderTabbedPaneHandler.deleteTabCurrent}" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core">
+	
+	<div id="leftcol" class="normal_left_column">
+		<ui:include src="/pages/preorder/preorder_detail.xhtml" />
+	</div> 
+	<div id="midcol" class="normal_left_column">
+		<ui:include src="/pages/preorder/preorder_history.xhtml" />
+	</div> 
+	
+	<div id="rightcol" class="normal_column">
+		<h:form id="preorder_streetdate_remove">
+			<h:panelGrid id="preorder_inputform_streetdate_remove" columns="2">
+				<h:outputLabel for="remove_streetdate" value="Street Date: " styleClass="normal field_spacing" />
+				<h:inputText id="remove_streetdate" value="#{preorderHandler.newPreorderBean.streetDate}" styleClass="long_field field_spacing" readonly="true">
+        			<f:convertDateTime pattern="#{msg['ui.date.calendar_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+    			</h:inputText>
+			</h:panelGrid>
+			<h:message styleClass="error" for="remove_streetdate" />
+			
+			<h:commandButton id="remove_st_button" disabled="#{!userManagerBean.permissionsBean.deletePreorderAllowed || !preorderHandler.oldPreorderBean.deleteAllowed}" value="Remove this schedule" action="#{preorderHandler.removePreorderButtonClick}" styleClass="normal field_spacing" />
+			<h:commandButton immediate="true" id="cancel_remove_st_button" value="Cancel" action="#{preorderHandler.cancelChangesButtonClick}" styleClass="normal field_spacing" />
+		</h:form>
+	</div>
+</h:panelGroup>

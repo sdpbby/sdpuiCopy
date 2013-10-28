@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s0:definitions targetNamespace="http://sdp.bestbuy.com/bcs/csm/WSDL_BCS_SendEmail" xmlns:s0="http://schemas.xmlsoap.org/wsdl/" xmlns:s1="xml.accenture.com/sdp/bby/SOHeader" xmlns:s2="http://sdp.bestbuy.com/bcs/csm/BCS_SendEmail" xmlns:s3="http://sdp.bestbuy.com/bcs/csm/WSDL_BCS_SendEmail" xmlns:s4="http://schemas.xmlsoap.org/wsdl/soap/">
+  <s0:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://schemas.bestbuy.com/sdp" xmlns:ns="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://schemas.xmlsoap.org/soap/encoding/" xmlns:s1="http://sdp.bestbuy.com/bcs/csm/BCS_SendEmail" xmlns:soc="xml.accenture.com/sdp/bby/SOHeader" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://sdp.bestbuy.com/bcs/csm/BCS_SendEmail" schemaLocation="XSD_BCS_SendEmail.xsd"/>
+      <xs:import namespace="xml.accenture.com/sdp/bby/SOHeader" schemaLocation="XSD_SOCommonHeader.xsd"/>
+    </xs:schema>
+  </s0:types>
+  <s0:message name="Header">
+    <s0:part element="s1:Header" name="Header"/>
+  </s0:message>
+  <s0:message name="SendEmailRequest">
+    <s0:part element="s2:SendEmailServiceRequest" name="SendEmailRequest"/>
+  </s0:message>
+  <s0:message name="SendEmailResponse">
+    <s0:part element="s2:SendEmailServiceResponse" name="SendEmailResponse"/>
+  </s0:message>
+  <s0:portType name="SendEmailPortType">
+    <s0:operation name="SendEmail">
+      <s0:input message="s3:SendEmailRequest"/>
+      <s0:output message="s3:SendEmailResponse"/>
+    </s0:operation>
+  </s0:portType>
+  <s0:binding name="SoapBinding" type="s3:SendEmailPortType">
+    <s4:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <s0:operation name="SendEmail">
+      <s4:operation soapAction="xml.accenture.com/sdp/bby/SendEmail" style="document"/>
+      <s0:input>
+        <s4:header message="s3:Header" part="Header" use="literal"/>
+        <s4:body parts="SendEmailRequest" use="literal"/>
+      </s0:input>
+      <s0:output>
+        <s4:header message="s3:Header" part="Header" use="literal"/>
+        <s4:body parts="SendEmailResponse" use="literal"/>
+      </s0:output>
+    </s0:operation>
+  </s0:binding>
+  <s0:service name="SoapBindingQSService">
+    <s0:port binding="s3:SoapBinding" name="SoapBindingQSPort">
+      <s4:address location="https://dld17app.na.bestbuy.com:31043/BCS_SendEmail"/>
+    </s0:port>
+  </s0:service>
+</s0:definitions>

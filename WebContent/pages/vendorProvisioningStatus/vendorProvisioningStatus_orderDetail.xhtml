@@ -1,0 +1,84 @@
+<h:form id="provisioning_form" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core">
+	<h:panelGroup id="detail_panel">
+		 <div id="leftcol">
+		 	<table>
+		 		<tr>
+		 			<td>
+		 				<h:panelGrid columns="2" styleClass="panel_main normal" columnClasses="panel_main_label,panel_main_value">
+			
+							<h:outputText value="Vendor: " />
+							<h:outputText value="#{vendorProvisioningStatusHandler.vendorName}" />
+							
+							<h:outputText value="SDP ID: " />
+							<h:outputText value="#{vendorProvisioningStatusHandler.data.sdpId}" />
+							
+							<h:outputText value="Created Date: " />
+							<h:outputText value="#{vendorProvisioningStatusHandler.data.createdDate}">
+								<f:convertDateTime pattern="#{msg['ui.date.timestamp_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+							</h:outputText>
+							
+							<h:outputText value="Serial Number: " />
+							<h:outputText value="#{vendorProvisioningStatusHandler.data.serialNumber}" />
+							
+							<h:outputText value="Status: " />
+							<h:outputText value="#{vendorProvisioningStatusHandler.data.status}" />
+							
+							<h:outputText value="Response Code: " />
+							<h:outputText value="#{vendorProvisioningStatusHandler.data.responseCode}" />
+							
+							<h:outputText value="Request Type: " />
+							<h:outputText value="#{vendorProvisioningStatusHandler.data.requestType}" />
+							
+							<h:outputText value="SDP Order ID: " />
+							<h:panelGroup>
+								<h:outputText value="#{vendorProvisioningStatusHandler.data.sdpOrderId} " />
+								<h:commandLink value="View Order" rendered="#{vendorProvisioningStatusHandler.orderExists}" action="#{vendorProvisioningStatusHandler.viewOrderButtonClick}" />
+							</h:panelGroup>
+							
+						</h:panelGrid>
+		 			</td>
+		 			<td>
+		 				<h:commandButton value="Reprocess" action="#{vendorProvisioningStatusHandler.reprocessButtonClick}" rendered="#{vendorProvisioningStatusHandler.reflowable}" />
+		 			</td>
+		 		</tr>
+		 	</table>
+			
+			<br />
+			
+			<h:panelGroup id="unhidden_table" rendered="#{!vendorProvisioningStatusHandler.hide}">
+				<table class="datatable_paginator_wrapper">
+					<thead class="paginator">
+						<tr>
+							<td class="header">
+								<h:commandLink value="[-]" action="#{vendorProvisioningStatusHandler.toggleHide}" />
+								<h:outputText value=" INTERNAL REQUEST MESSAGE " />
+							</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="panel_main code">
+								<h:outputText value="#{vendorProvisioningStatusHandler.data.bbyOrderXml}" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</h:panelGroup>
+			
+			<h:panelGroup id="hidden_table" rendered="#{vendorProvisioningStatusHandler.hide}">
+				<table class="datatable_paginator_wrapper">
+					<thead class="paginator">
+						<tr>
+							<td class="header">
+								<h:commandLink value="[+]" action="#{vendorProvisioningStatusHandler.toggleHide}" />
+								<h:outputText value=" INTERNAL REQUEST MESSAGE " />
+							</td>
+						</tr>
+					</thead>
+				</table>	
+			</h:panelGroup>
+			
+		</div> 
+	</h:panelGroup>
+</h:form>
+		

@@ -1,0 +1,88 @@
+<ui:composition template="/pages/templates/masterLayout.xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<ui:define name="windowTitle">
+		SDP-CONFIG
+	</ui:define>
+
+	<ui:define name="tabTitle">
+		<h:outputText value="SDP-CONFIG" />
+	</ui:define>
+
+	<ui:define name="pageTitle">
+		<h:outputText value="CONFIG MANAGEMENT" />
+	</ui:define>
+
+	<ui:define name="subTitle">
+		<h:outputText
+			value="Reload sdp-config into database, refresh OpsUI cache, etc..." />
+	</ui:define>
+
+	<ui:define name="content">
+
+		<div id="top_content">
+			<h:form id="form">
+				<h:commandButton value="Refresh List" action="#{sdpConfigHandler.retrievePropertiesFromDatabase}" />
+				<h:commandButton value="Reload Properties From File" action="#{sdpConfigHandler.insertPropertiesToDatabaseFromFile}" title="NOTE: This will delete all sdp-config properties in the database and reload using properties from file. This cannot be rolled back!" />
+				<h:commandButton value="Refresh OpsUI Cache" action="#{sdpConfigHandler.forcePropertiesRefresh}" title="NOTE: If properties are changed manually in the database, use this to refresh the OpsUI cache to reload the new properties." />
+				<table class="datatable_paginator_wrapper" style="width:auto;">
+					<thead class="paginator">
+						<tr>
+							<td class="header">
+								<ice:outputText style="color: white;" value="SDP-CONFIG PROPERTIES FOUND (#{sdpConfigHandler.propertiesCount})" />
+							</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<ice:dataTable
+									binding="#{sdpConfigHandler.dataTable}"
+									value="#{sdpConfigHandler.rows}" var="itr"
+									id="datatable" sortColumn="#{sdpConfigHandler.sortColumnName}"
+									sortAscending="#{sdpConfigHandler.ascending}"
+									styleClass="datatable_auto" rowClasses="odd,even">
+									
+									<ice:column>
+										<f:facet name="header">
+											<ice:commandSortHeader
+												columnName="#{sdpConfigHandler.propNameColumnName}"
+												arrow="true">
+												<ice:outputText
+													value="#{sdpConfigHandler.propNameColumnName}" />
+											</ice:commandSortHeader>
+										</f:facet>
+										<ice:outputText value="#{itr.propertyName}" />
+									</ice:column>
+									<ice:column>
+										<f:facet name="header">
+											<ice:commandSortHeader
+												columnName="#{sdpConfigHandler.propValueColumnName}"
+												arrow="true">
+												<ice:outputText
+													value="#{sdpConfigHandler.propValueColumnName}" />
+											</ice:commandSortHeader>
+										</f:facet>
+										<ice:outputText value="#{itr.propertyValue}" />
+									</ice:column>
+								</ice:dataTable>
+							</td>
+						</tr>
+					</tbody>
+					<tfoot class="paginator">
+						<tr>
+							<td>
+								<h:outputText rendered="#{sdpConfigHandler.tableEmpty}" value="#{msg['ui.datatable.no_results_found']}" styleClass="error" />
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+			</h:form>
+		</div>
+
+	</ui:define>
+
+</ui:composition>

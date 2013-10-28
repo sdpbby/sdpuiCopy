@@ -1,0 +1,72 @@
+<h:form id="search_panel" rendered="#{keycodeBankReportTabbedPaneHandler.dashboardTabCurrent}" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<table class="menutable">
+		<thead>
+			<tr>
+				<td colspan="2">
+					<h:outputText value="#{msg['keycodeBank.menu.reports.title']}" />
+				</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="odd">
+				<td>
+					<h:commandButton style="width: 150px;" value="#{msg['keycodeBank.menu.reports.daily.button']}" action="#{keycodeBankReportDatatable.generateDailyReportButtonClick}" disabled="#{!userManagerBean.permissionsBean.viewKeycodesAllowed}" />
+				</td>
+				<td>
+					<h:outputText value="#{msg['keycodeBank.menu.reports.daily.description']}" />
+				</td>
+			</tr>
+			<tr class="even">
+				<td>
+					<h:commandButton style="width: 150px;" value="#{msg['keycodeBank.menu.reports.monthly.button']}" action="#{keycodeBankReportDatatable.generateMonthlyReportButtonClick}" disabled="#{!userManagerBean.permissionsBean.viewKeycodesAllowed}" />
+				</td>
+				<td>
+					<h:outputText value="#{msg['keycodeBank.menu.reports.monthly.description']}" />
+				</td>
+			</tr>
+			<tr class="odd">
+				<td>
+					<h:commandButton style="width: 150px;" value="#{msg['keycodeBank.menu.reports.depletion.button']}" action="#{keycodeBankReportDatatable.generateDepletionReportButtonClick}" disabled="#{!userManagerBean.permissionsBean.viewKeycodesAllowed}" />
+				</td>
+				<td>
+					<h:outputText value="#{msg['keycodeBank.menu.reports.depletion.description']}" />
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<table class="menutable">
+		<thead>
+			<tr>
+				<td colspan="2">
+					<h:outputText value="#{msg['keycodeBank.menu.operations.title']}" />
+				</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="odd">
+				<td>
+					<h:commandButton style="width: 150px;" value="#{msg['keycodeBank.menu.operations.load.button']}" action="#{keycodeBankReportHandler.loadButtonClick}" disabled="#{!userManagerBean.permissionsBean.loadKeycodesAllowed}" />
+				</td>
+				<td>
+					<h:outputText value="#{msg['keycodeBank.menu.operations.load.description']}" />
+				</td>
+			</tr>
+			<tr class="even">
+				<td>
+					<h:commandButton style="width: 150px;" value="#{msg['keycodeBank.menu.operations.manage_load.button']}" action="#{keycodeBankReportHandler.manageLoadButtonClick}" disabled="#{!(userManagerBean.permissionsBean.updateKeycodesAllowed || userManagerBean.permissionsBean.viewKeycodesAllowed)}" />
+				</td>
+				<td>
+					<h:outputText value="#{msg['keycodeBank.menu.operations.manage_load.description']}" />
+				</td>
+			</tr>
+			<tr class="odd">
+				<td>
+					<h:commandButton style="width: 150px;" value="#{msg['keycodeBank.menu.operations.catalog.button']}" action="#{keycodeBankReportHandler.catalogButtonClick}" disabled="#{!(userManagerBean.permissionsBean.createKcbCatalogAllowed || userManagerBean.permissionsBean.updateKcbCatalogAllowed || userManagerBean.permissionsBean.viewKcbCatalogAllowed)}" />
+				</td>
+				<td>
+					<h:outputText value="#{msg['keycodeBank.menu.operations.catalog.description']}" />
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</h:form>

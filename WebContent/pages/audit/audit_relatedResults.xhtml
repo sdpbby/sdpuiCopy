@@ -1,0 +1,275 @@
+<h:form id="form" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<table class="datatable_paginator_wrapper">
+		<thead class="paginator">
+			<tr>
+				<td class="header" colspan="2"><ice:dataPaginator
+						id="datadetail1" for="datatable" rowsCountVar="rowsCount">
+						<ice:outputFormat
+							value="#{msg['audittrail.datatable.title.related']} ({0})">
+							<f:param value="#{rowsCount}" />
+						</ice:outputFormat>
+					</ice:dataPaginator>
+				</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td colspan="2"><ice:dataTable width="100%"
+						binding="#{auditTrailDetailHandler.searchResults.dataTable}"
+						value="#{auditTrailDetailHandler.searchResults.rows}" var="itr" rows="20"
+						id="datatable"
+						sortColumn="#{auditTrailDetailHandler.searchResults.sortColumnName}"
+						sortAscending="#{auditTrailDetailHandler.searchResults.ascending}"
+						styleClass="datatable" rowClasses="odd,even">
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader
+									columnName="#{auditTrailDetailHandler.searchResults.logIdColumnName}"
+									arrow="true">
+									<ice:outputText
+										value="#{auditTrailDetailHandler.searchResults.logIdColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:commandButton action="#{auditTrailDetailHandler.searchResults.viewButtonClick}" value="#{itr.logId}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader
+									columnName="#{auditTrailDetailHandler.searchResults.dateColumnName}"
+									arrow="true">
+									<ice:outputText
+										value="#{auditTrailDetailHandler.searchResults.dateColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.date}">
+								<f:convertDateTime
+									pattern="#{msg['ui.date.timestamp_date_pattern']}"
+									timeZone="#{msg['ui.date.timezone']}" />
+							</ice:outputText>
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader
+									columnName="#{auditTrailDetailHandler.searchResults.contractIdColumnName}"
+									arrow="true">
+									<ice:outputText
+										value="#{auditTrailDetailHandler.searchResults.contractIdColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.contractId}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader
+									columnName="#{auditTrailDetailHandler.searchResults.serialNumberColumnName}"
+									arrow="true">
+									<ice:outputText
+										value="#{auditTrailDetailHandler.searchResults.serialNumberColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.serialNumber}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader
+									columnName="#{auditTrailDetailHandler.searchResults.lineItemIdColumnName}"
+									arrow="true">
+									<ice:outputText
+										value="#{auditTrailDetailHandler.searchResults.lineItemIdColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.lineItemId}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader
+									columnName="#{auditTrailDetailHandler.searchResults.actionColumnName}"
+									arrow="true">
+									<ice:outputText
+										value="#{auditTrailDetailHandler.searchResults.actionColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.action}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader
+									columnName="#{auditTrailDetailHandler.searchResults.userIdColumnName}"
+									arrow="true">
+									<ice:outputText
+										value="#{auditTrailDetailHandler.searchResults.userIdColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.userId}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader
+									columnName="#{auditTrailDetailHandler.searchResults.transactionDateColumnName}"
+									arrow="true">
+									<ice:outputText
+										value="#{auditTrailDetailHandler.searchResults.transactionDateColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.transactionDate}">
+								<f:convertDateTime
+									pattern="#{msg['ui.date.store_date_pattern']}"
+									timeZone="#{msg['ui.date.timezone']}" />
+							</ice:outputText>
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader
+									columnName="#{auditTrailDetailHandler.searchResults.storeIdColumnName}"
+									arrow="true">
+									<ice:outputText
+										value="#{auditTrailDetailHandler.searchResults.storeIdColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.storeId}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader
+									columnName="#{auditTrailDetailHandler.searchResults.registerIdColumnName}"
+									arrow="true">
+									<ice:outputText
+										value="#{auditTrailDetailHandler.searchResults.registerIdColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.registerId}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader
+									columnName="#{auditTrailDetailHandler.searchResults.transactionIdColumnName}"
+									arrow="true">
+									<ice:outputText
+										value="#{auditTrailDetailHandler.searchResults.transactionIdColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.transactionId}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader
+									columnName="#{auditTrailDetailHandler.searchResults.lineIdColumnName}"
+									arrow="true">
+									<ice:outputText
+										value="#{auditTrailDetailHandler.searchResults.lineIdColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.lineId}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader
+									columnName="#{auditTrailDetailHandler.searchResults.primarySkuColumnName}"
+									arrow="true">
+									<ice:outputText
+										value="#{auditTrailDetailHandler.searchResults.primarySkuColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.primarySku}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader
+									columnName="#{auditTrailDetailHandler.searchResults.relatedSkuColumnName}"
+									arrow="true">
+									<ice:outputText
+										value="#{auditTrailDetailHandler.searchResults.relatedSkuColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.relatedSku}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader
+									columnName="#{auditTrailDetailHandler.searchResults.customerNameColumnName}"
+									arrow="true">
+									<ice:outputText
+										value="#{auditTrailDetailHandler.searchResults.customerNameColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.customerName}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader
+									columnName="#{auditTrailDetailHandler.searchResults.deliveryEmailColumnName}"
+									arrow="true">
+									<ice:outputText
+										value="#{auditTrailDetailHandler.searchResults.deliveryEmailColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.deliveryEmail}" />
+						</ice:column>
+					</ice:dataTable></td>
+			</tr>
+		</tbody>
+		<tfoot class="paginator">
+			<tr>
+				<td class="results"><ice:dataPaginator
+						rendered="#{!auditTrailDetailHandler.searchResults.tableEmpty}"
+						id="datadetail2" for="datatable" rowsCountVar="rowsCount"
+						displayedRowsCountVar="displayedRowsCount"
+						firstRowIndexVar="firstRowIndex" lastRowIndexVar="lastRowIndex"
+						pageCountVar="pageCount" pageIndexVar="pageIndex">
+						<ice:outputFormat
+							value="{0} results found, displaying {1} result(s), from {2} to {3}. Page {4} / {5}.">
+							<f:param value="#{rowsCount}" />
+							<f:param value="#{displayedRowsCount}" />
+							<f:param value="#{firstRowIndex}" />
+							<f:param value="#{lastRowIndex}" />
+							<f:param value="#{pageIndex}" />
+							<f:param value="#{pageCount}" />
+						</ice:outputFormat>
+					</ice:dataPaginator></td>
+				<td class="navigation"><ice:dataPaginator
+						rendered="#{!auditTrailDetailHandler.searchResults.tableEmpty}"
+						id="datascroller2" for="datatable" paginator="true" fastStep="3"
+						paginatorMaxPages="4">
+						<f:facet name="first">
+							<ice:graphicImage
+								url="/xmlhttp/css/xp/css-images/arrow-first.gif"
+								style="border:none;" title="First Page">
+							</ice:graphicImage>
+						</f:facet>
+						<f:facet name="last">
+							<ice:graphicImage url="/xmlhttp/css/xp/css-images/arrow-last.gif"
+								style="border:none;" title="Last Page">
+							</ice:graphicImage>
+						</f:facet>
+						<f:facet name="previous">
+							<ice:graphicImage
+								url="/xmlhttp/css/xp/css-images/arrow-previous.gif"
+								style="border:none;" title="Previous Page">
+							</ice:graphicImage>
+						</f:facet>
+						<f:facet name="next">
+							<ice:graphicImage url="/xmlhttp/css/xp/css-images/arrow-next.gif"
+								style="border:none;" title="Next Page">
+							</ice:graphicImage>
+						</f:facet>
+						<f:facet name="fastforward">
+							<ice:graphicImage url="/xmlhttp/css/xp/css-images/arrow-ff.gif"
+								style="border:none;" title="Fast Forward">
+							</ice:graphicImage>
+						</f:facet>
+						<f:facet name="fastrewind">
+							<ice:graphicImage url="/xmlhttp/css/xp/css-images/arrow-fr.gif"
+								style="border:none;" title="Fast Backwards">
+							</ice:graphicImage>
+						</f:facet>
+					</ice:dataPaginator> <h:outputText rendered="#{auditTrailDetailHandler.searchResults.tableEmpty}"
+						value="#{msg['ui.datatable.no_results_found']}" styleClass="error" />
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+</h:form>

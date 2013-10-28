@@ -1,0 +1,157 @@
+<h:form id="form" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<table class="datatable_paginator_wrapper">
+		<thead class="paginator">
+			<tr>
+				<td class="header" colspan="2">
+					<ice:dataPaginator id="datadetail1" for="datatable" rowsCountVar="rowsCount">
+						<ice:outputFormat value="#{msg['eccui.datatable.title']} ({0})">
+							<f:param value="#{rowsCount}" />
+						</ice:outputFormat>
+					</ice:dataPaginator>
+				</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td colspan="2">
+					<ice:dataTable width="100%" value="#{eccuiDatatable.rows}" var="itr" rows="20" id="datatable" sortColumn="#{eccuiDatatable.sortColumnName}" sortAscending="#{eccuiDatatable.ascending}" styleClass="datatable" rowClasses="odd,even">
+						<ice:column rendered="#{userManagerBean.permissionsBean.sendEmailAllowed}">
+							<f:facet name="header">
+								<ice:outputText value="Send" />
+							</f:facet>
+							<ice:selectBooleanCheckbox rendered="#{!itr.submitted}" value="#{itr.selected}" id="check" disabled="#{!itr.sendEmailAllowed || !userManagerBean.permissionsBean.sendEmailAllowed}" />
+							<h:outputText styleClass="error" value="SUBMITTED" rendered="#{itr.successful}" />
+							<h:outputText styleClass="error" value="FAILED" rendered="#{itr.failed}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader columnName="#{eccuiDatatable.offrNameColumnName}" arrow="true">
+									<ice:outputText value="#{eccuiDatatable.offrNameColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.offrName}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader columnName="#{eccuiDatatable.cusNameColumnName}" arrow="true">
+									<ice:outputText value="#{eccuiDatatable.cusNameColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.cusName}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader columnName="#{eccuiDatatable.keyCodeColumnName}" arrow="true">
+									<ice:outputText value="#{eccuiDatatable.keyCodeColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.keyCode}" rendered="#{itr.sendEmailAllowed}" />
+						</ice:column>
+						<ice:column rendered="#{eccuiDatatable.displayBBYOrderId}">
+							<f:facet name="header">
+								<ice:commandSortHeader columnName="#{eccuiDatatable.bbyOrderIdColumnName}" arrow="true">
+									<ice:outputText value="#{eccuiDatatable.bbyOrderIdColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.fpkTransactionId}" />
+						</ice:column>
+						<ice:column rendered="#{eccuiDatatable.displayFpk}">
+							<f:facet name="header">
+								<ice:commandSortHeader columnName="#{eccuiDatatable.storeColumnName}" arrow="true">
+									<ice:outputText value="#{eccuiDatatable.storeColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.fpkStoreId}" />
+						</ice:column>
+						<ice:column rendered="#{eccuiDatatable.displayFpk}">
+							<f:facet name="header">
+								<ice:commandSortHeader columnName="#{eccuiDatatable.registerColumnName}" arrow="true">
+									<ice:outputText value="#{eccuiDatatable.registerColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.fpkRegisterId}" />
+						</ice:column>
+						<ice:column rendered="#{eccuiDatatable.displayFpk}">
+							<f:facet name="header">
+								<ice:commandSortHeader columnName="#{eccuiDatatable.transactionIdColumnName}" arrow="true">
+									<ice:outputText value="#{eccuiDatatable.transactionIdColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.fpkTransactionId}" />
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader columnName="#{eccuiDatatable.dateOfSaleColumnName}" arrow="true">
+									<ice:outputText value="#{eccuiDatatable.dateOfSaleColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.fpkTransactionDate}">
+								<f:convertDateTime pattern="#{msg['ui.date.store_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+							</ice:outputText>
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader columnName="#{eccuiDatatable.statusColumnName}" arrow="true">
+									<ice:outputText value="#{eccuiDatatable.statusColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.status}" />
+						</ice:column>
+						<ice:column>
+	                       <f:facet name="header">
+	                           <ice:outputText value="#{eccuiDatatable.emailColumnName}"></ice:outputText>
+	                       </f:facet>
+	                       <h:inputText id="send_email" value="#{itr.deliveryEmail}" disabled="#{!itr.sendEmailAllowed || !userManagerBean.permissionsBean.sendEmailAllowed}" styleClass="long_field field_spacing" />
+						</ice:column>
+					</ice:dataTable>
+					<h:commandButton value="Send Email" action="#{eccuiDatatable.sendEmailButtonClick}" disabled="#{eccuiDatatable.tableEmpty || !userManagerBean.permissionsBean.sendEmailAllowed}"/>
+				</td>
+			</tr>
+		</tbody>
+		<tfoot class="paginator">
+			<tr>
+				<td class="results">
+					<ice:dataPaginator rendered="#{!eccuiDatatable.tableEmpty}" id="datadetail2" for="datatable" rowsCountVar="rowsCount" displayedRowsCountVar="displayedRowsCount" firstRowIndexVar="firstRowIndex" lastRowIndexVar="lastRowIndex" pageCountVar="pageCount" pageIndexVar="pageIndex">
+						<ice:outputFormat value="{0} results found, displaying {1} result(s), from {2} to {3}. Page {4} / {5}.">
+							<f:param value="#{rowsCount}" />
+							<f:param value="#{displayedRowsCount}" />
+							<f:param value="#{firstRowIndex}" />
+							<f:param value="#{lastRowIndex}" />
+							<f:param value="#{pageIndex}" />
+							<f:param value="#{pageCount}" />
+						</ice:outputFormat>
+					</ice:dataPaginator>
+				</td>
+				<td class="navigation">
+					<ice:dataPaginator rendered="#{!eccuiDatatable.tableEmpty}" id="datascroller2" for="datatable" paginator="true" fastStep="3" paginatorMaxPages="4">
+						<f:facet name="first">
+							<ice:graphicImage url="/xmlhttp/css/xp/css-images/arrow-first.gif" style="border:none;" title="First Page">
+							</ice:graphicImage>
+						</f:facet>
+						<f:facet name="last">
+							<ice:graphicImage url="/xmlhttp/css/xp/css-images/arrow-last.gif" style="border:none;" title="Last Page">
+							</ice:graphicImage>
+						</f:facet>
+						<f:facet name="previous">
+							<ice:graphicImage url="/xmlhttp/css/xp/css-images/arrow-previous.gif" style="border:none;" title="Previous Page">
+							</ice:graphicImage>
+						</f:facet>
+						<f:facet name="next">
+							<ice:graphicImage url="/xmlhttp/css/xp/css-images/arrow-next.gif" style="border:none;" title="Next Page">
+							</ice:graphicImage>
+						</f:facet>
+						<f:facet name="fastforward">
+							<ice:graphicImage url="/xmlhttp/css/xp/css-images/arrow-ff.gif" style="border:none;" title="Fast Forward">
+							</ice:graphicImage>
+						</f:facet>
+						<f:facet name="fastrewind">
+							<ice:graphicImage url="/xmlhttp/css/xp/css-images/arrow-fr.gif" style="border:none;" title="Fast Backwards">
+							</ice:graphicImage>
+						</f:facet>
+					</ice:dataPaginator>
+					<h:outputText rendered="#{eccuiDatatable.tableEmpty}" value="#{msg['ui.datatable.no_results_found']}" styleClass="error" />
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+</h:form>

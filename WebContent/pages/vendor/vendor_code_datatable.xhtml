@@ -1,0 +1,98 @@
+<h:form id="ven_cd_dt" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<table class="datatable_paginator_wrapper">
+		<thead class="paginator">
+			<tr>
+				<td class="header" colspan="2">
+					<ice:dataPaginator id="datadetail1" for="datatable" rowsCountVar="rowsCount">
+						<ice:outputFormat value="#{msg['vendor.datatable.title']} ({0}) - #{vendorCodeDatatable.vendorName}">
+							<f:param value="#{rowsCount}" />
+						</ice:outputFormat>
+					</ice:dataPaginator>
+				</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td colspan="2">
+					<ice:dataTable width="100%" value="#{vendorCodeDatatable.rows}" var="itr" id="datatable" sortColumn="#{vendorCodeDatatable.sortColumnName}" sortAscending="#{vendorCodeDatatable.ascending}" styleClass="datatable" rowClasses="odd,even">
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader columnName="#{vendorCodeDatatable.rowIdColumnName}" arrow="true">
+									<ice:outputText value="#{vendorCodeDatatable.rowIdColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.vendorCodeRowId}">
+							</ice:outputText>
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader columnName="#{vendorCodeDatatable.vendorIdColumnName}" arrow="true">
+									<ice:outputText value="#{vendorCodeDatatable.vendorIdColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.vendorId}">
+							</ice:outputText>
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader columnName="#{vendorCodeDatatable.vendorNameColumnName}" arrow="true">
+									<ice:outputText value="#{vendorCodeDatatable.vendorNameColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.vendorName}">
+							</ice:outputText>
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader columnName="#{vendorCodeDatatable.vendorStatusCodeColumnName}" arrow="true">
+									<ice:outputText value="#{vendorCodeDatatable.vendorStatusCodeColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.vendorCode}">
+							</ice:outputText>
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader columnName="#{vendorCodeDatatable.sdpStatusCodeColumnName}" arrow="true">
+									<ice:outputText value="#{vendorCodeDatatable.sdpStatusCodeColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.sdpCode}">
+							</ice:outputText>
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader columnName="#{vendorCodeDatatable.canRetryColumnName}" arrow="true">
+									<ice:outputText value="#{vendorCodeDatatable.canRetryColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.canRetryString}"></ice:outputText>
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:commandSortHeader columnName="#{vendorCodeDatatable.statusCodeDescriptionColumnName}" arrow="true">
+									<ice:outputText value="#{vendorCodeDatatable.statusCodeDescriptionColumnName}" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{itr.vendorCodeDescription}">
+							</ice:outputText>
+						</ice:column>
+						<ice:column>
+	                       <f:facet name="header">
+	                           <ice:outputText value="#{vendorCodeDatatable.actionColumnName}"></ice:outputText>
+	                       </f:facet>
+	                       <h:commandButton value="Modify" action="#{vendorCodeDatatable.editButtonClick}" disabled="#{!userManagerBean.permissionsBean.updateVendorAllowed}" />
+                   		</ice:column>
+					</ice:dataTable>
+				</td>
+			</tr>
+		</tbody>
+		<tfoot class="paginator">
+			<tr>
+				<td class="navigation">
+					<h:outputText rendered="#{vendorCodeDatatable.tableEmpty}" value="#{msg['ui.datatable.no_results_found']}" styleClass="error" />
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+</h:form>

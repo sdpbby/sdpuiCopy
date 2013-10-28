@@ -1,0 +1,48 @@
+<h:form id="vendorRequestHistory_form" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<table class="datatable_paginator_wrapper">
+		<thead class="paginator">
+			<tr>
+				<td class="header">
+					<h:commandLink value="[+]" action="#{vendorProvisioningStatusHandler.vendorProvisioningStatusDatatable.toggleHide}" rendered="#{vendorProvisioningStatusHandler.vendorProvisioningStatusDatatable.hide}" />
+					<h:commandLink value="[-]" action="#{vendorProvisioningStatusHandler.vendorProvisioningStatusDatatable.toggleHide}" rendered="#{!vendorProvisioningStatusHandler.vendorProvisioningStatusDatatable.hide}" />
+					<ice:dataPaginator id="vendorRequestHistory_datadetail1" for="vendorRequestHistory_datatable" rowsCountVar="rowsCount">
+						<ice:outputFormat value=" #{vendorProvisioningStatusHandler.source} REQUEST AND RESPONSE LOGS ({0}) ">
+							<f:param value="#{rowsCount}" />
+						</ice:outputFormat>
+					</ice:dataPaginator> 
+				</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<ice:dataTable rendered="#{!vendorProvisioningStatusHandler.vendorProvisioningStatusDatatable.hide and !vendorProvisioningStatusHandler.vendorProvisioningStatusDatatable.tableEmpty}" width="100%" binding="#{vendorProvisioningStatusHandler.vendorProvisioningStatusDatatable.dataTable}" value="#{vendorProvisioningStatusHandler.vendorProvisioningStatusDatatable.rows}" var="itr" id="vendorRequestHistory_datatable" styleClass="datatable" columnClasses="top,top" rowClasses="odd,even">
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Request Message" />
+							</f:facet>
+							<h:panelGroup styleClass="code">
+								<ice:outputText value="#{itr.requestCreatedDate}">
+									<f:convertDateTime pattern="#{msg['ui.date.timestamp_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+								</ice:outputText>
+								<ice:outputText styleClass="code" value="#{itr.requestMessageXml}" />
+							</h:panelGroup>
+						</ice:column>
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Response Message" />
+							</f:facet>	
+							<h:panelGroup>
+								<ice:outputText value="#{itr.responseCreatedDate}">
+									<f:convertDateTime pattern="#{msg['ui.date.timestamp_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+								</ice:outputText>
+								<ice:outputText styleClass="code" value="#{itr.responseMessageXml}" />
+							</h:panelGroup>
+						</ice:column>
+					</ice:dataTable>
+					<ice:outputText styleClass="error" value="No records to display." rendered="#{!vendorProvisioningStatusHandler.vendorProvisioningStatusDatatable.hide and vendorProvisioningStatusHandler.vendorProvisioningStatusDatatable.tableEmpty}" />
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</h:form>

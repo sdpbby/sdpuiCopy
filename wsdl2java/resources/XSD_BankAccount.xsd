@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="xml.accenture.com/sdp/bby/cm/BankAccount" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:BankAccount="xml.accenture.com/sdp/bby/cm/BankAccount" xmlns:Customer="xml.accenture.com/sdp/bby/cm/Customer">
+	<xs:import namespace="xml.accenture.com/sdp/bby/cm/Customer" schemaLocation="XSD_Customer.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Bank Account Entity</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="BankAccount">
+		<xs:sequence>
+			<xs:element name="AccountOwner" type="Customer:Name"/>
+			<xs:element name="AccountNumber" type="xs:long"/>
+			<xs:element name="RoutingNumber" type="xs:long"/>
+			<xs:element name="Type" type="xs:string"/>
+			<xs:element name="AccountCheckNumber" type="xs:long"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

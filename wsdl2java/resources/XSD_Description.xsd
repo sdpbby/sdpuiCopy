@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="xml.accenture.com/sdp/bby/utilities/Description" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:Description="xml.accenture.com/sdp/bby/utilities/Description">
+	<xs:annotation>
+		<xs:documentation>Description Entity</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="Description">
+		<xs:sequence>
+			<xs:element name="Short" type="xs:string" minOccurs="0"/>
+			<xs:element name="Medium" type="xs:string" minOccurs="0"/>
+			<xs:element name="Long" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

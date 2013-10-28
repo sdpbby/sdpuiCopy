@@ -1,0 +1,45 @@
+<h:panelGroup id="validate_code_panel" rendered="#{keycodeBankLoadTabbedPaneHandler.validateTabCurrent}" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component" xmlns:ace="http://www.icefaces.org/icefaces/components">
+	<h:panelGrid columns="2">
+		<h:outputText style="font-weight: bold;" value="Vendor: " />
+		<h:outputText value="#{keycodeBankLoadHandler.newKeycodeBatchBean.vendorId}" />
+		
+		<h:outputText style="font-weight: bold;" value="Merchandise SKU: " />
+		<h:outputText value="#{keycodeBankLoadHandler.newKeycodeBatchBean.merchandiseSku}" />
+		
+		<h:outputText style="font-weight: bold;" value="Non-Merchandise SKU: " />
+		<h:outputText value="#{keycodeBankLoadHandler.newKeycodeBatchBean.nonMerchandiseSku}" />
+		
+		<h:outputText style="font-weight: bold;" value="Master Item ID: " />
+		<h:outputText value="#{keycodeBankLoadHandler.newKeycodeBatchBean.masterItemId}" />
+		
+		<h:outputText style="font-weight: bold;" value="Description: " />
+		<h:outputText value="#{keycodeBankLoadHandler.newKeycodeBatchBean.description}" />
+		
+		<h:outputText style="font-weight: bold;" value="Start Date: " />
+		<h:outputText value="#{keycodeBankLoadHandler.newKeycodeBatchBean.minDate}">
+			<f:convertDateTime pattern="#{msg['ui.date.calendar_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+		</h:outputText>
+		
+		<h:outputText style="font-weight: bold;" value="End Date: " />
+		<h:outputText value="#{keycodeBankLoadHandler.newKeycodeBatchBean.maxDate}">
+			<f:convertDateTime pattern="#{msg['ui.date.calendar_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+		</h:outputText>
+		
+		<h:outputText style="font-weight: bold;" value="Load File: " />
+		<h:outputText value="#{keycodeBankLoadHandler.newKeycodeBatchBean.fileName}" />
+		
+		<f:verbatim><br /></f:verbatim>
+		<f:verbatim><br /></f:verbatim>
+		
+		<h:outputText style="font-weight: bold;" value="Keycodes to be Uploaded: " />
+		<h:outputText value="#{keycodeBankLoadHandler.validator.validKeyCount}" />
+		
+		<h:outputText style="font-weight: bold;" value="Batch Load ID: " />
+		<h:outputText value="#{keycodeBankLoadHandler.newKeycodeBatchBean.batchLoadId}" />
+	</h:panelGrid>
+	<br /><br />
+	<h:form id="kcb_validate_form">
+		<h:commandButton value="Load Now" action="#{keycodeBankLoadDatatable.loadNowButtonClick}" disabled="#{!userManagerBean.permissionsBean.loadKeycodesAllowed}" />
+		<h:commandButton value="Back" immediate="true" action="#{keycodeBankLoadHandler.backButtonClick}" />
+	</h:form>
+</h:panelGroup>

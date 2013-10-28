@@ -1,0 +1,7 @@
+<h:panelGroup id="search_panel" rendered="#{vendorTabbedPaneHandler.searchTabCurrent}" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core">
+	<div id="rightcol" class="wide_column">
+		<h:form id="vendor_productsku_create_form">
+			<h:commandButton id="create_product_button" value="Create New Vendor" action="#{vendorHandler.createVendorButtonClick}" styleClass="normal field_spacing" disabled="#{!userManagerBean.permissionsBean.createVendorAllowed}" />
+		</h:form>
+	</div>
+</h:panelGroup>

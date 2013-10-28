@@ -1,0 +1,39 @@
+<ui:composition template="/pages/templates/loginLayout.xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml">
+	<ui:define name="windowTitle">
+		#{msg['login.windowtitle']}
+	</ui:define>
+	<ui:define name="pageTitle">
+		#{msg['login.pagetitle']}
+	</ui:define>
+	<ui:define name="subTitle">
+		#{msg['login.subtitle']}
+	</ui:define>
+	<ui:define name="content">
+		<form method="POST" id="login_form" action="j_security_check">
+			<table>
+				<tr>
+					<td>
+						<label for="j_username">UserName:</label>
+					</td>
+					<td>
+						<input type="text" name="j_username" id="j_username" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="j_password">Password:</label>
+					</td>
+					<td>
+						<input type="password" name="j_password" id="j_password" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" style="text-align: right">
+						<input type="submit" name="submit" value="Submit" />
+						<input type="reset" name="reset" value="Reset" />
+					</td>
+				</tr>
+			</table>
+		</form>
+	</ui:define>
+</ui:composition>

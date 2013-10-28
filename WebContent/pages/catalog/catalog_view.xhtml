@@ -1,0 +1,16 @@
+<h:panelGroup id="view_panel" rendered="#{catalogTabbedPaneHandler.viewTabCurrent}" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core">
+	<h:form id="catalog_view_form">
+		<div id="leftcol" class="normal_left_column">
+			<ui:include src="/pages/catalog/catalog_view_detail.xhtml" />
+		</div> 
+		<div id="midcol" class="normal_left_column">
+			<ui:include src="/pages/catalog/catalog_view_attributes.xhtml" />
+		</div> 
+		<div id="rightcol" class="normal_left_column">
+		
+			<h:commandButton value="Cancel" action="#{catalogHandler.cancelButtonClick}" />
+			<h:commandButton value="Edit" action="#{catalogHandler.editButtonClick}" disabled="#{!userManagerBean.permissionsBean.updateCatalogAllowed}" />
+			<h:commandButton value="Clone" action="#{catalogHandler.cloneButtonClick}" disabled="#{!userManagerBean.permissionsBean.createCatalogAllowed}" />
+		</div> 
+	</h:form>
+</h:panelGroup>

@@ -1,0 +1,44 @@
+<ui:composition template="/pages/templates/masterLayout.xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml">
+	<ui:define name="windowTitle">
+		#{msg['home.windowtitle']}
+	</ui:define>
+
+	<ui:define name="tabTitle">
+		<h:outputText value="#{msg['home.tabtitle']}" />
+	</ui:define>
+
+	<ui:define name="pageTitle">
+		#{msg['home.pagetitle']}
+	</ui:define>
+
+	<ui:define name="subTitle">
+		<h:outputText value="#{msg['home.subtitle']}" />
+	</ui:define>
+
+	<ui:define name="content">
+		<div id="top_content">
+		<table border="1">
+			<tr height="230px">
+				<td id="home_research" style="vertical-align:top; width: 240px;">
+					<ui:include src="/pages/home/home_research.xhtml" />
+				</td>
+				<td id="home_rqstflow" style="vertical-align:top; width: 240px;">
+					<ui:include src="/pages/home/home_newrequestflow.xhtml" />
+				</td>
+				<td id="home_admin" style="vertical-align:top; width: 240px;">
+					<ui:include src="/pages/home/home_administration.xhtml" />
+				</td>
+				
+				<h:panelGroup id="support_panel"  rendered="#{userManagerBean.permissionsBean.supportPageAccessAllowed}">
+					<td id="home_support" style="vertical-align:top; width: 240px;" >
+						<ui:include src="/pages/home/home_support.xhtml" />
+					</td>
+				</h:panelGroup>	
+			</tr>
+
+
+		</table>
+		</div>
+	</ui:define>
+
+</ui:composition>

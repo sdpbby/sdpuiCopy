@@ -1,0 +1,17 @@
+<h:form id="monthly_report_top_panel" rendered="#{keycodeBankReportTabbedPaneHandler.monthlyReportTabCurrent}" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
+	
+		<h:panelGroup id="monthly_report" rendered="#{keycodeBankReportTabbedPaneHandler.monthlyReportTabCurrent}">
+			<h:panelGrid columns="5">
+				<h:outputText value="Jump To: " />
+				<h:selectOneMenu id="year" value="#{keycodeBankReportDatatable.year}" >
+					<f:selectItems value="#{keycodeBankReportDatatable.yearsList}" />
+				</h:selectOneMenu>
+				<h:selectOneMenu id="month" value="#{keycodeBankReportDatatable.month}">
+					<f:selectItems value="#{keycodeBankReportDatatable.monthsList}" />
+				</h:selectOneMenu>
+				<h:commandButton value="Query" action="#{keycodeBankReportDatatable.generateMonthlyReportButtonClick}" />
+				<h:commandButton value="Return to Dashboard" action="#{keycodeBankReportDatatable.backButtonClick}" />
+			</h:panelGrid>
+		</h:panelGroup>
+
+</h:form>

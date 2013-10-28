@@ -1,0 +1,23 @@
+<h:panelGroup id="create_new_panel" rendered="#{preorderTabbedPaneHandler.createTabCurrent}" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<div id="leftcol" class="normal_left_column">
+		<ui:include src="/pages/preorder/preorder_detail.xhtml" />
+	</div> 
+	<div id="midcol" class="normal_left_column">
+		<ui:include src="/pages/preorder/preorder_history.xhtml" />
+	</div> 
+	
+	<div id="rightcol" class="normal_column">
+		<h:form id="preorder_streetdate_create">
+			<h:panelGrid id="preorder_inputform_streetdate" columns="2">
+				<h:outputLabel for="create_StreetDate" value="Street Date: " styleClass="normal field_spacing" />
+				<ice:selectInputDate id="create_StreetDate" renderMonthAsDropdown="true" renderYearAsDropdown="true" value="#{preorderHandler.newPreorderBean.streetDate}" rendered="true" title="MM/DD/YYYY HH:MM PM" renderAsPopup="true" styleClass="normal field_spacing">
+        			<f:convertDateTime pattern="#{msg['ui.date.calendar_date_pattern']}" timeZone="#{msg['ui.date.timezone']}" />
+    			</ice:selectInputDate>
+			</h:panelGrid>
+			<h:message styleClass="error" for="create_StreetDate" />
+			
+			<h:commandButton id="save_insert_button" value="Create Schedule" action="#{preorderHandler.saveNewScheduleButtonClick}" styleClass="normal field_spacing" disabled="#{!userManagerBean.permissionsBean.createPreorderAllowed}" />
+			<h:commandButton id="cancel_product_button" value="Cancel" actionListener="#{preorderHandler.cancelChangesButtonClick}" styleClass="normal field_spacing" />
+		</h:form>
+	</div>
+</h:panelGroup>

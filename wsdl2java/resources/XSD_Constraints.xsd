@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="xml.accenture.com/sdp/bby/utilities/Constraints" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:Constraints="xml.accenture.com/sdp/bby/utilities/Constraints">
+	<xs:annotation>
+		<xs:documentation> Constraints Entity</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="Constraints">
+		<xs:sequence>
+			<xs:element name="Min" type="xs:int" default="0" minOccurs="0"/>
+			<xs:element name="Max" type="xs:int" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

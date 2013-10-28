@@ -1,0 +1,53 @@
+<h:panelGrid styleClass="normal" columns="3" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+			
+	<h:outputLabel styleClass="normal field_spacing" value="Catalog ID: " for="catalogId" />
+	<h:outputText value="#{catalogHandler.newCatalogBean.catalogId}" id="catalogId"  />
+	<h:message styleClass="error" for="catalogId" />			
+						
+	<h:outputLabel styleClass="normal field_spacing" value="Vendor ID: " for="vendorId" />
+	<h:selectOneMenu value="#{catalogHandler.newCatalogBean.vendorId}" id="vendorId" required="true" maxLength="20">
+		<f:selectItem itemLabel="- Select -" />
+		<f:selectItems value="#{dropdownListManager.sortedVendorSelectItems}" />
+	</h:selectOneMenu>
+	<h:message styleClass="error" for="vendorId" />
+						
+	<h:outputLabel styleClass="normal field_spacing" value="Description: " for="primarySkuDescription" />
+	<h:inputText value="#{catalogHandler.newCatalogBean.primarySkuDescription}" id="primarySkuDescription" required="true" maxLength="20" />
+	<h:message styleClass="error" for="primarySkuDescription" />
+					
+	<h:outputLabel rendered="#{catalogHandler.createProfile}" styleClass="normal field_spacing" value="Master Vendor ID: " for="masterVendorId" />
+	<h:inputText rendered="#{catalogHandler.createProfile}" styleClass="normal field_spacing" value="#{catalogHandler.newCatalogBean.masterVendorId}" id="masterVendorId" required="true" maxLength="20" />
+	<h:panelGroup rendered="#{catalogHandler.createProfile}" >
+		<h:message styleClass="error" for="masterVendorId" />
+		<h:outputText styleClass="error" value="Profile with this Master Vendor ID already exists." rendered="#{catalogHandler.displayDuplicateValueError}" />
+		<h:outputText styleClass="error" value="Special characters are not allowed." rendered="#{catalogHandler.displaySpecialCharacterError}" />
+	</h:panelGroup>
+					
+	<h:outputLabel rendered="#{catalogHandler.createProduct}" styleClass="normal field_spacing" value="Primary SKU: " for="primarySku" />
+	<h:inputText rendered="#{catalogHandler.createProduct}" styleClass="normal field_spacing" value="#{catalogHandler.newCatalogBean.primarySku}" id="primarySku" required="true" maxLength="50" valueChangeListener="#{catalogHandler.validateProduct}" onchange="submit();" />
+	<h:panelGroup rendered="#{catalogHandler.createProduct}">
+		<h:message styleClass="error" for="primarySku" />
+		<h:outputText styleClass="error" value="Product with this SKU already exists." rendered="#{catalogHandler.displayDuplicateValueError}" />
+		<h:outputText styleClass="error" value="Special characters are not allowed." rendered="#{catalogHandler.displaySpecialCharacterError}" />
+	</h:panelGroup>
+				
+	<h:outputLabel rendered="#{catalogHandler.createProduct}" styleClass="normal field_spacing" value="Related SKU: " for="parentSku" />
+	<h:inputText rendered="#{catalogHandler.createProduct}" styleClass="normal field_spacing" value="#{catalogHandler.newCatalogBean.parentSku}" id="parentSku" maxLength="50" />
+	<h:message rendered="#{catalogHandler.createProduct}" styleClass="error" for="parentSku" />
+					
+	<h:outputLabel rendered="#{catalogHandler.createProduct}" styleClass="normal field_spacing" value="Vendor Trigger SKU: " for="vendorTriggerSku" />
+	<h:inputText rendered="#{catalogHandler.createProduct}" styleClass="normal field_spacing" value="#{catalogHandler.newCatalogBean.vendorTriggerSku}" id="vendorTriggerSku" maxLength="50" />
+	<h:message rendered="#{catalogHandler.createProduct}" styleClass="error" for="vendorTriggerSku" />
+	
+	<h:outputLabel rendered="#{catalogHandler.createProfile}" styleClass="normal field_spacing" value="Product Type: " for="productType" />
+	<h:inputText rendered="#{catalogHandler.createProfile}" styleClass="normal field_spacing" value="#{catalogHandler.newCatalogBean.productType}" id="productType" required="true" maxLength="20" />
+	<h:message rendered="#{catalogHandler.createProfile}" styleClass="error" for="productType" />
+			
+	<h:outputLabel styleClass="normal field_spacing" value="Category: " for="category" />
+	<h:selectOneMenu styleClass="normal field_spacing" value="#{catalogHandler.newCatalogBean.category}" id="category" required="true" maxLength="20">
+		<f:selectItem itemLabel="- Select -" />
+		<f:selectItems value="#{dropdownListManager.sortedCatalogCategorySelectItems}" />
+	</h:selectOneMenu>
+	<h:message styleClass="error" for="category" />
+			
+</h:panelGrid>
